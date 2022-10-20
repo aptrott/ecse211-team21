@@ -26,7 +26,7 @@ class InputLever:
     def get_switch_state(self):
         position = self.motor.get_position()
         if position in range(LeverStates.DrummingOn.min_position, LeverStates.DrummingOn.max_position):
-            return LeverStates.DrummingOn
+            return LeverStates.DrummingOn, position
 
 
 class LeverStates(Enum):
@@ -45,5 +45,6 @@ if __name__ == "__main__":
     while True:
         try:
             print(lever.get_switch_state())
+            time.sleep(.5)
         except BaseException:
             quit()
