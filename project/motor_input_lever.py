@@ -20,13 +20,18 @@ class InputLever:
         makes a call to motor.reset_encoder
         """
         self.motor = motor
-        #starting_position = motor.set_position_relative(-1 * motor.get_position())  # The idea here is that we always have the same starting position for the motor.
+        # starting_position = motor.set_position_relative(-1 * motor.get_position())  # The idea here is that we always have the same starting position for the motor.
         motor.reset_encoder()
 
     def get_switch_state(self):
         position = self.motor.get_position()
         if position in range(LeverStates.DrummingOn.min_position, LeverStates.DrummingOn.max_position):
             return LeverStates.DrummingOn, position
+        elif position in range(LeverStates.DrummingOff.min_position, LeverStates.DrummingOff.max_position):
+            return LeverStates.DrummingOff, position
+        elif position in range(LeverStates.EmergencyStop.min_position, LeverStates.EmergencyStop.max_position):
+            return LeverStates.EmergencyStop, position
+"""
 
 
 class LeverStates(Enum):
@@ -47,4 +52,4 @@ if __name__ == "__main__":
             print(lever.get_switch_state())
             time.sleep(.5)
         except BaseException:
-            quit()
+            exit()
