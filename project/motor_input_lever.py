@@ -48,5 +48,5 @@ if __name__ == "__main__":
             print(lever.get_switch_state())
             time.sleep(0.5)
 
-    except BaseException as e:
+    except BaseException:
         exit()
