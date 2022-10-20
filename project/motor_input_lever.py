@@ -20,47 +20,33 @@ class InputLever:
         makes a call to motor.reset_encoder
         """
         self.motor = motor
-        # starting_position = motor.set_position_relative(-1 * motor.get_position())  # The idea here is that we always have the same starting position for the motor.
         motor.reset_encoder()
 
     def get_switch_state(self):
         position = self.motor.get_position()
-        return LeverStates.get_state(position=position)
-
-"""
-        if position in range(LeverStates.DrummingOn.min_position, LeverStates.DrummingOn.max_position):
-            return LeverStates.DrummingOn, position
-        elif position in range(LeverStates.DrummingOff.min_position, LeverStates.DrummingOff.max_position):
-            return LeverStates.DrummingOff, position
-        elif position in range(LeverStates.EmergencyStop.min_position, LeverStates.EmergencyStop.max_position):
-            return LeverStates.EmergencyStop, position
-"""
+        for state in LeverState:
+            if position in range(state.min_position, state.max_position):
+                return state
 
 
-class LeverStates(Enum):
-    DrummingOn = (0, 119)
-    DrummingOff = (120, 239)
-    EmergencyStop = (240, 359)
+class LeverState(Enum):
+    DRUMMING_ON = (0, 120)
+    DRUMMING_OFF = (120, 240)
+    EMERGENCY_STOP = (240, 360)
 
     def __init__(self, min_position, max_position):
         self.min_position = min_position
         self.max_position = max_position
 
-    def get_state(self, position):
-        if position in range(LeverStates.DrummingOn.min_position, self.DrummingOn.max_position)
-                return self.DrummingOn
-        if position in range(LeverStates.DrummingOff.min_position, self.DrummingOff.max_position)
-                return self.DrummingOff
-        if position in range(LeverStates.EmergencyStop.min_position, self.EmergencyStop.max_position)
-                return self.EmergencyStop
-
 
 if __name__ == "__main__":
     input_motor = Motor("A")
     lever = InputLever(input_motor)
-    while True:
-        try:
+
+    try:
+        while True:
             print(lever.get_switch_state())
-            time.sleep(.5)
-        except BaseException:
-            exit()
+            time.sleep(0.5)
+
+    except BaseException as e:
+        exit()
