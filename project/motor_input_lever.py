@@ -25,6 +25,9 @@ class InputLever:
 
     def get_switch_state(self):
         position = self.motor.get_position()
+        return LeverStates.get_state(position=position)
+
+"""
         if position in range(LeverStates.DrummingOn.min_position, LeverStates.DrummingOn.max_position):
             return LeverStates.DrummingOn, position
         elif position in range(LeverStates.DrummingOff.min_position, LeverStates.DrummingOff.max_position):
@@ -42,6 +45,14 @@ class LeverStates(Enum):
     def __init__(self, min_position, max_position):
         self.min_position = min_position
         self.max_position = max_position
+
+    def get_state(self, position):
+        if position in range(LeverStates.DrummingOn.min_position, self.DrummingOn.max_position)
+                return self.DrummingOn
+        if position in range(LeverStates.DrummingOff.min_position, self.DrummingOff.max_position)
+                return self.DrummingOff
+        if position in range(LeverStates.EmergencyStop.min_position, self.EmergencyStop.max_position)
+                return self.EmergencyStop
 
 
 if __name__ == "__main__":
