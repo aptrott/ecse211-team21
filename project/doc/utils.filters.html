@@ -1,0 +1,698 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module utils.filters</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="utils.html"><font color="#ffffff">utils</font></a>.filters</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:d%3A%5Cprogrammingd%5Cschoold%5Clab-code-development%5Cutils%5Cfilters.py">d:\programmingd\schoold\lab-code-development\utils\filters.py</a></font></td></tr></table>
+    <p><tt>Module&nbsp;for&nbsp;list-like&nbsp;filters&nbsp;that&nbsp;generate&nbsp;statistics&nbsp;based&nbsp;on&nbsp;a&nbsp;source&nbsp;list.&nbsp;<br>
+Changes&nbsp;to&nbsp;the&nbsp;source&nbsp;list&nbsp;result&nbsp;in&nbsp;changes&nbsp;in&nbsp;the&nbsp;filters'&nbsp;results.<br>
+&nbsp;<br>
+Author:&nbsp;Ryan&nbsp;Au</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.filters.html#AppendingList">AppendingList</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.filters.html#BaseFilter">BaseFilter</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.filters.html#SectionFunctionFilter">SectionFunctionFilter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="utils.filters.html#SimpleFunctionFilter">SimpleFunctionFilter</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.filters.html#ModulusFilter">ModulusFilter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="utils.filters.html#RangeLimitFilter">RangeLimitFilter</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.filters.html#MaximumFilter">MaximumFilter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="utils.filters.html#MeanFilter">MeanFilter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="utils.filters.html#MedianFilter">MedianFilter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="utils.filters.html#MinimumFilter">MinimumFilter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="utils.filters.html#SumFilter">SumFilter</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="utils.filters.html#IntegrationTracker">IntegrationTracker</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AppendingList">class <strong>AppendingList</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#AppendingList">AppendingList</a>(source:&nbsp;list&nbsp;=&nbsp;None)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AppendingList-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="AppendingList-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="AppendingList-__init__"><strong>__init__</strong></a>(self, source: list = None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="AppendingList-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AppendingList-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AppendingList-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="AppendingList-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BaseFilter">class <strong>BaseFilter</strong></a>(<a href="utils.filters.html#AppendingList">AppendingList</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#BaseFilter">BaseFilter</a>(source)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BaseFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="BaseFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="BaseFilter-__init__"><strong>__init__</strong></a>(self, source)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="BaseFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="BaseFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IntegrationTracker">class <strong>IntegrationTracker</strong></a>(<a href="utils.filters.html#AppendingList">AppendingList</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#IntegrationTracker">IntegrationTracker</a>&nbsp;is&nbsp;a&nbsp;special&nbsp;type&nbsp;of&nbsp;list&nbsp;which&nbsp;finds&nbsp;the&nbsp;trapezoidal&nbsp;integral&nbsp;of&nbsp;added&nbsp;values.<br>
+&nbsp;<br>
+For&nbsp;Example:<br>
+tracker&nbsp;=&nbsp;<a href="#IntegrationTracker">IntegrationTracker</a>()&nbsp;#&nbsp;instantiate&nbsp;tracker<br>
+tracker.<a href="#IntegrationTracker-append">append</a>(0,1)&nbsp;#&nbsp;append&nbsp;with&nbsp;values&nbsp;(y-value,&nbsp;delta-x)<br>
+tracker.<a href="#IntegrationTracker-append">append</a>(1)&nbsp;&nbsp;&nbsp;#&nbsp;same&nbsp;as&nbsp;.<a href="#IntegrationTracker-append">append</a>(1,1)<br>
+tracker.<a href="#IntegrationTracker-append">append</a>(2,1)&nbsp;&nbsp;&nbsp;<br>
+tracker.<a href="#IntegrationTracker-append">append</a>(3,1)<br>
+&nbsp;<br>
+print(tracker.<a href="#IntegrationTracker-get_original">get_original</a>())&nbsp;#&nbsp;gives&nbsp;list&nbsp;of&nbsp;added&nbsp;values&nbsp;(y,dx)<br>
+print(tracker)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;gives&nbsp;integrated&nbsp;values:&nbsp;[0,&nbsp;0.5,&nbsp;2,&nbsp;4.5]<br>
+print(tracker[-1])&nbsp;#&nbsp;gives&nbsp;4.5,&nbsp;last&nbsp;added&nbsp;value<br>
+tracker[2]&nbsp;=&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;will&nbsp;not&nbsp;work,&nbsp;only&nbsp;append&nbsp;or&nbsp;extend&nbsp;can&nbsp;change&nbsp;tracker<br>
+&nbsp;<br>
+tracker&nbsp;+=&nbsp;[0,1,2,3]&nbsp;#&nbsp;appends&nbsp;each&nbsp;element&nbsp;of&nbsp;list<br>
+tracker.<a href="#IntegrationTracker-extend">extend</a>([0,1,2,3])&nbsp;#&nbsp;appends&nbsp;each&nbsp;element&nbsp;of&nbsp;list<br>
+&nbsp;<br>
+tracker&nbsp;+=&nbsp;[(0,2),&nbsp;(0,3)]&nbsp;#&nbsp;appends&nbsp;each&nbsp;pair&nbsp;from&nbsp;list&nbsp;as&nbsp;y&nbsp;and&nbsp;dx&nbsp;to&nbsp;tracker<br>
+tracker.<a href="#IntegrationTracker-extend">extend</a>([(0,2),&nbsp;(0,3)])&nbsp;#&nbsp;appends&nbsp;each&nbsp;pair&nbsp;from&nbsp;list&nbsp;as&nbsp;y&nbsp;and&nbsp;dx&nbsp;to&nbsp;tracker<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#IntegrationTracker">IntegrationTracker</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="IntegrationTracker-__iadd__"><strong>__iadd__</strong></a>(self, ls)</dt></dl>
+
+<dl><dt><a name="IntegrationTracker-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="IntegrationTracker-append"><strong>append</strong></a>(self, value, dx=1)</dt></dl>
+
+<dl><dt><a name="IntegrationTracker-extend"><strong>extend</strong></a>(self, ls)</dt></dl>
+
+<dl><dt><a name="IntegrationTracker-get_original"><strong>get_original</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IntegrationTracker-reset"><strong>reset</strong></a>(self, value=0)</dt></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="IntegrationTracker-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="IntegrationTracker-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="IntegrationTracker-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IntegrationTracker-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IntegrationTracker-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MaximumFilter">class <strong>MaximumFilter</strong></a>(<a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#MaximumFilter">MaximumFilter</a>(source,&nbsp;N)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#MaximumFilter">MaximumFilter</a></dd>
+<dd><a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MaximumFilter-__init__"><strong>__init__</strong></a>(self, source, N)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>:<br>
+<dl><dt><a name="MaximumFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="MaximumFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="MaximumFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="MaximumFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MaximumFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="MaximumFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MeanFilter">class <strong>MeanFilter</strong></a>(<a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#MeanFilter">MeanFilter</a>(source,&nbsp;N)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#MeanFilter">MeanFilter</a></dd>
+<dd><a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MeanFilter-__init__"><strong>__init__</strong></a>(self, source, N)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>:<br>
+<dl><dt><a name="MeanFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="MeanFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="MeanFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="MeanFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MeanFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="MeanFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MedianFilter">class <strong>MedianFilter</strong></a>(<a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#MedianFilter">MedianFilter</a>(source,&nbsp;N)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#MedianFilter">MedianFilter</a></dd>
+<dd><a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MedianFilter-__init__"><strong>__init__</strong></a>(self, source, N)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>:<br>
+<dl><dt><a name="MedianFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="MedianFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="MedianFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="MedianFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MedianFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="MedianFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MinimumFilter">class <strong>MinimumFilter</strong></a>(<a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#MinimumFilter">MinimumFilter</a>(source,&nbsp;N)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#MinimumFilter">MinimumFilter</a></dd>
+<dd><a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MinimumFilter-__init__"><strong>__init__</strong></a>(self, source, N)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>:<br>
+<dl><dt><a name="MinimumFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="MinimumFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="MinimumFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="MinimumFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MinimumFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="MinimumFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ModulusFilter">class <strong>ModulusFilter</strong></a>(<a href="utils.filters.html#SimpleFunctionFilter">SimpleFunctionFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#ModulusFilter">ModulusFilter</a>(source,&nbsp;mod)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#ModulusFilter">ModulusFilter</a></dd>
+<dd><a href="utils.filters.html#SimpleFunctionFilter">SimpleFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ModulusFilter-__init__"><strong>__init__</strong></a>(self, source, mod)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="ModulusFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="ModulusFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="ModulusFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ModulusFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="ModulusFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ModulusFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RangeLimitFilter">class <strong>RangeLimitFilter</strong></a>(<a href="utils.filters.html#SimpleFunctionFilter">SimpleFunctionFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#RangeLimitFilter">RangeLimitFilter</a>(source,&nbsp;lower,&nbsp;upper)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#RangeLimitFilter">RangeLimitFilter</a></dd>
+<dd><a href="utils.filters.html#SimpleFunctionFilter">SimpleFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RangeLimitFilter-__init__"><strong>__init__</strong></a>(self, source, lower, upper)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="RangeLimitFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="RangeLimitFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="RangeLimitFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RangeLimitFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="RangeLimitFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RangeLimitFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SectionFunctionFilter">class <strong>SectionFunctionFilter</strong></a>(<a href="utils.filters.html#BaseFilter">BaseFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SectionFunctionFilter">SectionFunctionFilter</a>(source,&nbsp;N,&nbsp;func)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#SectionFunctionFilter">SectionFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SectionFunctionFilter-__init__"><strong>__init__</strong></a>(self, source, N, func)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="SectionFunctionFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="SectionFunctionFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="SectionFunctionFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SectionFunctionFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="SectionFunctionFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SectionFunctionFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SimpleFunctionFilter">class <strong>SimpleFunctionFilter</strong></a>(<a href="utils.filters.html#BaseFilter">BaseFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SimpleFunctionFilter">SimpleFunctionFilter</a>(source,&nbsp;func)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#SimpleFunctionFilter">SimpleFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SimpleFunctionFilter-__init__"><strong>__init__</strong></a>(self, source, func)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="SimpleFunctionFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="SimpleFunctionFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="SimpleFunctionFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SimpleFunctionFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="SimpleFunctionFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SimpleFunctionFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SumFilter">class <strong>SumFilter</strong></a>(<a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SumFilter">SumFilter</a>(source,&nbsp;N)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#SumFilter">SumFilter</a></dd>
+<dd><a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SumFilter-__init__"><strong>__init__</strong></a>(self, source, N)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a>:<br>
+<dl><dt><a name="SumFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="SumFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="SumFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="SumFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SumFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="SumFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="WidthFunctionFilter">class <strong>WidthFunctionFilter</strong></a>(<a href="utils.filters.html#BaseFilter">BaseFilter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#WidthFunctionFilter">WidthFunctionFilter</a>(source,&nbsp;width,&nbsp;func)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.filters.html#WidthFunctionFilter">WidthFunctionFilter</a></dd>
+<dd><a href="utils.filters.html#BaseFilter">BaseFilter</a></dd>
+<dd><a href="utils.filters.html#AppendingList">AppendingList</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="WidthFunctionFilter-__init__"><strong>__init__</strong></a>(self, source, width, func)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="WidthFunctionFilter-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#BaseFilter">BaseFilter</a>:<br>
+<dl><dt><a name="WidthFunctionFilter-__contains__"><strong>__contains__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="WidthFunctionFilter-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt></dl>
+
+<dl><dt><a name="WidthFunctionFilter-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="WidthFunctionFilter-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><a name="WidthFunctionFilter-append"><strong>append</strong></a>(self, value)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.filters.html#AppendingList">AppendingList</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-integration"><strong>integration</strong></a>(samples: list, delta_time=1)</dt><dd><tt>Returns&nbsp;the&nbsp;trapezoidal&nbsp;integration&nbsp;of&nbsp;the&nbsp;samples,&nbsp;given&nbsp;a&nbsp;constant&nbsp;sample&nbsp;time&nbsp;interval.<br>
+&nbsp;<br>
+Example:<br>
+samples&nbsp;=&nbsp;[0,1,2,3,4]&nbsp;and&nbsp;delta_time=1<br>
+result&nbsp;=&gt;&nbsp;[0,&nbsp;0.5,&nbsp;2,&nbsp;4.5,&nbsp;8]<br>
+(Equivalent&nbsp;of&nbsp;f(x)=x&nbsp;integrated&nbsp;to&nbsp;g(x)=x^2/2)<br>
+&nbsp;<br>
+delta_time&nbsp;can&nbsp;be&nbsp;a&nbsp;float&nbsp;or&nbsp;a&nbsp;list&nbsp;of&nbsp;floats&nbsp;(the&nbsp;list&nbsp;must&nbsp;be&nbsp;length&nbsp;N-1&nbsp;as&nbsp;samples&nbsp;N)</tt></dd></dl>
+ <dl><dt><a name="-range_limit"><strong>range_limit</strong></a>(value: float, lower: float, upper: float) -&gt; float</dt><dd><tt>Prevents&nbsp;the&nbsp;value&nbsp;from&nbsp;going&nbsp;beyond&nbsp;the&nbsp;upper&nbsp;or&nbsp;lower&nbsp;values.<br>
+&nbsp;<br>
+Example:<br>
+<a href="#-range_limit">range_limit</a>(40,30,50)-&gt;40&nbsp;(within&nbsp;bounds)<br>
+<a href="#-range_limit">range_limit</a>(60,30,50)-&gt;50&nbsp;(upper&nbsp;limit)<br>
+<a href="#-range_limit">range_limit</a>(20,30,50)-&gt;30&nbsp;(lower&nbsp;limit)</tt></dd></dl>
+</td></tr></table>
+</body></html>

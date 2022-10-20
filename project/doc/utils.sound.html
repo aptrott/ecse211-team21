@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module utils.sound</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="utils.html"><font color="#ffffff">utils</font></a>.sound</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:d%3A%5Cprogrammingd%5Cschoold%5Clab-code-development%5Cutils%5Csound.py">d:\programmingd\schoold\lab-code-development\utils\sound.py</a></font></td></tr></table>
+    <p><tt>Module&nbsp;for&nbsp;creating&nbsp;and&nbsp;generating&nbsp;sine&nbsp;wave&nbsp;based&nbsp;sound.&nbsp;<br>
+Includes&nbsp;Frequency&nbsp;modulation&nbsp;and&nbsp;Amplitude&nbsp;modulation.<br>
+&nbsp;<br>
+Authors:&nbsp;Ryan&nbsp;Au&nbsp;and&nbsp;Younes&nbsp;Boubekaur</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="array.html">array</a><br>
+<a href="functools.html">functools</a><br>
+</td><td width="25%" valign=top><a href="math.html">math</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pickle.html">pickle</a><br>
+<a href="simpleaudio.html">simpleaudio</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.sound.html#Sound">Sound</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Sound">class <strong>Sound</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Sound">Sound</a>(duration=1,&nbsp;volume=40,&nbsp;pitch='A4',&nbsp;mod_f=0,&nbsp;mod_k=0,&nbsp;amp_f=0,&nbsp;amp_ka=0,&nbsp;amp_ac=1,&nbsp;cutoff=0.01,&nbsp;fs=8000)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Sound-__init__"><strong>__init__</strong></a>(self, duration=1, volume=40, pitch='A4', mod_f=0, mod_k=0, amp_f=0, amp_ka=0, amp_ac=1, cutoff=0.01, fs=8000)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Sound-alter_wave"><strong>alter_wave</strong></a>(self, func: Callable[[float, int], int])</dt><dd><tt>Apply&nbsp;a&nbsp;function&nbsp;to&nbsp;change&nbsp;the&nbsp;currently&nbsp;playing/prepared&nbsp;audio&nbsp;wave.<br>
+&nbsp;<br>
+func&nbsp;is&nbsp;of&nbsp;the&nbsp;format:&nbsp;func(x:float,&nbsp;y:int16)&nbsp;-&gt;&nbsp;y:int16<br>
+&nbsp;<br>
+Given&nbsp;an&nbsp;xy-coordinate&nbsp;plane&nbsp;with&nbsp;the&nbsp;sound&nbsp;wave&nbsp;being&nbsp;centered&nbsp;on&nbsp;y=0,<br>
+x&nbsp;is&nbsp;time&nbsp;in&nbsp;seconds,&nbsp;and&nbsp;y&nbsp;is&nbsp;amplitude&nbsp;in&nbsp;the&nbsp;range&nbsp;[-32768,&nbsp;32767]</tt></dd></dl>
+
+<dl><dt><a name="Sound-is_playing"><strong>is_playing</strong></a>(self) -&gt; bool</dt></dl>
+
+<dl><dt><a name="Sound-play"><strong>play</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Sound-set_amplitude_modulation"><strong>set_amplitude_modulation</strong></a>(self, amp_f: Union[str, float], amp_ka, amp_ac)</dt><dd><tt>Set&nbsp;the&nbsp;frequency(amp_f),&nbsp;ka&nbsp;factor(amp_ka),&nbsp;and&nbsp;ac&nbsp;factor(amp_ac)&nbsp;of&nbsp;Amplitude&nbsp;Modulation.<br>
+Effect&nbsp;is&nbsp;most&nbsp;similar&nbsp;to&nbsp;'vibrato'&nbsp;altering&nbsp;the&nbsp;volume&nbsp;in&nbsp;a&nbsp;wobbling&nbsp;sense.<br>
+**Must&nbsp;use&nbsp;<a href="#Sound">Sound</a>.<a href="#Sound-update_audio">update_audio</a>()&nbsp;to&nbsp;apply&nbsp;all&nbsp;changes**<br>
+&nbsp;<br>
+amp_ka&nbsp;-&nbsp;wobbling&nbsp;factor.&nbsp;0&nbsp;is&nbsp;no&nbsp;wobble.&nbsp;&gt;0&nbsp;provides&nbsp;wobble.<br>
+amp_ac&nbsp;-&nbsp;factor&nbsp;to&nbsp;change&nbsp;strength&nbsp;of&nbsp;wobble&nbsp;overall.&nbsp;See&nbsp;Notable&nbsp;Effects&nbsp;to&nbsp;understand&nbsp;this.<br>
+&nbsp;<br>
+Constraints:<br>
+(resultant&nbsp;volume&nbsp;is&nbsp;%&nbsp;of&nbsp;the&nbsp;set&nbsp;volume&nbsp;of&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>)<br>
+highest&nbsp;%&nbsp;of&nbsp;volume&nbsp;=&nbsp;amp_ac&nbsp;*&nbsp;(1&nbsp;+&nbsp;amp_ka)<br>
+lowest&nbsp;&nbsp;%&nbsp;of&nbsp;volume&nbsp;=&nbsp;amp_ac&nbsp;*&nbsp;(1&nbsp;-&nbsp;amp_ka)<br>
+&nbsp;<br>
+Notable&nbsp;Effects:<br>
+amp_f=1Hz&nbsp;-&nbsp;wobbles&nbsp;1&nbsp;time&nbsp;per&nbsp;second<br>
+amp_f=10Hz&nbsp;-&nbsp;wobbles&nbsp;10&nbsp;times&nbsp;per&nbsp;second<br>
+&nbsp;<br>
+amp_ka=0,&nbsp;amp_ac=1&nbsp;-&nbsp;no&nbsp;wobble.&nbsp;The&nbsp;default&nbsp;settings.<br>
+amp_ka=1,&nbsp;amp_ac=0.5&nbsp;-&nbsp;alternates&nbsp;volume&nbsp;from&nbsp;100%&nbsp;to&nbsp;0%&nbsp;according&nbsp;to&nbsp;amp_f&nbsp;frequency.<br>
+amp_ka=0.5,&nbsp;amp_ac=0.5&nbsp;-&nbsp;alternates&nbsp;volume&nbsp;from&nbsp;25%&nbsp;to&nbsp;75%&nbsp;according&nbsp;to&nbsp;amp_f&nbsp;frequency.</tt></dd></dl>
+
+<dl><dt><a name="Sound-set_cutoff"><strong>set_cutoff</strong></a>(self, cutoff)</dt><dd><tt>Set&nbsp;the&nbsp;'cutoff',&nbsp;the&nbsp;duration&nbsp;of&nbsp;the&nbsp;lead-in&nbsp;and&nbsp;fade-out&nbsp;for&nbsp;each&nbsp;sound&nbsp;wave.<br>
+**Must&nbsp;use&nbsp;<a href="#Sound">Sound</a>.<a href="#Sound-update_audio">update_audio</a>()&nbsp;to&nbsp;apply&nbsp;all&nbsp;changes**<br>
+&nbsp;<br>
+Enter&nbsp;a&nbsp;value&nbsp;in&nbsp;seconds,&nbsp;default:&nbsp;0.01s<br>
+&nbsp;<br>
+Notable&nbsp;Effects:<br>
+a&nbsp;value&nbsp;of&nbsp;0s&nbsp;may&nbsp;lead&nbsp;to&nbsp;a&nbsp;'pop/crackle'&nbsp;noise&nbsp;at&nbsp;the&nbsp;beginning&nbsp;and&nbsp;end&nbsp;of&nbsp;a&nbsp;sound.<br>
+a&nbsp;value&nbsp;greater&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;the&nbsp;duration&nbsp;(also&nbsp;&lt;1s)&nbsp;may&nbsp;lead&nbsp;to&nbsp;a&nbsp;pulse-like&nbsp;noise.<br>
+a&nbsp;value&nbsp;greater&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;duration&nbsp;(also&nbsp;&gt;1s)&nbsp;may&nbsp;lead&nbsp;to&nbsp;a&nbsp;'coming&nbsp;and&nbsp;going'&nbsp;feeling.</tt></dd></dl>
+
+<dl><dt><a name="Sound-set_frequency_modulation"><strong>set_frequency_modulation</strong></a>(self, mod_f: Union[str, float], mod_k)</dt><dd><tt>Set&nbsp;the&nbsp;frequency(mod_f)&nbsp;and&nbsp;strength(mod_k)&nbsp;of&nbsp;Frequency&nbsp;Modulation.<br>
+This&nbsp;modulation&nbsp;gives&nbsp;special&nbsp;effects&nbsp;to&nbsp;your&nbsp;sounds.<br>
+**Must&nbsp;use&nbsp;<a href="#Sound">Sound</a>.<a href="#Sound-update_audio">update_audio</a>()&nbsp;to&nbsp;apply&nbsp;all&nbsp;changes**<br>
+&nbsp;<br>
+Enter&nbsp;a&nbsp;value&nbsp;of&nbsp;frequency&nbsp;for&nbsp;mod_f<br>
+Enter&nbsp;any&nbsp;positive&nbsp;integer&nbsp;for&nbsp;mod_k,&nbsp;a&nbsp;multiplication&nbsp;factor<br>
+&nbsp;<br>
+Notable&nbsp;Effects:<br>
+mod_f=0,&nbsp;mod_k=0&nbsp;-&nbsp;no&nbsp;modulation.&nbsp;This&nbsp;is&nbsp;default&nbsp;settings.<br>
+mod_f=(1-10Hz),&nbsp;mod_k=(1-10)&nbsp;-&nbsp;mild&nbsp;modulation,&nbsp;sounding&nbsp;wavy,&nbsp;possibly&nbsp;crackly.<br>
+mod_f='A4',&nbsp;mod_k=(1-50)&nbsp;-&nbsp;increasing&nbsp;levels&nbsp;of&nbsp;graininess&nbsp;observed,&nbsp;with&nbsp;increasing&nbsp;k&nbsp;factor.<br>
+&nbsp;<br>
+*Swapping&nbsp;mod_f&nbsp;and&nbsp;the&nbsp;pitch&nbsp;leads&nbsp;to&nbsp;new&nbsp;effects*<br>
+mod_f=pitch,&nbsp;pitch=1,&nbsp;mod_k=1&nbsp;-&nbsp;Sounds&nbsp;like&nbsp;a&nbsp;pipe&nbsp;organ,&nbsp;where&nbsp;mod_f&nbsp;becomes&nbsp;the&nbsp;new&nbsp;pitch&nbsp;setting.</tt></dd></dl>
+
+<dl><dt><a name="Sound-set_pitch"><strong>set_pitch</strong></a>(self, pitch: Union[str, float])</dt><dd><tt>Set&nbsp;the&nbsp;pitch&nbsp;or&nbsp;frequency&nbsp;of&nbsp;this&nbsp;sound.<br>
+**Must&nbsp;use&nbsp;<a href="#Sound">Sound</a>.<a href="#Sound-update_audio">update_audio</a>()&nbsp;to&nbsp;apply&nbsp;all&nbsp;changes**<br>
+&nbsp;<br>
+Enter&nbsp;a&nbsp;Hertz&nbsp;value&nbsp;within&nbsp;audible&nbsp;human&nbsp;range:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;minimum:&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;maximum:&nbsp;~7500</tt></dd></dl>
+
+<dl><dt><a name="Sound-set_volume"><strong>set_volume</strong></a>(self, volume)</dt><dd><tt>Set&nbsp;the&nbsp;volume&nbsp;level&nbsp;of&nbsp;this&nbsp;sound.<br>
+**Must&nbsp;use&nbsp;<a href="#Sound">Sound</a>.<a href="#Sound-update_audio">update_audio</a>()&nbsp;to&nbsp;apply&nbsp;all&nbsp;changes**<br>
+&nbsp;<br>
+Enter&nbsp;a&nbsp;value&nbsp;from&nbsp;(0-100).</tt></dd></dl>
+
+<dl><dt><a name="Sound-stop"><strong>stop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Sound-update_audio"><strong>update_audio</strong></a>(self, overwrite: bool = False)</dt><dd><tt>Updates&nbsp;the&nbsp;audio&nbsp;to&nbsp;be&nbsp;played,&nbsp;based&nbsp;on&nbsp;current&nbsp;<a href="#Sound">Sound</a>&nbsp;attributes.<br>
+&nbsp;<br>
+-&nbsp;if&nbsp;overwrite=False&nbsp;and&nbsp;<a href="#Sound-is_playing">is_playing</a>()==True,&nbsp;the&nbsp;playing&nbsp;audio&nbsp;will&nbsp;be&nbsp;updated<br>
+-&nbsp;if&nbsp;overwrite=True&nbsp;and&nbsp;<a href="#Sound-is_playing">is_playing</a>()==True,&nbsp;changes&nbsp;are&nbsp;present&nbsp;only&nbsp;in&nbsp;next&nbsp;<a href="#Sound-play">play</a>()</tt></dd></dl>
+
+<dl><dt><a name="Sound-update_duration"><strong>update_duration</strong></a>(self, duration, fs: int = None)</dt><dd><tt>Change&nbsp;the&nbsp;duration&nbsp;of&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;(seconds).<br>
+Cannot&nbsp;change&nbsp;duration&nbsp;of&nbsp;currently&nbsp;playing&nbsp;sounds.<br>
+&nbsp;<br>
+Only&nbsp;affects&nbsp;the&nbsp;next&nbsp;played&nbsp;sound.<br>
+&nbsp;<br>
+fs&nbsp;-&nbsp;Sample&nbsp;rate&nbsp;of&nbsp;sound&nbsp;wave.&nbsp;Default&nbsp;8000&nbsp;as&nbsp;lowest.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Increased&nbsp;'quality'&nbsp;with&nbsp;higher&nbsp;rate.</tt></dd></dl>
+
+<dl><dt><a name="Sound-wait_done"><strong>wait_done</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-clip"><strong>clip</strong></a>(x: float, bot: float, top: float, nomax=False) -&gt; float</dt></dl>
+ <dl><dt><a name="-cos"><strong>cos</strong></a>(x: float) -&gt; float</dt></dl>
+ <dl><dt><a name="-db_to_amp"><strong>db_to_amp</strong></a>(db: float, ref_amp: float) -&gt; float</dt><dd><tt>Converts&nbsp;decibels&nbsp;to&nbsp;a&nbsp;next&nbsp;amplitude.<br>
+ref_amp&nbsp;is&nbsp;the&nbsp;reference&nbsp;amplitude&nbsp;to&nbsp;start&nbsp;at.</tt></dd></dl>
+ <dl><dt><a name="-gen_wave"><strong>gen_wave</strong></a>(duration=1, volume=40, pitch: Union[str, float] = 'A4', mod_f: Union[str, float] = 0, mod_k=0, amp_f: Union[str, float] = 0, amp_ka=0, amp_ac=1, cutoff=0.01, fs=8000)</dt></dl>
+ <dl><dt><a name="-load_all_pitches_file"><strong>load_all_pitches_file</strong></a>(filename='sounds')</dt></dl>
+ <dl><dt><a name="-preload_all_pitches"><strong>preload_all_pitches</strong></a>(duration=1, volume=40, mod_f=0, mod_k=0, amp_f=0, amp_ka=0, amp_ac=1, cutoff=0.01, fs=8000)</dt></dl>
+ <dl><dt><a name="-save_all_pitches_file"><strong>save_all_pitches_file</strong></a>(sounds, filename='sounds')</dt></dl>
+ <dl><dt><a name="-sin"><strong>sin</strong></a>(x: float) -&gt; float</dt></dl>
+ <dl><dt><a name="-time"><strong>time</strong></a>(...)</dt><dd><tt><a href="#-time">time</a>()&nbsp;-&gt;&nbsp;floating&nbsp;point&nbsp;number<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;current&nbsp;time&nbsp;in&nbsp;seconds&nbsp;since&nbsp;the&nbsp;Epoch.<br>
+Fractions&nbsp;of&nbsp;a&nbsp;second&nbsp;may&nbsp;be&nbsp;present&nbsp;if&nbsp;the&nbsp;system&nbsp;clock&nbsp;provides&nbsp;them.</tt></dd></dl>
+ <dl><dt><a name="-vol_to_amp"><strong>vol_to_amp</strong></a>(vol: float) -&gt; float</dt><dd><tt>Converts&nbsp;a&nbsp;volume&nbsp;level&nbsp;to&nbsp;an&nbsp;amplitude&nbsp;scalar&nbsp;factor.<br>
+Input&nbsp;would&nbsp;range&nbsp;from&nbsp;0&nbsp;to&nbsp;HIGHEST_VOLUME&nbsp;(default:100).<br>
+Output&nbsp;ranges&nbsp;from&nbsp;0&nbsp;to&nbsp;1<br>
+&nbsp;<br>
+Furthermore,&nbsp;the&nbsp;output&nbsp;behaves&nbsp;similarly&nbsp;to&nbsp;the&nbsp;volume&nbsp;on&nbsp;a&nbsp;listening&nbsp;device,<br>
+when&nbsp;setting&nbsp;the&nbsp;volume.&nbsp;If&nbsp;the&nbsp;max&nbsp;is&nbsp;100%&nbsp;level,&nbsp;then&nbsp;50%&nbsp;feels&nbsp;half&nbsp;as&nbsp;loud.<br>
+&nbsp;<br>
+Note:&nbsp;0&nbsp;is&nbsp;not&nbsp;absolutely&nbsp;silent,&nbsp;it&nbsp;is&nbsp;just&nbsp;extremely&nbsp;quiet,&nbsp;and&nbsp;is&nbsp;audible.<br>
+Note&nbsp;2:&nbsp;this&nbsp;volume&nbsp;is&nbsp;dependent&nbsp;on&nbsp;the&nbsp;system&nbsp;volume.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Loudness&nbsp;=&nbsp;program&nbsp;volume&nbsp;*&nbsp;system&nbsp;volume&nbsp;(if&nbsp;in&nbsp;percentage)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Callable</strong> = typing.Callable<br>
+<strong>HIGHEST_VOLUME</strong> = 100<br>
+<strong>Iterable</strong> = typing.Iterable<br>
+<strong>LIMIT_MAX_VOLUME</strong> = True<br>
+<strong>NOTES</strong> = {'A#0': 29.14, 'A#1': 58.27, 'A#2': 116.54, 'A#3': 233.08, 'A#4': 466.16, 'A#5': 932.33, 'A#6': 1864.66, 'A#7': 3729.31, 'A#8': 7458.62, 'A0': 27.5, ...}<br>
+<strong>NOTE_NAMES</strong> = ['C0', 'C#0', 'Db0', 'D0', 'D#0', 'Eb0', 'E0', 'F0', 'F#0', 'Gb0', 'G0', 'G#0', 'Ab0', 'A0', 'A#0', 'Bb0', 'B0', 'C1', 'C#1', 'Db1', ...]<br>
+<strong>SAMPLE_RATES</strong> = [8000, 11025, 16000, 22050, 24000, 32000, 44100, 48000, 88200, 96000, 192000]<br>
+<strong>Tuple</strong> = typing.Tuple<br>
+<strong>Union</strong> = typing.Union</td></tr></table>
+</body></html>

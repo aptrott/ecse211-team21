@@ -1,0 +1,971 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+    <title>Python: module brickpi3</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body bgcolor="#f0f0f8">
+
+    <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+        <tr bgcolor="#7799ee">
+            <td valign=bottom>&nbsp;<br>
+                <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>brickpi3</strong></big></big>
+                </font>
+            </td>
+            <td align=right valign=bottom>
+                <font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a
+                        href="file:/usr/local/lib/python3.9/site-packages/brickpi3-0.0.0-py3.9.egg/brickpi3.py">/usr/local/lib/python3.9/site-packages/brickpi3-0.0.0-py3.9.egg/brickpi3.py</a>
+                </font>
+            </td>
+        </tr>
+    </table>
+    <p><tt>#&nbsp;<a href="https://www.dexterindustries.com/BrickPi/">https://www.dexterindustries.com/BrickPi/</a><br>
+            #&nbsp;<a href="https://github.com/DexterInd/BrickPi3">https://github.com/DexterInd/BrickPi3</a><br>
+            #<br>
+            #&nbsp;Copyright&nbsp;(c)&nbsp;2017&nbsp;Dexter&nbsp;Industries<br>
+            #&nbsp;Released&nbsp;under&nbsp;the&nbsp;MIT&nbsp;license&nbsp;(<a
+                href="http://choosealicense.com/licenses/mit/">http://choosealicense.com/licenses/mit/</a>).<br>
+            #&nbsp;For&nbsp;more&nbsp;information&nbsp;see&nbsp;<a
+                href="https://github.com/DexterInd/BrickPi3/blob/master/LICENSE.md">https://github.com/DexterInd/BrickPi3/blob/master/LICENSE.md</a><br>
+            #<br>
+            #&nbsp;Python&nbsp;drivers&nbsp;for&nbsp;the&nbsp;<a href="#BrickPi3">BrickPi3</a></tt></p>
+    <p>
+    <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+        <tr bgcolor="#aa55cc">
+            <td colspan=3 valign=bottom>&nbsp;<br>
+                <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td>
+            <td>&nbsp;</td>
+            <td width="100%">
+                <table width="100%" summary="list">
+                    <tr>
+                        <td width="25%" valign=top><a href="array.html">array</a><br>
+                        </td>
+                        <td width="25%" valign=top><a href="spidev.html">spidev</a><br>
+                        </td>
+                        <td width="25%" valign=top><a href="subprocess.html">subprocess</a><br>
+                        </td>
+                        <td width="25%" valign=top></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <p>
+    <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+        <tr bgcolor="#ee77aa">
+            <td colspan=3 valign=bottom>&nbsp;<br>
+                <font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td>
+            <td>&nbsp;</td>
+            <td width="100%">
+                <dl>
+                    <dt>
+                        <font face="helvetica, arial"><a href="builtins.html#Exception">builtins.Exception</a>(<a
+                                href="builtins.html#BaseException">builtins.BaseException</a>)
+                        </font>
+                    </dt>
+                    <dd>
+                        <dl>
+                            <dt>
+                                <font face="helvetica, arial"><a
+                                        href="brickpi3.html#FirmwareVersionError">FirmwareVersionError</a>
+                                </font>
+                            </dt>
+                            <dt>
+                                <font face="helvetica, arial"><a href="brickpi3.html#SensorError">SensorError</a>
+                                </font>
+                            </dt>
+                        </dl>
+                    </dd>
+                    <dt>
+                        <font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+                        </font>
+                    </dt>
+                    <dd>
+                        <dl>
+                            <dt>
+                                <font face="helvetica, arial"><a href="brickpi3.html#BrickPi3">BrickPi3</a>
+                                </font>
+                            </dt>
+                            <dt>
+                                <font face="helvetica, arial"><a href="brickpi3.html#Enumeration">Enumeration</a>
+                                </font>
+                            </dt>
+                        </dl>
+                    </dd>
+                </dl>
+                <p>
+                <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+                    <tr bgcolor="#ffc8d8">
+                        <td colspan=3 valign=bottom>&nbsp;<br>
+                            <font color="#000000" face="helvetica, arial"><a name="BrickPi3">class
+                                    <strong>BrickPi3</strong></a>(<a href="builtins.html#object">builtins.object</a>)
+                            </font>
+                        </td>
+                    </tr>
+
+                    <tr bgcolor="#ffc8d8">
+                        <td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+                        <td colspan=2><tt><a href="#BrickPi3">BrickPi3</a>(addr=1,&nbsp;detect=True)<br>
+                                &nbsp;<br>
+                                <br>&nbsp;</tt></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td width="100%">Methods defined here:<br>
+                            <dl>
+                                <dt><a name="BrickPi3-__init__"><strong>__init__</strong></a>(self, addr=1, detect=True)
+                                </dt>
+                                <dd><tt>Do&nbsp;any&nbsp;necessary&nbsp;configuration,&nbsp;and&nbsp;optionally&nbsp;detect&nbsp;the&nbsp;<a
+                                            href="#BrickPi3">BrickPi3</a><br>
+                                        &nbsp;<br>
+                                        Optionally&nbsp;specify&nbsp;the&nbsp;SPI&nbsp;address&nbsp;as&nbsp;something&nbsp;other&nbsp;than&nbsp;1<br>
+                                        Optionally&nbsp;disable&nbsp;the&nbsp;detection&nbsp;of&nbsp;the&nbsp;<a
+                                            href="#BrickPi3">BrickPi3</a>&nbsp;hardware.&nbsp;This&nbsp;can&nbsp;be&nbsp;used&nbsp;for&nbsp;debugging&nbsp;and&nbsp;testing&nbsp;when&nbsp;the&nbsp;<a
+                                            href="#BrickPi3">BrickPi3</a>&nbsp;would&nbsp;otherwise&nbsp;not&nbsp;pass&nbsp;the&nbsp;detection&nbsp;tests.</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-get_board"><strong>get_board</strong></a>(self)</dt>
+                                <dd><tt>Read&nbsp;the&nbsp;20&nbsp;charactor&nbsp;<a
+                                            href="#BrickPi3">BrickPi3</a>&nbsp;board&nbsp;name<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        <a href="#BrickPi3">BrickPi3</a>&nbsp;board&nbsp;name&nbsp;string</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-get_id"><strong>get_id</strong></a>(self)</dt>
+                                <dd><tt>Read&nbsp;the&nbsp;128-bit&nbsp;BrickPi&nbsp;hardware&nbsp;serial&nbsp;number<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        serial&nbsp;number&nbsp;as&nbsp;32&nbsp;char&nbsp;HEX&nbsp;formatted&nbsp;string</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-get_manufacturer"><strong>get_manufacturer</strong></a>(self)</dt>
+                                <dd><tt>Read&nbsp;the&nbsp;20&nbsp;charactor&nbsp;<a
+                                            href="#BrickPi3">BrickPi3</a>&nbsp;manufacturer&nbsp;name<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        <a href="#BrickPi3">BrickPi3</a>&nbsp;manufacturer&nbsp;name&nbsp;string</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-get_motor_encoder"><strong>get_motor_encoder</strong></a>(self,
+                                    port)</dt>
+                                <dd><tt>Read&nbsp;a&nbsp;motor&nbsp;encoder&nbsp;in&nbsp;degrees<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port&nbsp;(one&nbsp;at&nbsp;a&nbsp;time).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;or&nbsp;PORT_D.<br>
+                                        &nbsp;<br>
+                                        Returns&nbsp;the&nbsp;encoder&nbsp;position&nbsp;in&nbsp;degrees</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-get_motor_status"><strong>get_motor_status</strong></a>(self,
+                                    port)</dt>
+                                <dd><tt>Read&nbsp;a&nbsp;motor&nbsp;status<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port&nbsp;(one&nbsp;at&nbsp;a&nbsp;time).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;or&nbsp;PORT_D.<br>
+                                        &nbsp;<br>
+                                        Returns&nbsp;a&nbsp;list:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;flags&nbsp;--&nbsp;8-bits&nbsp;of&nbsp;bit-flags&nbsp;that&nbsp;indicate&nbsp;motor&nbsp;status:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bit&nbsp;0&nbsp;--&nbsp;LOW_VOLTAGE_FLOAT&nbsp;-&nbsp;The&nbsp;motors&nbsp;are&nbsp;automatically&nbsp;disabled&nbsp;because&nbsp;the&nbsp;battery&nbsp;voltage&nbsp;is&nbsp;too&nbsp;low<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bit&nbsp;1&nbsp;--&nbsp;OVERLOADED&nbsp;-&nbsp;The&nbsp;motors&nbsp;aren't&nbsp;close&nbsp;to&nbsp;the&nbsp;target&nbsp;(applies&nbsp;to&nbsp;position&nbsp;control&nbsp;and&nbsp;dps&nbsp;speed&nbsp;control).<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;power&nbsp;--&nbsp;the&nbsp;raw&nbsp;PWM&nbsp;power&nbsp;in&nbsp;percent&nbsp;(-100&nbsp;to&nbsp;100)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;encoder&nbsp;--&nbsp;The&nbsp;encoder&nbsp;position<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;dps&nbsp;--&nbsp;The&nbsp;current&nbsp;speed&nbsp;in&nbsp;Degrees&nbsp;Per&nbsp;Second</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-get_sensor"><strong>get_sensor</strong></a>(self, port)</dt>
+                                <dd><tt>Read&nbsp;a&nbsp;sensor&nbsp;value<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;sensor&nbsp;port&nbsp;(one&nbsp;at&nbsp;a&nbsp;time).&nbsp;PORT_1,&nbsp;PORT_2,&nbsp;PORT_3,&nbsp;or&nbsp;PORT_4.<br>
+                                        &nbsp;<br>
+                                        Returns&nbsp;the&nbsp;value(s)&nbsp;for&nbsp;the&nbsp;specified&nbsp;sensor.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;following&nbsp;sensor&nbsp;types&nbsp;each&nbsp;return&nbsp;a&nbsp;single&nbsp;value:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NONE&nbsp;-----------------------&nbsp;0<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOUCH&nbsp;----------------------&nbsp;0&nbsp;or&nbsp;1&nbsp;(released&nbsp;or&nbsp;pressed)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NXT_TOUCH&nbsp;------------------&nbsp;0&nbsp;or&nbsp;1&nbsp;(released&nbsp;or&nbsp;pressed)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_TOUCH&nbsp;------------------&nbsp;0&nbsp;or&nbsp;1&nbsp;(released&nbsp;or&nbsp;pressed)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NXT_ULTRASONIC&nbsp;-------------&nbsp;distance&nbsp;in&nbsp;CM<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NXT_LIGHT_ON&nbsp;&nbsp;--------------&nbsp;reflected&nbsp;light<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NXT_LIGHT_OFF&nbsp;--------------&nbsp;ambient&nbsp;light<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NXT_COLOR_RED&nbsp;--------------&nbsp;red&nbsp;reflected&nbsp;light<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NXT_COLOR_GREEN&nbsp;------------&nbsp;green&nbsp;reflected&nbsp;light<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NXT_COLOR_BLUE&nbsp;-------------&nbsp;blue&nbsp;reflected&nbsp;light<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NXT_COLOR_OFF&nbsp;--------------&nbsp;ambient&nbsp;light<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_GYRO_ABS&nbsp;---------------&nbsp;absolute&nbsp;rotation&nbsp;position&nbsp;in&nbsp;degrees<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_GYRO_DPS&nbsp;---------------&nbsp;rotation&nbsp;rate&nbsp;in&nbsp;degrees&nbsp;per&nbsp;second<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_COLOR_REFLECTED&nbsp;--------&nbsp;red&nbsp;reflected&nbsp;light<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_COLOR_AMBIENT&nbsp;----------&nbsp;ambient&nbsp;light<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_COLOR_COLOR&nbsp;------------&nbsp;detected&nbsp;color<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_ULTRASONIC_CM&nbsp;----------&nbsp;distance&nbsp;in&nbsp;CM<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_ULTRASONIC_INCHES&nbsp;------&nbsp;distance&nbsp;in&nbsp;inches<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_ULTRASONIC_LISTEN&nbsp;------&nbsp;0&nbsp;or&nbsp;1&nbsp;(no&nbsp;other&nbsp;ultrasonic&nbsp;sensors&nbsp;or&nbsp;another&nbsp;ultrasonic&nbsp;sensor&nbsp;detected)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_INFRARED_PROXIMITY&nbsp;-----&nbsp;distance&nbsp;0-100%<br>
+                                        &nbsp;<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;following&nbsp;sensor&nbsp;types&nbsp;each&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;values<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUSTOM&nbsp;---------------------&nbsp;Pin&nbsp;1&nbsp;ADC&nbsp;(5v&nbsp;scale&nbsp;from&nbsp;0&nbsp;to&nbsp;4095),&nbsp;Pin&nbsp;6&nbsp;ADC&nbsp;(3.3v&nbsp;scale&nbsp;from&nbsp;0&nbsp;to&nbsp;4095),&nbsp;Pin&nbsp;5&nbsp;digital,&nbsp;Pin&nbsp;6&nbsp;digital<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I2C&nbsp;------------------------&nbsp;the&nbsp;I2C&nbsp;bytes&nbsp;read<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NXT_COLOR_FULL&nbsp;-------------&nbsp;detected&nbsp;color,&nbsp;red&nbsp;light&nbsp;reflected,&nbsp;green&nbsp;light&nbsp;reflected,&nbsp;blue&nbsp;light&nbsp;reflected,&nbsp;ambient&nbsp;light<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_GYRO_ABS_DPS&nbsp;-----------&nbsp;absolute&nbsp;rotation&nbsp;position&nbsp;in&nbsp;degrees,&nbsp;rotation&nbsp;rate&nbsp;in&nbsp;degrees&nbsp;per&nbsp;second<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_COLOR_RAW_REFLECTED&nbsp;----&nbsp;red&nbsp;reflected&nbsp;light,&nbsp;unknown&nbsp;value&nbsp;(maybe&nbsp;a&nbsp;raw&nbsp;ambient&nbsp;value?)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_COLOR_COLOR_COMPONENTS&nbsp;-&nbsp;red&nbsp;reflected&nbsp;light,&nbsp;green&nbsp;reflected&nbsp;light,&nbsp;blue&nbsp;reflected&nbsp;light,&nbsp;unknown&nbsp;value&nbsp;(maybe&nbsp;a&nbsp;raw&nbsp;value?)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_INFRARED_SEEK&nbsp;----------&nbsp;a&nbsp;list&nbsp;for&nbsp;each&nbsp;of&nbsp;the&nbsp;four&nbsp;channels.&nbsp;For&nbsp;each&nbsp;channel&nbsp;heading&nbsp;(-25&nbsp;to&nbsp;25),&nbsp;distance&nbsp;(-128&nbsp;or&nbsp;0&nbsp;to&nbsp;100)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV3_INFRARED_REMOTE&nbsp;--------&nbsp;a&nbsp;list&nbsp;for&nbsp;each&nbsp;of&nbsp;the&nbsp;four&nbsp;channels.&nbsp;For&nbsp;each&nbsp;channel&nbsp;red&nbsp;up,&nbsp;red&nbsp;down,&nbsp;blue&nbsp;up,&nbsp;blue&nbsp;down,&nbsp;boadcast</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="BrickPi3-get_version_firmware"><strong>get_version_firmware</strong></a>(self)
+                                </dt>
+                                <dd><tt>Read&nbsp;the&nbsp;firmware&nbsp;version<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        firmware&nbsp;version</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="BrickPi3-get_version_hardware"><strong>get_version_hardware</strong></a>(self)
+                                </dt>
+                                <dd><tt>Read&nbsp;the&nbsp;hardware&nbsp;version<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        hardware&nbsp;version</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-get_voltage_3v3"><strong>get_voltage_3v3</strong></a>(self)</dt>
+                                <dd><tt>Get&nbsp;the&nbsp;3.3v&nbsp;circuit&nbsp;voltage<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        3.3v&nbsp;circuit&nbsp;voltage</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-get_voltage_5v"><strong>get_voltage_5v</strong></a>(self)</dt>
+                                <dd><tt>Get&nbsp;the&nbsp;5v&nbsp;circuit&nbsp;voltage<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        5v&nbsp;circuit&nbsp;voltage</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-get_voltage_9v"><strong>get_voltage_9v</strong></a>(self)</dt>
+                                <dd><tt>Get&nbsp;the&nbsp;9v&nbsp;circuit&nbsp;voltage<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        9v&nbsp;circuit&nbsp;voltage</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="BrickPi3-get_voltage_battery"><strong>get_voltage_battery</strong></a>(self)
+                                </dt>
+                                <dd><tt>Get&nbsp;the&nbsp;battery&nbsp;voltage<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        battery&nbsp;voltage</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="BrickPi3-offset_motor_encoder"><strong>offset_motor_encoder</strong></a>(self,
+                                    port, position)</dt>
+                                <dd><tt>Offset&nbsp;a&nbsp;motor&nbsp;encoder<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port(s).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;and/or&nbsp;PORT_D.<br>
+                                        offset&nbsp;--&nbsp;The&nbsp;encoder&nbsp;offset<br>
+                                        &nbsp;<br>
+                                        You&nbsp;can&nbsp;zero&nbsp;the&nbsp;encoder&nbsp;by&nbsp;offsetting&nbsp;it&nbsp;by&nbsp;the&nbsp;current&nbsp;position</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-reset_all"><strong>reset_all</strong></a>(self)</dt>
+                                <dd><tt>Reset&nbsp;the&nbsp;BrickPi.&nbsp;Set&nbsp;all&nbsp;the&nbsp;sensors'&nbsp;type&nbsp;to&nbsp;NONE,&nbsp;set&nbsp;the&nbsp;motors&nbsp;to&nbsp;float,&nbsp;and&nbsp;motors'&nbsp;limits&nbsp;and&nbsp;constants&nbsp;to&nbsp;default,&nbsp;and&nbsp;return&nbsp;control&nbsp;of&nbsp;the&nbsp;LED&nbsp;to&nbsp;the&nbsp;firmware.</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="BrickPi3-reset_motor_encoder"><strong>reset_motor_encoder</strong></a>(self,
+                                    port)</dt>
+                                <dd><tt>Reset&nbsp;motor&nbsp;encoder(s)&nbsp;to&nbsp;0<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port(s).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;and/or&nbsp;PORT_D.</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-set_led"><strong>set_led</strong></a>(self, value)</dt>
+                                <dd><tt>Control&nbsp;the&nbsp;onboard&nbsp;LED<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        value&nbsp;--&nbsp;the&nbsp;value&nbsp;(in&nbsp;percent)&nbsp;to&nbsp;set&nbsp;the&nbsp;LED&nbsp;brightness&nbsp;to.&nbsp;-1&nbsp;returns&nbsp;control&nbsp;of&nbsp;the&nbsp;LED&nbsp;to&nbsp;the&nbsp;firmware.</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-set_motor_dps"><strong>set_motor_dps</strong></a>(self, port, dps)
+                                </dt>
+                                <dd><tt>Set&nbsp;the&nbsp;motor&nbsp;target&nbsp;speed&nbsp;in&nbsp;degrees&nbsp;per&nbsp;second<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port(s).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;and/or&nbsp;PORT_D.<br>
+                                        dps&nbsp;--&nbsp;The&nbsp;target&nbsp;speed&nbsp;in&nbsp;degrees&nbsp;per&nbsp;second</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-set_motor_limits"><strong>set_motor_limits</strong></a>(self,
+                                    port, power=0, dps=0)</dt>
+                                <dd><tt>Set&nbsp;the&nbsp;motor&nbsp;speed&nbsp;limit<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port(s).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;and/or&nbsp;PORT_D.<br>
+                                        power&nbsp;--&nbsp;The&nbsp;power&nbsp;limit&nbsp;in&nbsp;percent&nbsp;(0&nbsp;to&nbsp;100),&nbsp;with&nbsp;0&nbsp;being&nbsp;no&nbsp;limit&nbsp;(100)<br>
+                                        dps&nbsp;--&nbsp;The&nbsp;speed&nbsp;limit&nbsp;in&nbsp;degrees&nbsp;per&nbsp;second,&nbsp;with&nbsp;0&nbsp;being&nbsp;no&nbsp;limit</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-set_motor_position"><strong>set_motor_position</strong></a>(self,
+                                    port, position)</dt>
+                                <dd><tt>Set&nbsp;the&nbsp;motor&nbsp;target&nbsp;position&nbsp;in&nbsp;degrees<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port(s).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;and/or&nbsp;PORT_D.<br>
+                                        position&nbsp;--&nbsp;The&nbsp;target&nbsp;position</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="BrickPi3-set_motor_position_kd"><strong>set_motor_position_kd</strong></a>(self,
+                                    port, kd=70)</dt>
+                                <dd><tt>Set&nbsp;the&nbsp;motor&nbsp;target&nbsp;position&nbsp;KD&nbsp;constant<br>
+                                        &nbsp;<br>
+                                        If&nbsp;you&nbsp;set&nbsp;kp&nbsp;higher,&nbsp;the&nbsp;motor&nbsp;will&nbsp;be&nbsp;more&nbsp;responsive&nbsp;to&nbsp;errors&nbsp;in&nbsp;position,&nbsp;at&nbsp;the&nbsp;cost&nbsp;of&nbsp;perhaps&nbsp;overshooting&nbsp;and&nbsp;oscillating.<br>
+                                        kd&nbsp;slows&nbsp;down&nbsp;the&nbsp;motor&nbsp;as&nbsp;it&nbsp;approaches&nbsp;the&nbsp;target,&nbsp;and&nbsp;helps&nbsp;to&nbsp;prevent&nbsp;overshoot.<br>
+                                        In&nbsp;general,&nbsp;if&nbsp;you&nbsp;increase&nbsp;kp,&nbsp;you&nbsp;should&nbsp;also&nbsp;increase&nbsp;kd&nbsp;to&nbsp;keep&nbsp;the&nbsp;motor&nbsp;from&nbsp;overshooting&nbsp;and&nbsp;oscillating.<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port(s).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;and/or&nbsp;PORT_D.<br>
+                                        kd&nbsp;--&nbsp;The&nbsp;KD&nbsp;constant&nbsp;(default&nbsp;70)</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="BrickPi3-set_motor_position_kp"><strong>set_motor_position_kp</strong></a>(self,
+                                    port, kp=25)</dt>
+                                <dd><tt>Set&nbsp;the&nbsp;motor&nbsp;target&nbsp;position&nbsp;KP&nbsp;constant<br>
+                                        &nbsp;<br>
+                                        If&nbsp;you&nbsp;set&nbsp;kp&nbsp;higher,&nbsp;the&nbsp;motor&nbsp;will&nbsp;be&nbsp;more&nbsp;responsive&nbsp;to&nbsp;errors&nbsp;in&nbsp;position,&nbsp;at&nbsp;the&nbsp;cost&nbsp;of&nbsp;perhaps&nbsp;overshooting&nbsp;and&nbsp;oscillating.<br>
+                                        kd&nbsp;slows&nbsp;down&nbsp;the&nbsp;motor&nbsp;as&nbsp;it&nbsp;approaches&nbsp;the&nbsp;target,&nbsp;and&nbsp;helps&nbsp;to&nbsp;prevent&nbsp;overshoot.<br>
+                                        In&nbsp;general,&nbsp;if&nbsp;you&nbsp;increase&nbsp;kp,&nbsp;you&nbsp;should&nbsp;also&nbsp;increase&nbsp;kd&nbsp;to&nbsp;keep&nbsp;the&nbsp;motor&nbsp;from&nbsp;overshooting&nbsp;and&nbsp;oscillating.<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port(s).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;and/or&nbsp;PORT_D.<br>
+                                        kp&nbsp;--&nbsp;The&nbsp;KP&nbsp;constant&nbsp;(default&nbsp;25)</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="BrickPi3-set_motor_position_relative"><strong>set_motor_position_relative</strong></a>(self,
+                                    port, degrees)</dt>
+                                <dd><tt>Set&nbsp;the&nbsp;relative&nbsp;motor&nbsp;target&nbsp;position&nbsp;in&nbsp;degrees.&nbsp;Current&nbsp;position&nbsp;plus&nbsp;the&nbsp;specified&nbsp;degrees.<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;motor&nbsp;port(s).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;and/or&nbsp;PORT_D.<br>
+                                        degrees&nbsp;--&nbsp;The&nbsp;relative&nbsp;target&nbsp;position&nbsp;in&nbsp;degrees</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-set_motor_power"><strong>set_motor_power</strong></a>(self, port,
+                                    power)</dt>
+                                <dd><tt>Set&nbsp;the&nbsp;motor&nbsp;power&nbsp;in&nbsp;percent<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;Motor&nbsp;port(s).&nbsp;PORT_A,&nbsp;PORT_B,&nbsp;PORT_C,&nbsp;and/or&nbsp;PORT_D.<br>
+                                        power&nbsp;--&nbsp;The&nbsp;power&nbsp;from&nbsp;-100&nbsp;to&nbsp;100,&nbsp;or&nbsp;-128&nbsp;for&nbsp;float</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-set_sensor_type"><strong>set_sensor_type</strong></a>(self, port,
+                                    type, params=0)</dt>
+                                <dd><tt>Set&nbsp;the&nbsp;sensor&nbsp;type<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;sensor&nbsp;port(s).&nbsp;PORT_1,&nbsp;PORT_2,&nbsp;PORT_3,&nbsp;and/or&nbsp;PORT_4.<br>
+                                        type&nbsp;--&nbsp;The&nbsp;sensor&nbsp;type<br>
+                                        params&nbsp;=&nbsp;0&nbsp;--&nbsp;the&nbsp;parameters&nbsp;needed&nbsp;for&nbsp;some&nbsp;sensor&nbsp;types.<br>
+                                        &nbsp;<br>
+                                        params&nbsp;is&nbsp;used&nbsp;for&nbsp;the&nbsp;following&nbsp;sensor&nbsp;types:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;CUSTOM&nbsp;--&nbsp;a&nbsp;16-bit&nbsp;integer&nbsp;used&nbsp;to&nbsp;configure&nbsp;the&nbsp;hardware.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;I2C&nbsp;--&nbsp;a&nbsp;list&nbsp;of&nbsp;settings:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params[0]&nbsp;--&nbsp;Settings/flags<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params[1]&nbsp;--&nbsp;target&nbsp;Speed&nbsp;in&nbsp;microseconds&nbsp;(0-255).&nbsp;Realistically&nbsp;the&nbsp;speed&nbsp;will&nbsp;vary.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;SENSOR_I2C_SETTINGS_SAME&nbsp;flag&nbsp;set&nbsp;in&nbsp;I2C&nbsp;Settings:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params[2]&nbsp;--&nbsp;Delay&nbsp;in&nbsp;microseconds&nbsp;between&nbsp;transactions.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params[3]&nbsp;--&nbsp;Address<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params[4]&nbsp;--&nbsp;List&nbsp;of&nbsp;bytes&nbsp;to&nbsp;write<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params[5]&nbsp;--&nbsp;Number&nbsp;of&nbsp;bytes&nbsp;to&nbsp;read</tt>
+                                </dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-spi_read_16"><strong>spi_read_16</strong></a>(self, MessageType)
+                                </dt>
+                                <dd><tt>Read&nbsp;a&nbsp;16-bit&nbsp;value&nbsp;over&nbsp;SPI<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        MessageType&nbsp;--&nbsp;the&nbsp;SPI&nbsp;message&nbsp;type<br>
+                                        &nbsp;<br>
+                                        Returns:<br>
+                                        value</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-spi_read_32"><strong>spi_read_32</strong></a>(self, MessageType)
+                                </dt>
+                                <dd><tt>Read&nbsp;a&nbsp;32-bit&nbsp;value&nbsp;over&nbsp;SPI<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        MessageType&nbsp;--&nbsp;the&nbsp;SPI&nbsp;message&nbsp;type<br>
+                                        &nbsp;<br>
+                                        Returns&nbsp;:<br>
+                                        value</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-spi_transfer_array"><strong>spi_transfer_array</strong></a>(self,
+                                    data_out)</dt>
+                                <dd><tt>Conduct&nbsp;a&nbsp;SPI&nbsp;transaction<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        data_out&nbsp;--&nbsp;a&nbsp;list&nbsp;of&nbsp;bytes&nbsp;to&nbsp;send.&nbsp;The&nbsp;length&nbsp;of&nbsp;the&nbsp;list&nbsp;will&nbsp;determine&nbsp;how&nbsp;many&nbsp;bytes&nbsp;are&nbsp;transferred.<br>
+                                        &nbsp;<br>
+                                        Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;bytes&nbsp;read.</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-spi_write_16"><strong>spi_write_16</strong></a>(self, MessageType,
+                                    Value)</dt>
+                                <dd><tt>Send&nbsp;a&nbsp;16-bit&nbsp;value&nbsp;over&nbsp;SPI<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        MessageType&nbsp;--&nbsp;the&nbsp;SPI&nbsp;message&nbsp;type<br>
+                                        Value&nbsp;--&nbsp;the&nbsp;value&nbsp;to&nbsp;be&nbsp;sent</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-spi_write_24"><strong>spi_write_24</strong></a>(self, MessageType,
+                                    Value)</dt>
+                                <dd><tt>Send&nbsp;a&nbsp;24-bit&nbsp;value&nbsp;over&nbsp;SPI<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        MessageType&nbsp;--&nbsp;the&nbsp;SPI&nbsp;message&nbsp;type<br>
+                                        Value&nbsp;--&nbsp;the&nbsp;value&nbsp;to&nbsp;be&nbsp;sent</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-spi_write_32"><strong>spi_write_32</strong></a>(self, MessageType,
+                                    Value)</dt>
+                                <dd><tt>Send&nbsp;a&nbsp;32-bit&nbsp;value&nbsp;over&nbsp;SPI<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        MessageType&nbsp;--&nbsp;the&nbsp;SPI&nbsp;message&nbsp;type<br>
+                                        Value&nbsp;--&nbsp;the&nbsp;value&nbsp;to&nbsp;be&nbsp;sent</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-spi_write_8"><strong>spi_write_8</strong></a>(self, MessageType,
+                                    Value)</dt>
+                                <dd><tt>Send&nbsp;an&nbsp;8-bit&nbsp;value&nbsp;over&nbsp;SPI<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        MessageType&nbsp;--&nbsp;the&nbsp;SPI&nbsp;message&nbsp;type<br>
+                                        Value&nbsp;--&nbsp;the&nbsp;value&nbsp;to&nbsp;be&nbsp;sent</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="BrickPi3-transact_i2c"><strong>transact_i2c</strong></a>(self, port,
+                                    Address, OutArray, InBytes)</dt>
+                                <dd><tt>Conduct&nbsp;an&nbsp;I2C&nbsp;transaction<br>
+                                        &nbsp;<br>
+                                        Keyword&nbsp;arguments:<br>
+                                        port&nbsp;--&nbsp;The&nbsp;sensor&nbsp;port&nbsp;(one&nbsp;at&nbsp;a&nbsp;time).&nbsp;PORT_1,&nbsp;PORT_2,&nbsp;PORT_3,&nbsp;or&nbsp;PORT_4.<br>
+                                        Address&nbsp;--&nbsp;The&nbsp;I2C&nbsp;address&nbsp;for&nbsp;the&nbsp;device.&nbsp;Bits&nbsp;1-7,&nbsp;not&nbsp;0-6.<br>
+                                        OutArray&nbsp;--&nbsp;A&nbsp;list&nbsp;of&nbsp;bytes&nbsp;to&nbsp;write&nbsp;to&nbsp;the&nbsp;device<br>
+                                        InBytes&nbsp;--&nbsp;The&nbsp;number&nbsp;of&nbsp;bytes&nbsp;to&nbsp;read&nbsp;from&nbsp;the&nbsp;device</tt>
+                                </dd>
+                            </dl>
+
+                            <hr>
+                            Data descriptors defined here:<br>
+                            <dl>
+                                <dt><strong>__dict__</strong></dt>
+                                <dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><strong>__weakref__</strong></dt>
+                                <dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt>
+                                </dd>
+                            </dl>
+                            <hr>
+                            Data and other attributes defined here:<br>
+                            <dl>
+                                <dt><strong>BPSPI_MESSAGE_TYPE</strong> = &lt;brickpi3.Enumeration object&gt;
+                            </dl>
+
+                            <dl>
+                                <dt><strong>I2CInBytes</strong> = [0, 0, 0, 0]
+                            </dl>
+
+                            <dl>
+                                <dt><strong>I2C_LENGTH_LIMIT</strong> = 16
+                            </dl>
+
+                            <dl>
+                                <dt><strong>MOTOR_FLOAT</strong> = -128
+                            </dl>
+
+                            <dl>
+                                <dt><strong>MOTOR_STATUS_FLAG</strong> = &lt;brickpi3.Enumeration object&gt;
+                            </dl>
+
+                            <dl>
+                                <dt><strong>PORT_1</strong> = 1
+                            </dl>
+
+                            <dl>
+                                <dt><strong>PORT_2</strong> = 2
+                            </dl>
+
+                            <dl>
+                                <dt><strong>PORT_3</strong> = 4
+                            </dl>
+
+                            <dl>
+                                <dt><strong>PORT_4</strong> = 8
+                            </dl>
+
+                            <dl>
+                                <dt><strong>PORT_A</strong> = 1
+                            </dl>
+
+                            <dl>
+                                <dt><strong>PORT_B</strong> = 2
+                            </dl>
+
+                            <dl>
+                                <dt><strong>PORT_C</strong> = 4
+                            </dl>
+
+                            <dl>
+                                <dt><strong>PORT_D</strong> = 8
+                            </dl>
+
+                            <dl>
+                                <dt><strong>SENSOR_CUSTOM</strong> = &lt;brickpi3.Enumeration object&gt;
+                            </dl>
+
+                            <dl>
+                                <dt><strong>SENSOR_I2C_SETTINGS</strong> = &lt;brickpi3.Enumeration object&gt;
+                            </dl>
+
+                            <dl>
+                                <dt><strong>SENSOR_STATE</strong> = &lt;brickpi3.Enumeration object&gt;
+                            </dl>
+
+                            <dl>
+                                <dt><strong>SENSOR_TYPE</strong> = &lt;brickpi3.Enumeration object&gt;
+                            </dl>
+
+                            <dl>
+                                <dt><strong>SensorType</strong> = [0, 0, 0, 0]
+                            </dl>
+
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+                    <tr bgcolor="#ffc8d8">
+                        <td colspan=3 valign=bottom>&nbsp;<br>
+                            <font color="#000000" face="helvetica, arial"><a name="Enumeration">class
+                                    <strong>Enumeration</strong></a>(<a href="builtins.html#object">builtins.object</a>)
+                            </font>
+                        </td>
+                    </tr>
+
+                    <tr bgcolor="#ffc8d8">
+                        <td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+                        <td colspan=2><tt><a href="#Enumeration">Enumeration</a>(names)<br>
+                                &nbsp;<br>
+                                <br>&nbsp;</tt></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td width="100%">Methods defined here:<br>
+                            <dl>
+                                <dt><a name="Enumeration-__init__"><strong>__init__</strong></a>(self, names)</dt>
+                                <dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt>
+                                </dd>
+                            </dl>
+
+                            <hr>
+                            Data descriptors defined here:<br>
+                            <dl>
+                                <dt><strong>__dict__</strong></dt>
+                                <dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><strong>__weakref__</strong></dt>
+                                <dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt>
+                                </dd>
+                            </dl>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+                    <tr bgcolor="#ffc8d8">
+                        <td colspan=3 valign=bottom>&nbsp;<br>
+                            <font color="#000000" face="helvetica, arial"><a name="FirmwareVersionError">class
+                                    <strong>FirmwareVersionError</strong></a>(<a
+                                    href="builtins.html#Exception">builtins.Exception</a>)</font>
+                        </td>
+                    </tr>
+
+                    <tr bgcolor="#ffc8d8">
+                        <td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+                        <td colspan=2><tt><a
+                                    href="builtins.html#Exception">Exception</a>&nbsp;raised&nbsp;if&nbsp;the&nbsp;<a
+                                    href="#BrickPi3">BrickPi3</a>&nbsp;firmware&nbsp;needs&nbsp;to&nbsp;be&nbsp;updated<br>&nbsp;</tt>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td width="100%">
+                            <dl>
+                                <dt>Method resolution order:</dt>
+                                <dd><a href="brickpi3.html#FirmwareVersionError">FirmwareVersionError</a></dd>
+                                <dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
+                                <dd><a href="builtins.html#BaseException">builtins.BaseException</a></dd>
+                                <dd><a href="builtins.html#object">builtins.object</a></dd>
+                            </dl>
+                            <hr>
+                            Data descriptors defined here:<br>
+                            <dl>
+                                <dt><strong>__weakref__</strong></dt>
+                                <dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt>
+                                </dd>
+                            </dl>
+                            <hr>
+                            Methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+                            <dl>
+                                <dt><a name="FirmwareVersionError-__init__"><strong>__init__</strong></a>(self, /,
+                                    *args, **kwargs)</dt>
+                                <dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt>
+                                </dd>
+                            </dl>
+
+                            <hr>
+                            Static methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+                            <dl>
+                                <dt><a name="FirmwareVersionError-__new__"><strong>__new__</strong></a>(*args, **kwargs)
+                                    <font color="#909090">
+                                        <font face="helvetica, arial"> from <a
+                                                href="builtins.html#type">builtins.type</a></font>
+                                    </font>
+                                </dt>
+                                <dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a
+                                            href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt>
+                                </dd>
+                            </dl>
+
+                            <hr>
+                            Methods inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+                            <dl>
+                                <dt><a name="FirmwareVersionError-__delattr__"><strong>__delattr__</strong></a>(self,
+                                    name, /)</dt>
+                                <dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="FirmwareVersionError-__getattribute__"><strong>__getattribute__</strong></a>(self,
+                                    name, /)</dt>
+                                <dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="FirmwareVersionError-__reduce__"><strong>__reduce__</strong></a>(...)</dt>
+                                <dd><tt>Helper&nbsp;for&nbsp;pickle.</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="FirmwareVersionError-__repr__"><strong>__repr__</strong></a>(self, /)</dt>
+                                <dd><tt>Return&nbsp;repr(self).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="FirmwareVersionError-__setattr__"><strong>__setattr__</strong></a>(self,
+                                    name, value, /)</dt>
+                                <dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="FirmwareVersionError-__setstate__"><strong>__setstate__</strong></a>(...)
+                                </dt>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="FirmwareVersionError-__str__"><strong>__str__</strong></a>(self, /)</dt>
+                                <dd><tt>Return&nbsp;str(self).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a
+                                        name="FirmwareVersionError-with_traceback"><strong>with_traceback</strong></a>(...)
+                                </dt>
+                                <dd><tt><a href="builtins.html#Exception">Exception</a>.<a
+                                            href="#FirmwareVersionError-with_traceback">with_traceback</a>(tb)&nbsp;--<br>
+                                        set&nbsp;self.<strong>__traceback__</strong>&nbsp;to&nbsp;tb&nbsp;and&nbsp;return&nbsp;self.</tt>
+                                </dd>
+                            </dl>
+
+                            <hr>
+                            Data descriptors inherited from <a
+                                href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+                            <dl>
+                                <dt><strong>__cause__</strong></dt>
+                                <dd><tt>exception&nbsp;cause</tt></dd>
+                            </dl>
+                            <dl>
+                                <dt><strong>__context__</strong></dt>
+                                <dd><tt>exception&nbsp;context</tt></dd>
+                            </dl>
+                            <dl>
+                                <dt><strong>__dict__</strong></dt>
+                            </dl>
+                            <dl>
+                                <dt><strong>__suppress_context__</strong></dt>
+                            </dl>
+                            <dl>
+                                <dt><strong>__traceback__</strong></dt>
+                            </dl>
+                            <dl>
+                                <dt><strong>args</strong></dt>
+                            </dl>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+                    <tr bgcolor="#ffc8d8">
+                        <td colspan=3 valign=bottom>&nbsp;<br>
+                            <font color="#000000" face="helvetica, arial"><a name="SensorError">class
+                                    <strong>SensorError</strong></a>(<a
+                                    href="builtins.html#Exception">builtins.Exception</a>)</font>
+                        </td>
+                    </tr>
+
+                    <tr bgcolor="#ffc8d8">
+                        <td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+                        <td colspan=2><tt><a
+                                    href="builtins.html#Exception">Exception</a>&nbsp;raised&nbsp;if&nbsp;a&nbsp;sensor&nbsp;is&nbsp;not&nbsp;yet&nbsp;configured&nbsp;when&nbsp;trying&nbsp;to&nbsp;read&nbsp;it&nbsp;with&nbsp;get_sensor<br>&nbsp;</tt>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td width="100%">
+                            <dl>
+                                <dt>Method resolution order:</dt>
+                                <dd><a href="brickpi3.html#SensorError">SensorError</a></dd>
+                                <dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
+                                <dd><a href="builtins.html#BaseException">builtins.BaseException</a></dd>
+                                <dd><a href="builtins.html#object">builtins.object</a></dd>
+                            </dl>
+                            <hr>
+                            Data descriptors defined here:<br>
+                            <dl>
+                                <dt><strong>__weakref__</strong></dt>
+                                <dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt>
+                                </dd>
+                            </dl>
+                            <hr>
+                            Methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+                            <dl>
+                                <dt><a name="SensorError-__init__"><strong>__init__</strong></a>(self, /, *args,
+                                    **kwargs)</dt>
+                                <dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt>
+                                </dd>
+                            </dl>
+
+                            <hr>
+                            Static methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+                            <dl>
+                                <dt><a name="SensorError-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font
+                                        color="#909090">
+                                        <font face="helvetica, arial"> from <a
+                                                href="builtins.html#type">builtins.type</a></font>
+                                    </font>
+                                </dt>
+                                <dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a
+                                            href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt>
+                                </dd>
+                            </dl>
+
+                            <hr>
+                            Methods inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+                            <dl>
+                                <dt><a name="SensorError-__delattr__"><strong>__delattr__</strong></a>(self, name, /)
+                                </dt>
+                                <dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="SensorError-__getattribute__"><strong>__getattribute__</strong></a>(self,
+                                    name, /)</dt>
+                                <dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="SensorError-__reduce__"><strong>__reduce__</strong></a>(...)</dt>
+                                <dd><tt>Helper&nbsp;for&nbsp;pickle.</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="SensorError-__repr__"><strong>__repr__</strong></a>(self, /)</dt>
+                                <dd><tt>Return&nbsp;repr(self).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="SensorError-__setattr__"><strong>__setattr__</strong></a>(self, name,
+                                    value, /)</dt>
+                                <dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="SensorError-__setstate__"><strong>__setstate__</strong></a>(...)</dt>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="SensorError-__str__"><strong>__str__</strong></a>(self, /)</dt>
+                                <dd><tt>Return&nbsp;str(self).</tt></dd>
+                            </dl>
+
+                            <dl>
+                                <dt><a name="SensorError-with_traceback"><strong>with_traceback</strong></a>(...)</dt>
+                                <dd><tt><a href="builtins.html#Exception">Exception</a>.<a
+                                            href="#SensorError-with_traceback">with_traceback</a>(tb)&nbsp;--<br>
+                                        set&nbsp;self.<strong>__traceback__</strong>&nbsp;to&nbsp;tb&nbsp;and&nbsp;return&nbsp;self.</tt>
+                                </dd>
+                            </dl>
+
+                            <hr>
+                            Data descriptors inherited from <a
+                                href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+                            <dl>
+                                <dt><strong>__cause__</strong></dt>
+                                <dd><tt>exception&nbsp;cause</tt></dd>
+                            </dl>
+                            <dl>
+                                <dt><strong>__context__</strong></dt>
+                                <dd><tt>exception&nbsp;context</tt></dd>
+                            </dl>
+                            <dl>
+                                <dt><strong>__dict__</strong></dt>
+                            </dl>
+                            <dl>
+                                <dt><strong>__suppress_context__</strong></dt>
+                            </dl>
+                            <dl>
+                                <dt><strong>__traceback__</strong></dt>
+                            </dl>
+                            <dl>
+                                <dt><strong>args</strong></dt>
+                            </dl>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <p>
+    <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+        <tr bgcolor="#eeaa77">
+            <td colspan=3 valign=bottom>&nbsp;<br>
+                <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td>
+            <td>&nbsp;</td>
+            <td width="100%">
+                <dl>
+                    <dt><a name="-set_address"><strong>set_address</strong></a>(address, id)</dt>
+                    <dd><tt>Set&nbsp;the&nbsp;SPI&nbsp;address&nbsp;of&nbsp;the&nbsp;<a
+                                href="#BrickPi3">BrickPi3</a><br>
+                            &nbsp;<br>
+                            Keyword&nbsp;arguments:<br>
+                            address&nbsp;--&nbsp;the&nbsp;new&nbsp;SPI&nbsp;address&nbsp;to&nbsp;use&nbsp;(1&nbsp;to&nbsp;255)<br>
+                            id&nbsp;--&nbsp;the&nbsp;<a
+                                href="#BrickPi3">BrickPi3</a>'s&nbsp;unique&nbsp;serial&nbsp;number&nbsp;ID&nbsp;(so&nbsp;that&nbsp;the&nbsp;address&nbsp;can&nbsp;be&nbsp;set&nbsp;while&nbsp;multiple&nbsp;BrickPi3s&nbsp;are&nbsp;stacked&nbsp;on&nbsp;a&nbsp;Raspberry&nbsp;Pi).</tt>
+                    </dd>
+                </dl>
+            </td>
+        </tr>
+    </table>
+    <p>
+    <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+        <tr bgcolor="#55aa55">
+            <td colspan=3 valign=bottom>&nbsp;<br>
+                <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td>
+            <td>&nbsp;</td>
+            <td width="100%"><strong>BP_SPI</strong> = &lt;SpiDev object&gt;<br>
+                <strong>FIRMWARE_VERSION_REQUIRED</strong> = '1.4.x'<br>
+                <strong>division</strong> = _Feature((2, 2, 0, 'alpha', 2), (3, 0, 0, 'alpha', 0), 131072)<br>
+                <strong>print_function</strong> = _Feature((2, 6, 0, 'alpha', 2), (3, 0, 0, 'alpha', 0), 1048576)
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

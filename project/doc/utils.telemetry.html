@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module utils.telemetry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="utils.html"><font color="#ffffff">utils</font></a>.telemetry</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:d%3A%5Cprogrammingd%5Cschoold%5Clab-code-development%5Cutils%5Ctelemetry.py">d:\programmingd\schoold\lab-code-development\utils\telemetry.py</a></font></td></tr></table>
+    <p><tt>Module&nbsp;for&nbsp;providing&nbsp;access&nbsp;to&nbsp;a&nbsp;single,&nbsp;simple,&nbsp;GUI&nbsp;that&nbsp;can&nbsp;easily&nbsp;display&nbsp;data.<br>
+It&nbsp;also&nbsp;allows&nbsp;the&nbsp;creation&nbsp;of&nbsp;buttons&nbsp;and&nbsp;sliders&nbsp;for&nbsp;adjusting&nbsp;starting&nbsp;parameters.<br>
+&nbsp;<br>
+Author:&nbsp;Ryan&nbsp;Au</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="tkinter.html">tkinter</a><br>
+</td><td width="25%" valign=top><a href="tkinter.ttk.html">tkinter.ttk</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-add"><strong>add</strong></a>(key, data, showkey=False)</dt><dd><tt>Adds/Sets&nbsp;data&nbsp;by&nbsp;a&nbsp;key&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window</tt></dd></dl>
+ <dl><dt><a name="-clear"><strong>clear</strong></a>()</dt><dd><tt>Destroy&nbsp;and&nbsp;remove&nbsp;all&nbsp;LABELS&nbsp;of&nbsp;telemetry</tt></dd></dl>
+ <dl><dt><a name="-create_button"><strong>create_button</strong></a>(name, func=None)</dt><dd><tt>Adds&nbsp;a&nbsp;button&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window&nbsp;AND&nbsp;returns&nbsp;the&nbsp;button&nbsp;object&nbsp;added</tt></dd></dl>
+ <dl><dt><a name="-create_slider"><strong>create_slider</strong></a>(lower, upper=None, value=None)</dt><dd><tt>Adds&nbsp;a&nbsp;slider&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window&nbsp;AND&nbsp;returns&nbsp;the&nbsp;slider&nbsp;object&nbsp;added</tt></dd></dl>
+ <dl><dt><a name="-isopen"><strong>isopen</strong></a>()</dt><dd><tt>Determines&nbsp;if&nbsp;the&nbsp;telemtry&nbsp;window&nbsp;has&nbsp;been&nbsp;opened&nbsp;or&nbsp;closed</tt></dd></dl>
+ <dl><dt><a name="-label"><strong>label</strong></a>(key, data, showkey=False)</dt><dd><tt>Adds/Sets&nbsp;data&nbsp;by&nbsp;a&nbsp;key&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window</tt></dd></dl>
+ <dl><dt><a name="-mainloop"><strong>mainloop</strong></a>()</dt><dd><tt>Starts&nbsp;a&nbsp;while&nbsp;loop&nbsp;that&nbsp;calls&nbsp;update&nbsp;for&nbsp;you!&nbsp;<br>
+Usage&nbsp;of&nbsp;telemetry.update&nbsp;not&nbsp;needed&nbsp;when&nbsp;using&nbsp;this</tt></dd></dl>
+ <dl><dt><a name="-resize"><strong>resize</strong></a>(width=100, height=100)</dt><dd><tt>Resize&nbsp;telemtry&nbsp;to&nbsp;a&nbsp;set&nbsp;width&nbsp;and&nbsp;height&nbsp;in&nbsp;pixels</tt></dd></dl>
+ <dl><dt><a name="-start"><strong>start</strong></a>()</dt><dd><tt>Open&nbsp;the&nbsp;telemetry&nbsp;window</tt></dd></dl>
+ <dl><dt><a name="-stop"><strong>stop</strong></a>()</dt><dd><tt>Closes&nbsp;telemtry&nbsp;window</tt></dd></dl>
+ <dl><dt><a name="-update"><strong>update</strong></a>(retries=1)</dt><dd><tt>Updates&nbsp;display&nbsp;with&nbsp;latest&nbsp;telemetry&nbsp;values</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>HORIZONTAL</strong> = 'horizontal'<br>
+<strong>LABELS</strong> = {}<br>
+<strong>WINDOW</strong> = None<br>
+<strong>__annotations__</strong> = {'WINDOW': &lt;class 'tkinter.Tk'&gt;}</td></tr></table>
+</body></html>

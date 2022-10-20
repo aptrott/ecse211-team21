@@ -1,0 +1,5 @@
+{
+  "name": "Lab 2",
+  "group": 41,
+  "entrypoint": "project/speaker_button.py"
+}

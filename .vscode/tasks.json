@@ -1,0 +1,90 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run DPM Project tests on this computer",
+      "type": "shell",
+      "command": "pipenv",
+      "args": [
+        "run",
+        "pytest"
+      ],
+      "windows": {
+        "command": "pipenv"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Deploy DPM Project on Robot without running",
+      "type": "shell",
+      "command": "pipenv",
+      "args": [
+        "run",
+        "python3",
+        "deploy_to_robot.py",
+        "-copy"
+      ],
+      "windows": {
+        "command": "pipenv"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Deploy and run DPM Project on Robot",
+      "type": "shell",
+      "command": "pipenv",
+      "args": [
+        "run",
+        "python3",
+        "deploy_to_robot.py",
+        "-copy",
+        "-run"
+      ],
+      "windows": {
+        "command": "pipenv",
+        "args": [
+          "run",
+          "python3",
+          "deploy_to_robot.py",
+          "-copy",
+          "-run"
+        ]
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Reset Robot",
+      "type": "shell",
+      "command": "pipenv",
+      "args": [
+        "run",
+        "python3",
+        "deploy_to_robot.py",
+        "-reset"
+      ],
+      "windows": {
+        "command": "pipenv"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ]
+
+}
