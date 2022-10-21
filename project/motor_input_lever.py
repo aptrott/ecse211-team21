@@ -9,30 +9,38 @@ class InputLever:
     class InputLever.
     The main purpose of this class to read the current position of the motor.
     The current position of the motor will be used as an input to decide between:
-        1- Start drumming (rotate between 0 degree and 119 degrees)
+        1- Emergency stop (rotate between 0 degree and 119 degrees)
         2- Stop drumming (rotate between 120 degrees and 239 degrees)
-        3- Emergency stop (rotate between 240 degrees 360 degrees)
+        3- Start drumming (rotate between 240 degrees 360 degrees)
     """
 
-    def __init__(self, motor):
+    def __init__(self, motor: Motor):
         """
-        The class constructor takes the motor as an input. set power to 50, set limit dps to 90
-        makes a call to motor.reset_encoder
+        The class constructor takes the motor as an input.
         """
         self.motor = motor
-        motor.reset_encoder()
 
-    def get_switch_state(self):
-        position = self.motor.get_position()
+    @property
+    def position(self):
+        return self.motor.get_position()
+
+    def get_state(self):
         for state in LeverState:
-            if position in range(state.min_position, state.max_position):
+            if self.position in range(state.min_position, state.max_position):
                 return state
+        return None
+
+    def has_moved(self, delay):
+        last_position = self.motor.get_position()
+        time.sleep(delay)
+        current_position = self.motor.get_position()
+        return last_position != current_position
 
 
 class LeverState(Enum):
-    DRUMMING_ON = (0, 120)
+    EMERGENCY_STOP = (0, 120)
     DRUMMING_OFF = (120, 240)
-    EMERGENCY_STOP = (240, 360)
+    DRUMMING_ON = (240, 360)
 
     def __init__(self, min_position, max_position):
         self.min_position = min_position
@@ -40,13 +48,23 @@ class LeverState(Enum):
 
 
 if __name__ == "__main__":
-    input_motor = Motor("A")
-    lever = InputLever(input_motor)
+    DELAY = 0.2
+
+    lever = InputLever(Motor("A"))
 
     try:
+        print("To start the program, ensure that you move the input lever to the emergency stop position")
+        while not lever.has_moved(DELAY):  # Waiting for lever to be moved to initial position
+            pass
+        while lever.has_moved(DELAY):  # Waiting for lever to stop moving
+            pass
+        lever.motor.reset_encoder()  # Resetting encoder based on initial set emergency stop lever position
+        lever_state = LeverState.EMERGENCY_STOP
+
         while True:
-            print(lever.get_switch_state())
-            time.sleep(0.5)
+            print(lever_state)
+            time.sleep(DELAY)
+            lever_state = lever.get_state()
 
     except BaseException:
         exit()
