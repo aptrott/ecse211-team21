@@ -1,3 +1,4 @@
+import sys
 import time
 from enum import Enum
 
@@ -51,13 +52,13 @@ class InputLever:
 
 
 class LeverState(Enum):
-    EMERGENCY_STOP = (-130, -70)
-    IDLE = (-70, 40)  # reset to 0
-    DRUMMING_ON = (40, 130)
+    IDLE = (-60, 50)
+    DRUMMING_ON = (50, 120)
+    EMERGENCY_STOP = (120, 300)
 
     def __init__(self, min_position, max_position):
-        self.min_position = min_position
-        self.max_position = max_position
+        self.min_position = -max_position
+        self.max_position = -min_position
 
 
 if __name__ == "__main__":
@@ -75,20 +76,16 @@ if __name__ == "__main__":
         lever.motor.reset_encoder()  # Resetting encoder based on initial set emergency stop lever position
         lever_state = LeverState.IDLE
 
-        print("start")
-        while (True):
+        while True:
             print(f"{lever_state}, {lever.position}")
-            print()
-            if (lever_state is LeverState.DRUMMING_ON):
+            if lever_state is LeverState.DRUMMING_ON:
                 drum.drumming_on()
-                time.sleep(DELAY)
 
-            elif (lever_state is LeverState.EMERGENCY_STOP):
+            elif lever_state is LeverState.EMERGENCY_STOP:
                 drum.drumming_off()
-                time.sleep(DELAY)
 
+            time.sleep(DELAY)
             lever_state = lever.get_state()
 
-    except BaseException as e:
-        print(e)
-        exit()
+    except KeyboardInterrupt:
+        sys.exit(0)
