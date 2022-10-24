@@ -4,20 +4,6 @@ from enum import Enum
 from utils.brick import Motor
 
 
-class DrumMotor:
-# Initialization of the drumming motor and control motor
-
-     def __init__ (self, motor: Motor):
-       self.motor = motor
-
-     def drumming_on(self):
-          self.motor.set_power(50)
-     def drumming_off(self):
-          self.motor.set_power(0)
-
-
-
-
 class InputLever:
     """
     class InputLever.
@@ -52,24 +38,18 @@ class InputLever:
 
 
 class LeverState(Enum):
-    EMERGENCY_STOP = (-130,-70 )
-   # DRUMMING_OFF = (-34, 20)
-    DRUMMING_ON = (11, 130)
-    IDLE=(-69,10)
+    IDLE = (-60, 50)
+    DRUMMING_ON = (50, 120)
+    EMERGENCY_STOP = (120, 300)
 
     def __init__(self, min_position, max_position):
-        self.min_position = min_position
-        self.max_position = max_position
+        self.min_position = -max_position
+        self.max_position = -min_position
 
 
-if __name__ == "__main__":
-    DELAY = 0.2
-
-    lever = InputLever(Motor("A"))
-    drum  = DrumMotor(Motor("C"))
-
+def main():
     try:
-        print("To start the program, ensure that you move the input lever to the emergency stop position")
+        print("To start the program, ensure that you move the input lever idle position")
         while not lever.has_moved(DELAY):  # Waiting for lever to be moved to initial position
             pass
         while lever.has_moved(DELAY):  # Waiting for lever to stop moving
@@ -77,21 +57,18 @@ if __name__ == "__main__":
         lever.motor.reset_encoder()  # Resetting encoder based on initial set emergency stop lever position
         lever_state = LeverState.IDLE
 
-        print("start")
-        while(True):
-            print(lever_state)
-            if(lever_state==LeverState.DRUMMING_ON):
-                drum.drumming_on()
-                time.sleep(DELAY)      
-
-            elif (lever_state==LeverState.EMERGENCY_STOP):
-                drum.drumming_off()
-                time.sleep(DELAY)      
-            else:
-                 pass
-                
+        while True:
+            print(f"{lever_state}, {lever.position}")
+            time.sleep(DELAY)
             lever_state = lever.get_state()
 
-    except BaseException:
-         print(BaseException)
-         exit()
+    except KeyboardInterrupt:
+        exit()
+
+
+if __name__ == "__main__":
+    DELAY = 0.2
+
+    lever = InputLever(Motor("A"))
+
+    main()

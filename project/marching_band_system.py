@@ -1,4 +1,3 @@
-import sys
 import time
 from enum import Enum
 
@@ -61,12 +60,7 @@ class LeverState(Enum):
         self.max_position = -min_position
 
 
-if __name__ == "__main__":
-    DELAY = 0.2
-
-    lever = InputLever(Motor("A"))
-    drum = DrumMotor(Motor("C"))
-
+def main():
     try:
         print("To start the program, ensure that you move the input lever idle position")
         while not lever.has_moved(DELAY):  # Waiting for lever to be moved to initial position
@@ -88,4 +82,13 @@ if __name__ == "__main__":
             lever_state = lever.get_state()
 
     except KeyboardInterrupt:
-        sys.exit(0)
+        exit()
+
+
+if __name__ == "__main__":
+    DELAY = 0.2
+
+    lever = InputLever(Motor("A"))
+    drum = DrumMotor(Motor("C"))
+
+    main()
