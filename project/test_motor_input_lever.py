@@ -3,6 +3,7 @@ from enum import Enum
 
 from utils.brick import Motor
 
+DELAY = 1
 
 class InputLever:
     """
@@ -49,6 +50,7 @@ class LeverState(Enum):
 
 def main():
     try:
+        lever = InputLever(Motor("A"))
         print("To start the program, ensure that you move the input lever idle position")
         while not lever.has_moved(DELAY):  # Waiting for lever to be moved to initial position
             pass
@@ -62,13 +64,9 @@ def main():
             time.sleep(DELAY)
             lever_state = lever.get_state()
 
-    except KeyboardInterrupt:
+    except BaseException:
         exit()
 
 
 if __name__ == "__main__":
-    DELAY = 0.2
-
-    lever = InputLever(Motor("A"))
-
     main()
