@@ -3,6 +3,8 @@ from enum import Enum
 
 from utils.brick import Motor
 
+DELAY = 0.2
+
 
 class DrumMotor:
     # Initialization of the drumming motor and control motor
@@ -62,6 +64,8 @@ class LeverState(Enum):
 
 def main():
     try:
+        lever = InputLever(Motor("A"))
+        drum = DrumMotor(Motor("C"))
         print("To start the program, ensure that you move the input lever idle position")
         while not lever.has_moved(DELAY):  # Waiting for lever to be moved to initial position
             pass
@@ -86,9 +90,4 @@ def main():
 
 
 if __name__ == "__main__":
-    DELAY = 0.2
-
-    lever = InputLever(Motor("A"))
-    drum = DrumMotor(Motor("C"))
-
     main()
