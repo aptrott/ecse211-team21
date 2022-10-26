@@ -913,7 +913,5 @@ def reset_brick(*args):
 # Reset brick when the program exits
 try:
     atexit.register(reset_brick)
-    signal.signal(signal.SIGTERM, reset_brick)
-    signal.signal(signal.SIGINT, reset_brick)  # Ctrl-C
 except ValueError as err:
     print(err, "Must import brick in main thread", file=sys.stderr)
