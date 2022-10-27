@@ -6,15 +6,7 @@ from utils.brick import Motor
 DELAY = 1
 
 class InputLever:
-    """
-    class InputLever.
-    The main purpose of this class to read the current position of the motor.
-    The current position of the motor will be used as an input to decide between:
-        1- Emergency stop (rotate between 0 degree and 119 degrees)
-        2- Stop drumming (rotate between 120 degrees and 239 degrees)
-        3- Start drumming (rotate between 240 degrees 360 degrees)
-    """
-
+    
     def __init__(self, motor: Motor):
         """
         The class constructor takes the motor as an input.
@@ -39,9 +31,9 @@ class InputLever:
 
 
 class LeverState(Enum):
-    IDLE = (-60, 50)
-    DRUMMING_ON = (50, 120)
-    EMERGENCY_STOP = (120, 300)
+    IDLE = (-60, 40)
+    DRUMMING_ON = (40, 90)
+    EMERGENCY_STOP = (90, 300)
 
     def __init__(self, min_position, max_position):
         self.min_position = -max_position
