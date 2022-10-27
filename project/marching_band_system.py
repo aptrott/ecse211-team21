@@ -26,14 +26,7 @@ class DrumMotor:
 
 
 class InputLever:
-    """
-    class InputLever.
-    The main purpose of this class to read the current position of the motor.
-    The current position of the motor will be used as an input to decide between:
-        1- Emergency stop (rotate between 0 degree and 119 degrees)
-        2- Stop drumming (rotate between 120 degrees and 239 degrees)
-        3- Start drumming (rotate between 240 degrees 360 degrees)
-    """
+ 
 
     def __init__(self, motor: Motor):
         """
@@ -99,25 +92,25 @@ def main():
                
                 drum.drumming_on()
                
-                if sensorA == True and sensorB == False and sensorC == False and sensorD == False: 
+                if sensorA and (not sensorB)  and (not sensorC ) and (not sensorD ): 
                   print("Playing sound A") 
                   SOUND_A.play()
                   SOUND_A.wait_done()
 
                # Case where False/True/False/False =>  sound B is played 
-                elif sensorA == False and sensorB == True and sensorC == False and sensorD == False: 
+                elif (not sensorA ) and sensorB  and (not sensorC)  and (not sensorD): 
                   print("Playing sound B")
                   SOUND_B.play()
                   SOUND_B.wait_done()
 
                # Case where False/False/True/False => sound C is played 
-                elif sensorA == False and sensorB == False and sensorC == True and sensorD == False: 
+                elif (not sensorA)  and (not sensorB) and sensorC  and  (not sensorD): 
                   print("Playing sound C")
                   SOUND_C.play()
                   SOUND_C.wait_done()
 
                 # Case where False/False/False/True => sound D is played 
-                elif sensorA == False and sensorB == False and sensorC == False and sensorD == True: 
+                elif (not sensorA)  and (not sensorB) and (not sensorC)  and sensorD : 
                   print("Playing sound D")
                   SOUND_D.play()
                   SOUND_D.wait_done()
