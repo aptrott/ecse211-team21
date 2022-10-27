@@ -12,6 +12,7 @@ SOUND_B = sound.Sound(duration=1, pitch="C6", volume=80)
 SOUND_C = sound.Sound(duration=1, pitch="D6", volume=80)
 SOUND_D = sound.Sound(duration=1, pitch="G5", volume=80)
 
+
 class DrumMotor:
     # Initialization of the drumming motor and control motor
 
@@ -26,7 +27,6 @@ class DrumMotor:
 
 
 class InputLever:
- 
 
     def __init__(self, motor: Motor):
         """
@@ -36,7 +36,7 @@ class InputLever:
 
     @property
     def position(self):
-        return self.motor.get_position()
+        return -self.motor.get_position()
 
     def get_state(self):
         for state in LeverState:
@@ -52,20 +52,20 @@ class InputLever:
 
 
 class LeverState(Enum):
-    IDLE = (-60, 50)
-    DRUMMING_ON = (50, 120)
-    EMERGENCY_STOP = (120, 300)
+    IDLE = (-60, 40)
+    DRUMMING_ON = (40, 90)
+    EMERGENCY_STOP = (90, 300)
 
     def __init__(self, min_position, max_position):
-        self.min_position = -max_position
-        self.max_position = -min_position
+        self.min_position = min_position
+        self.max_position = max_position
 
 
 def main():
     try:
         lever = InputLever(Motor("A"))
         drum = DrumMotor(Motor("C"))
-        
+
         # Initiating the 4 different touch sensors 
         TOUCH_SENSOR_A = TouchSensor(1)
         TOUCH_SENSOR_B = TouchSensor(2)
@@ -82,53 +82,50 @@ def main():
 
         while True:
             print(f"{lever_state}, {lever.position}")
-            sensorA = TOUCH_SENSOR_A.is_pressed() 
-            sensorB = TOUCH_SENSOR_B.is_pressed()  
-            sensorC = TOUCH_SENSOR_C.is_pressed()  
-            sensorD = TOUCH_SENSOR_D.is_pressed() 
-
+            sensorA = TOUCH_SENSOR_A.is_pressed()
+            sensorB = TOUCH_SENSOR_B.is_pressed()
+            sensorC = TOUCH_SENSOR_C.is_pressed()
+            sensorD = TOUCH_SENSOR_D.is_pressed()
 
             if (sensorA or sensorB or sensorC or sensorD) and (lever_state is not LeverState.EMERGENCY_STOP):
-               
+
                 drum.drumming_on()
-               
-                if sensorA and (not sensorB)  and (not sensorC ) and (not sensorD ): 
-                  print("Playing sound A") 
-                  SOUND_A.play()
-                  SOUND_A.wait_done()
 
-               # Case where False/True/False/False =>  sound B is played 
-                elif (not sensorA ) and sensorB  and (not sensorC)  and (not sensorD): 
-                  print("Playing sound B")
-                  SOUND_B.play()
-                  SOUND_B.wait_done()
+                if sensorA and (not sensorB) and (not sensorC) and (not sensorD):
+                    print("Playing sound A")
+                    SOUND_A.play()
+                    SOUND_A.wait_done()
 
-               # Case where False/False/True/False => sound C is played 
-                elif (not sensorA)  and (not sensorB) and sensorC  and  (not sensorD): 
-                  print("Playing sound C")
-                  SOUND_C.play()
-                  SOUND_C.wait_done()
+                # Case where False/True/False/False =>  sound B is played
+                elif (not sensorA) and sensorB and (not sensorC) and (not sensorD):
+                    print("Playing sound B")
+                    SOUND_B.play()
+                    SOUND_B.wait_done()
+
+                # Case where False/False/True/False => sound C is played
+                elif (not sensorA) and (not sensorB) and sensorC and (not sensorD):
+                    print("Playing sound C")
+                    SOUND_C.play()
+                    SOUND_C.wait_done()
 
                 # Case where False/False/False/True => sound D is played 
-                elif (not sensorA)  and (not sensorB) and (not sensorC)  and sensorD : 
-                  print("Playing sound D")
-                  SOUND_D.play()
-                  SOUND_D.wait_done()
+                elif (not sensorA) and (not sensorB) and (not sensorC) and sensorD:
+                    print("Playing sound D")
+                    SOUND_D.play()
+                    SOUND_D.wait_done()
 
             elif lever_state is LeverState.DRUMMING_ON:
                 drum.drumming_on()
 
             elif lever_state is LeverState.EMERGENCY_STOP:
-               exit()
+                exit()
 
-                        
             time.sleep(DELAY)
-            
+
             lever_state = lever.get_state()
     except KeyboardInterrupt:
         exit()
 
 
 if __name__ == "__main__":
-      main()
-
+    main()

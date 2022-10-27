@@ -5,8 +5,9 @@ from utils.brick import Motor
 
 DELAY = 1
 
+
 class InputLever:
-    
+
     def __init__(self, motor: Motor):
         """
         The class constructor takes the motor as an input.
@@ -15,7 +16,7 @@ class InputLever:
 
     @property
     def position(self):
-        return self.motor.get_position()
+        return -self.motor.get_position()
 
     def get_state(self):
         for state in LeverState:
@@ -36,8 +37,8 @@ class LeverState(Enum):
     EMERGENCY_STOP = (90, 300)
 
     def __init__(self, min_position, max_position):
-        self.min_position = -max_position
-        self.max_position = -min_position
+        self.min_position = min_position
+        self.max_position = max_position
 
 
 def main():
