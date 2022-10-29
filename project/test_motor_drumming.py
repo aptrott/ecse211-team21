@@ -14,14 +14,17 @@ class DrumMotor:
         self.motor = motor
 
     def drumming_on(self):
+        # setting 50% power to the motor in order to turn it on
         self.motor.set_power(50)
 
     def drumming_off(self):
+        # setting 0% power to the motor to turn it off
         self.motor.set_power(0)
 
 def main():
+
      try:
-          drum = DrumMotor(Motor("C"))
+          drum = DrumMotor(Motor("C"))  # a DrumMotor object 'drum' initialized at port C
         
           # Initiating the 4 different touch sensors 
           TOUCH_SENSOR_A = TouchSensor(1)
@@ -29,7 +32,8 @@ def main():
           drumming = False
           while True:
           
-               if TOUCH_SENSOR_A.is_pressed():
+               if TOUCH_SENSOR_A.is_pressed():  # The main purpose of this to test the function of the inputs,
+                                                # both the motor and the touch sensors.
                     if not drumming:
                          print("currently not drumming, turning on")
                          drumming = True
@@ -42,7 +46,7 @@ def main():
                time.sleep(DELAY)
             
      except KeyboardInterrupt:
-          exit()
+          exit()  #exit execution when a keyboard interrupt occurs
 
 
 if __name__ == "__main__":

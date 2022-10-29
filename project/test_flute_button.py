@@ -9,7 +9,9 @@ from utils import sound
 from utils.brick import TouchSensor, wait_ready_sensors
 import time 
 
-# Creating the 4 different sounds that will be played 
+# Creating the 4 different sounds that will be played
+# The duration and the volume for all four sounds are the same
+# Obviously, each sound has a different pitch
 SOUND_A = sound.Sound(duration=1, pitch="G6", volume=50)
 SOUND_B = sound.Sound(duration=1, pitch="C6", volume=50)
 SOUND_C = sound.Sound(duration=1, pitch="D6", volume=50)
@@ -25,7 +27,14 @@ wait_ready_sensors() # Note: Touch sensors actually have no initialization time
 
 def play_sound_on_button_press():
 
-    "In an infinite loop, play a single note when the touch sensor is pressed."
+    """
+    In an infinite loop, play a single note when the touch sensor is pressed.
+    Throughout the loop, the function tries to detect any touch sensor pressed and produce the corresponding source accordingly
+    as long as there is no runtime exceptions.
+    The main purpose is to test the functionallity of the touch sensors' input
+    Returns: This is a void function, a call to the function that is responsible to producing the sound is inside.
+
+    """
     try:
         while (True):
             # Case where True/False/False/False => sound A is played 
