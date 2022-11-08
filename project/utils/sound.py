@@ -6,8 +6,8 @@ Includes Frequency modulation and Amplitude modulation.
 Authors: Ryan Au and Younes Boubekaur
 """
 
-from typing import Callable, Iterable, SupportsIndex, Tuple, overload, Union
-from time import time
+from typing import Callable, Iterable, SupportsIndex, Tuple, Union
+import time
 import os
 import pickle
 import simpleaudio as sa
@@ -16,6 +16,16 @@ import functools
 import array
 
 LIMIT_MAX_VOLUME = True
+
+
+def change_volume(percentage):
+    vol = abs(int(percentage))
+    vol = min(100, max(0, vol))
+    try:
+        command = f'sudo amixer cset numid=1 {vol}%'
+        os.system(command)
+    except OSError:
+        return
 
 
 @functools.lru_cache()
@@ -141,6 +151,95 @@ class Sound:
         self.set_frequency_modulation(mod_f, mod_k)
         self.set_amplitude_modulation(amp_f, amp_ka, amp_ac)
         self.update_duration(duration, fs)
+
+    def reset(self):
+        """Fully resets the underlying audio of this Sound object.
+        The sound must be stopped, or this will give unexpected behavior
+
+        see Sound.reset_audio
+        """
+        return self.reset_audio()
+
+    def reset_audio(self):
+        """Fully resets the underlying audio data of this Sound object.
+        The sound must be stopped, or this will give unexpected behavior
+        """
+        return self.update_audio(True)
+
+    def append(self, other, spacing=0):
+        """Takes the underlying audio data of another Sound object, other, and appends all of it
+        to the underlying audio data of this Sound object.
+
+        This does not alter any base attributes of this Sound object, and a 'reset' will undo these appends
+
+        see Sound.append_sound
+        """
+        return self.append_sound(other, spacing)
+
+    def append_sound(self, other, spacing=0):
+        """Takes the underlying audio data of another Sound object, other, and appends all of it
+        to the underlying audio data of this Sound object.
+
+        This does not alter any base attributes of this Sound object, and a 'reset' will undo these appends
+        """
+        spacing = float(spacing)
+        if spacing < 0:
+            spacing = 0
+        spacing_n = int(spacing * self._fs)
+
+        if not self.is_playing():
+            src = list(self.audio)
+            dst = list(other.audio)
+            spacer = [0 for i in range(spacing_n)]
+
+            self.audio = array.array('h', src + spacer + dst)
+        else:
+            raise RuntimeError(
+                "Cannot alter this sound object for repetition while playing this sound.")
+        return self
+
+    def repeat_sound(self, repeat_times=1, repeat_interval=0):
+        """Alters the underlying audio data of this Sound object, such that the main sound will:
+        - repeat equal to the value of repeat_times. It should be an integer value.
+        - each time the original sound is repeated, there will be an interval of silence for 'repeat_interval' seconds.
+            Expects either int or float value, of seconds for the interval. Default is 0 seconds.
+
+        Explanation of Potential Usage:
+        You may utilize the concept of BPM or "beats per minute" to help you with creating a tempo for your songs.
+            If you want a sound repeated at 120bpm, that would be 2 times/sec, 0.5 seconds per sound played.
+            If the original sound has duration 0.1 seconds, then the silence spacing would have to be 0.4 seconds, such that
+            every sound starts playing every 0.5 seconds, matching 120bpm. The end of this repeated Sound object will be a 
+            sound playing for 0.1 seconds, and then no silence spacing afterwards. This is desired behavior. You can then perform 
+            a time.sleep(0.4) seconds before replaying this Sound object. BUT there is sometimes latency in "starting" a sound, 
+            so the time sleep may need to be smaller, such as 0.35 seconds instead.
+        """
+        repeat_times = int(
+            repeat_times)  # This can cause an error, which is desired
+        if repeat_times < 1:
+            repeat_times = 1
+
+        repeat_interval = float(repeat_interval)
+        if repeat_times < 0:
+            repeat_times = 0
+
+        fs = self._fs
+        interval_n = int(fs * repeat_interval)
+
+        if not self.is_playing():
+            src = list(self.audio)
+            src_n = len(src)
+            end_n = src_n * repeat_times + (repeat_times - 1) * interval_n
+            spacer = [0 for i in range(interval_n)]
+            n = src_n + interval_n
+            arr = []
+            tmp = src + spacer
+            for i in range(end_n):
+                arr.append(tmp[i % n])
+            self.audio = array.array('h', arr)
+        else:
+            raise RuntimeError(
+                "Cannot alter this sound object for repetition while playing this sound.")
+        return self
 
     def set_volume(self, volume):
         """Set the volume level of this sound.
@@ -290,6 +389,138 @@ class Sound:
         if self.is_playing():
             self.player.wait_done()
         return self
+
+    def __repr__(self):
+        return f'Sound({self.pitch}, {self._duration}secs, {self.volume}%, {self.mod_f}mod)'
+
+
+class Song(list):
+    """Creates a special player object, that can play Sound objects
+     quickly for long periods of time.
+
+    Example Usage:
+
+    s0 = Song.create_silence(seconds=0.5)
+    s1 = Sound(duration=1, pitch="A4")
+    s2 = Sound(duration=1, pitch="B4")
+
+    song = Song([s1, s0, s2, s0])
+    song *= 4 # repeat the song 4 times over
+
+    song.compile() # Slow process, several seconds latency
+
+    song.play() # Faster, ~0.7 seconds latency
+    time.sleep(song.duration)
+    song.stop()
+    """
+    MIN_VOLUME, MAX_VOLUME = -32_767, +32_767
+
+    @staticmethod
+    def create_silence(seconds=1):
+        """A helper method to create a special Sound object 
+        containing silence of given duration.
+        """
+
+        core = Sound(duration=1)
+        core.audio = array.array(
+            'h', [0 for i in range(int(core._fs*seconds))])
+
+        return core
+
+    def __init__(self, sounds=()):
+        """Creates a Song with that plays silence for 1 second by default.
+
+        Can be initialized with a list of existing sounds.
+        This is optional.
+
+        Sounds can be added with Song.append(sound)
+        """
+        super().__init__()
+        self.core = self.create_silence(1)  # Default silence
+        self.duration = self.core._duration
+
+        self.extend(sounds)
+
+    def append(self, obj):
+        """Add a Sound object to this Song.
+
+        Must be of type Sound."""
+        if not isinstance(obj, Sound):
+            raise ValueError("Cannot append objects that are not type Sound")
+        super().append(obj)
+
+    def extend(self, ls):
+        """Adds all the Sounds of ls to this Song. 
+        This can work for lists of Sounds, any iterable containing Sounds, 
+        or another Song.
+
+        Ignores non-Sound objects.
+        """
+        for el in ls:
+            if isinstance(el, Sound):
+                self.append(el)
+
+    def compile(self):
+        """Compiles the appended sounds to create the song.
+
+        After this is set, then it can be played using Song.play()
+        """
+        sounds = [s for s in self if isinstance(s, Sound)]
+        self.duration = sum([s._duration for s in sounds])
+        self._samples = sum([len(s.audio) for s in sounds])
+        self.core = Sound(duration=1)
+        self.core.audio = array.array(
+            'h', [0 for i in range(int(self._samples))])
+        ptr = 0
+        for s in sounds:
+            n = len(s.audio)
+            for i in range(n):
+                self.core.audio[min(ptr, self._samples-1)] = s.audio[i]
+                ptr += 1
+
+    def play(self):
+        """Starts the Song. It plays silence by default.
+
+        Has latency on startup. Will stop by itself after the 
+            Song duration has ended (defined in init)
+
+        If Song.play_sound(s1) was done already, then Song.start()
+            will play the given sound s1 to begin with.
+        """
+        self.core.play()
+
+    def stop(self):
+        """Stops the Song. Keeps the last sound that was 
+        used in Song.play_sound(s1)
+
+        """
+        self.core.stop()
+
+    def is_playing(self):
+        """Returns True if the Song is active.
+
+        Active means that it would play sound, when the 
+            Song.play_sound(s1) function is called.
+        """
+        return self.core.is_playing()
+
+    def wait_done(self):
+        """Uses a while-loop to keep checking until the song is done playing.
+
+        Reliable, un-interruptible.
+        """
+        while self.is_playing():
+            time.sleep(0.01)
+
+    def sleep_done(self):
+        """Uses a time.sleep to wait for the duration of the song.
+
+        Interruptable, less reliable.
+        """
+        time.sleep(self.duration)
+
+    def __del__(self):
+        self.stop()
 
 
 NOTES = {

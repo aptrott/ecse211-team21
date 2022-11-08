@@ -5,7 +5,11 @@ sensors and motors.
 Authors: Ryan Au, Younes Boubekeur
 """
 
-from __future__ import annotations
+from __future__ import annotations  # not required in Python 3.10+
+try:
+    from brickpi3 import *
+except ModuleNotFoundError:
+    from .brickpi3 import *
 
 from typing import Literal, Type
 import math
@@ -14,43 +18,6 @@ import os
 import signal
 import time
 import sys
-
-
-def busy_sleep(seconds: float):
-    """A different form of time.sleep, which uses a while loop that 
-    constantly checks the time, to see if the duration has elapsed."""
-    start = time.time()
-    while (time.time() - start) < seconds:
-        time.sleep(0.005)
-
-
-class IOError(OSError):
-    pass
-
-
-# Save process ID of this program so we can force stop it later if needed
-os.system(f"echo {os.getpid()} > ~/brickpi3_pid")
-BP = None
-try:
-    from brickpi3 import Enumeration, FirmwareVersionError, SensorError, BrickPi3
-    import spidev
-    BP = BrickPi3()  # The BrickPi3 instance
-except (ModuleNotFoundError, OSError, TypeError) as err:
-    print('A BrickPi module is missing, or BrickPi is missing, intializing dummy BP', file=sys.stderr)
-    print(f'Warning: {err.__class__.__name__}({err})', file=sys.stderr)
-    from .dummy import Enumeration, FirmwareVersionError, SensorError, BrickPi3
-    BP = BrickPi3()  # The BrickPi3 instance
-
-_OLD_BP = BP
-
-
-def restore_default_brick(bp=None):
-    global BP
-    if bp is None:
-        BP = _OLD_BP
-    else:
-        BP = bp
-
 
 WAIT_READY_INTERVAL = 0.01
 INF = float("inf")
@@ -102,8 +69,7 @@ class RevEnumeration:
         self.keys.append(str(key))
 
     def __repr__(self):
-        return ", ".join([f"{key}={self[key]}" for key in self.keys])
-
+        return ", ".join([ f"{key}={self[key]}" for key in self.keys])
 
 SENSOR_STATE = Enumeration("""
         VALID_DATA,
@@ -114,6 +80,19 @@ SENSOR_STATE = Enumeration("""
         INCORRECT_SENSOR_PORT,
     """)
 SENSOR_CODES = RevEnumeration(SENSOR_STATE)
+
+BP = None
+
+
+try:
+    import spidev
+    BP = BrickPi3()  # The BrickPi3 instance
+except ModuleNotFoundError as err:
+    class _FakeBP():
+        def reset_all(self):
+            pass
+    print('spidev not found, unable to initialize BP', file=sys.stderr)
+    BP = _FakeBP()
 
 
 class ColorMapping:
@@ -164,13 +143,10 @@ class Brick(BrickPi3):
     Wrapper class for the BrickPi3 class. Comes with additional methods such get_sensor_status.
     """
 
-    def __init__(self, bp=None):
-        if bp is None:
-            self.bp = BP
-        else:
-            self.bp = bp
+    def __init__(self):
+        self.bp = BP
         child = self.__dict__
-        parent = self.bp.__dict__
+        parent = BP.__dict__
         for key in parent.keys():
             setattr(self, str(key), child.get(key, parent.get(key)))
 
@@ -345,11 +321,11 @@ class Sensor:
         I2C_ERROR = "I2C_ERROR"
         INCORRECT_SENSOR_PORT = "INCORRECT_SENSOR_PORT"
 
-    ALL_SENSORS = {key: None for key in '1 2 3 4'.split(' ')}
+    ALL_SENSORS = {key:None for key in '1 2 3 4'.split(' ')}
 
-    def __init__(self, port: Literal[1, 2, 3, 4], bp=None):
+    def __init__(self, port: Literal[1, 2, 3, 4]):
         "Initialize sensor with a given port (1, 2, 3, or 4)."
-        self.brick = Brick(bp=bp)
+        self.brick = Brick()
         self.port = PORTS[str(port).upper()]
         Sensor.ALL_SENSORS[str(port)] = self
 
@@ -407,15 +383,15 @@ class TouchSensor(Sensor):
     Gives values 0 to 1, with 1 meaning the button is being pressed.
     """
 
-    def __init__(self, port: Literal[1, 2, 3, 4], mode: str = "touch", bp=None):
+    def __init__(self, port: Literal[1, 2, 3, 4], mode:str="touch"):
         """
         Initialize touch sensor with a given port number.
         mode does not need to be set and actually does nothing here.
         """
-        super(TouchSensor, self).__init__(port, bp)
+        super(TouchSensor, self).__init__(port)
         self.set_mode(mode.lower())
 
-    def set_mode(self, mode: str = "touch"):
+    def set_mode(self, mode:str="touch"):
         """
         Touch sensor only has one mode, and does not require an input.
         This method is useless unless you wish to re-initialize the sensor.
@@ -447,11 +423,11 @@ class EV3UltrasonicSensor(Sensor):
         IN = "in"
         LISTEN = "listen"
 
-    def __init__(self, port: Literal[1, 2, 3, 4], mode="cm", bp=None):
-        super(EV3UltrasonicSensor, self).__init__(port, bp)
+    def __init__(self, port: Literal[1, 2, 3, 4], mode="cm"):
+        super(EV3UltrasonicSensor, self).__init__(port)
         self.set_mode(mode)
 
-    def set_mode(self, mode: str):
+    def set_mode(self, mode:str):
         """
         Set ultrasonic sensor mode. Return True if mode change successful.
         cm - centimeter measure (0 to 255)
@@ -513,11 +489,11 @@ class EV3ColorSensor(Sensor):
         RAW_RED = "rawred"
         ID = "id"
 
-    def __init__(self, port, mode="component", bp=None):
-        super(EV3ColorSensor, self).__init__(port, bp)
+    def __init__(self, port, mode="component"):
+        super(EV3ColorSensor, self).__init__(port)
         self.set_mode(mode)
 
-    def set_mode(self, mode: str):
+    def set_mode(self, mode:str):
         """
         Sets color sensor mode. Return True if mode change successful.
 
@@ -596,11 +572,11 @@ class EV3GyroSensor(Sensor):
         DPS = "dps"
         BOTH = "both"
 
-    def __init__(self, port: Literal[1, 2, 3, 4], mode="both", bp=None):
-        super(EV3GyroSensor, self).__init__(port, bp)
+    def __init__(self, port: Literal[1, 2, 3, 4], mode="both"):
+        super(EV3GyroSensor, self).__init__(port)
         self.set_mode(mode)
 
-    def set_mode(self, mode: str):
+    def set_mode(self, mode:str):
         """
         Change gyro sensor mode.
 
@@ -650,16 +626,16 @@ class EV3GyroSensor(Sensor):
 class Motor:
     "Motor class for any motor."
     INF = INF
-    MAX_SPEED = 1560  # positive or negative degree per second speed
-    MAX_POWER = 100  # positive or negative percent power
+    MAX_SPEED = 1560 # positive or negative degree per second speed
+    MAX_POWER = 100 # positive or negative percent power
 
-    def __init__(self, port: Literal["A", "B", "C", "D"] | list[str], bp=None):
+    def __init__(self, port: Literal["A", "B", "C", "D"] | list[str]):
         """
         Initialize this Motor object with the ports "A", "B", "C", or "D".
         You may also provide a list of these ports such as ["A", "C"] to run
         both motors at the exact same time (exact combined behavior unknown).
         """
-        self.brick = Brick(bp)
+        self.brick = BP
         self.set_port(port)
 
     def set_port(self, port):
@@ -724,8 +700,7 @@ class Motor:
 
     def set_dps(self, dps):
         """
-        Set the motor target speed in degrees per second. 
-        The motor will move at this speed consistently, once this function is run.
+        Set the motor target speed in degrees per second.
 
         Keyword arguments:
         port - The motor port(s). PORT_A, PORT_B, PORT_C, and/or PORT_D.
@@ -855,17 +830,19 @@ class Motor:
                 result.append(Motor(port))
         return tuple(result)
 
-    def wait_is_moving(self, sleep_interval: float = None):
+
+    def wait_is_moving(self, sleep_interval:float=None):
         if sleep_interval is None:
             sleep_interval = WAIT_READY_INTERVAL
         while not self.is_moving():
             time.sleep(sleep_interval)
 
-    def wait_is_stopped(self, sleep_interval: float = None):
+    def wait_is_stopped(self, sleep_interval:float=None):
         if sleep_interval is None:
             sleep_interval = WAIT_READY_INTERVAL
         while self.is_moving():
             time.sleep(sleep_interval)
+
 
 
 def create_motors(motor_ports: list[Literal["A", "B", "C", "D"]] | str):
@@ -922,6 +899,10 @@ def configure_ports(*,
     if print_status:
         print("Port configuration complete!")
     return sensors + motors
+
+
+# Save process ID of this program so we can force stop it later if needed
+os.system(f"echo {os.getpid()} > ~/brickpi3_pid")
 
 
 def reset_brick(*args):

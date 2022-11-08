@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module utils.remote</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="utils.html"><font color="#ffffff">utils</font></a>.remote</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Caurya%5Cprogramming%5Clab-code-development%5Cutils%5Cremote.py">c:\users\aurya\programming\lab-code-development\utils\remote.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="utils.brick.html">utils.brick</a><br>
+</td><td width="25%" valign=top><a href="utils.dummy.html">utils.dummy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="utils.brick.html#EV3ColorSensor">utils.brick.EV3ColorSensor</a>(<a href="utils.brick.html#Sensor">utils.brick.Sensor</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.remote.html#RemoteEV3ColorSensor">RemoteEV3ColorSensor</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="utils.brick.html#EV3GyroSensor">utils.brick.EV3GyroSensor</a>(<a href="utils.brick.html#Sensor">utils.brick.Sensor</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.remote.html#RemoteEV3GyroSensor">RemoteEV3GyroSensor</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="utils.brick.html#EV3UltrasonicSensor">utils.brick.EV3UltrasonicSensor</a>(<a href="utils.brick.html#Sensor">utils.brick.Sensor</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.remote.html#RemoteEV3UltrasonicSensor">RemoteEV3UltrasonicSensor</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="utils.brick.html#TouchSensor">utils.brick.TouchSensor</a>(<a href="utils.brick.html#Sensor">utils.brick.Sensor</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.remote.html#RemoteTouchSensor">RemoteTouchSensor</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="utils.rmi.html#RemoteClient">utils.rmi.RemoteClient</a>(<a href="utils.rmi.html#MessageReceiver">utils.rmi.MessageReceiver</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.remote.html#RemoteBrickClient">RemoteBrickClient</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="utils.rmi.html#RemoteServer">utils.rmi.RemoteServer</a>(<a href="utils.rmi.html#MessageReceiver">utils.rmi.MessageReceiver</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.remote.html#RemoteBrickServer">RemoteBrickServer</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RemoteBrickClient">class <strong>RemoteBrickClient</strong></a>(<a href="utils.rmi.html#RemoteClient">utils.rmi.RemoteClient</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#RemoteBrickClient">RemoteBrickClient</a>(address,&nbsp;password,&nbsp;port=None,&nbsp;sock=None)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.remote.html#RemoteBrickClient">RemoteBrickClient</a></dd>
+<dd><a href="utils.rmi.html#RemoteClient">utils.rmi.RemoteClient</a></dd>
+<dd><a href="utils.rmi.html#MessageReceiver">utils.rmi.MessageReceiver</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RemoteBrickClient-__init__"><strong>__init__</strong></a>(self, address, password, port=None, sock=None)</dt><dd><tt>Creates&nbsp;the&nbsp;client&nbsp;for&nbsp;remote&nbsp;method&nbsp;invocation.<br>
+&nbsp;<br>
+address&nbsp;-&nbsp;a&nbsp;string&nbsp;of&nbsp;either&nbsp;IP&nbsp;Address&nbsp;or&nbsp;Hostname&nbsp;of&nbsp;the&nbsp;Remote&nbsp;host<br>
+password&nbsp;-&nbsp;the&nbsp;password&nbsp;used&nbsp;by&nbsp;the&nbsp;remote&nbsp;host<br>
+port&nbsp;-&nbsp;None&nbsp;sets&nbsp;port&nbsp;to&nbsp;DEFAULT_PORT.&nbsp;Otherwise&nbsp;expects&nbsp;an&nbsp;integer&nbsp;value&nbsp;for&nbsp;port<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;connect&nbsp;to.<br>
+sock&nbsp;-&nbsp;None&nbsp;creates&nbsp;a&nbsp;new&nbsp;socket&nbsp;based&nbsp;on&nbsp;the&nbsp;address&nbsp;and&nbsp;port.&nbsp;Otherwise,&nbsp;expects<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;opened&nbsp;socket&nbsp;that&nbsp;is&nbsp;ready&nbsp;for&nbsp;sending&nbsp;and&nbsp;receiving&nbsp;data.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickClient-get_brick"><strong>get_brick</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteBrickClient-make_remote"><strong>make_remote</strong></a>(self, sensor_or_motor, *args, **kwargs)</dt><dd><tt>Creates&nbsp;a&nbsp;remote&nbsp;sensor&nbsp;or&nbsp;motor&nbsp;that&nbsp;is&nbsp;attached&nbsp;to&nbsp;the&nbsp;remote&nbsp;brick.<br>
+sensor_or_motor&nbsp;-&nbsp;A&nbsp;class,&nbsp;such&nbsp;as&nbsp;Motor&nbsp;or&nbsp;<a href="utils.brick.html#EV3UltrasonicSensor">EV3UltrasonicSensor</a><br>
+*args&nbsp;-&nbsp;any&nbsp;of&nbsp;the&nbsp;normal&nbsp;arguments&nbsp;that&nbsp;would&nbsp;be&nbsp;used&nbsp;to&nbsp;create&nbsp;the&nbsp;object&nbsp;locally<br>
+&nbsp;<br>
+Returns&nbsp;None&nbsp;if&nbsp;you&nbsp;gave&nbsp;the&nbsp;wrong&nbsp;class.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickClient-set_default_brick"><strong>set_default_brick</strong></a>(self)</dt><dd><tt>Sets&nbsp;this&nbsp;<a href="#RemoteBrickClient">RemoteBrickClient</a>&nbsp;to&nbsp;be&nbsp;the&nbsp;default&nbsp;brick&nbsp;for&nbsp;all&nbsp;newly&nbsp;initialized&nbsp;motors&nbsp;or&nbsp;sensors.<br>
+Use&nbsp;brick.restore_default_brick()&nbsp;to&nbsp;reset&nbsp;back&nbsp;to&nbsp;normal.<br>
+&nbsp;<br>
+This&nbsp;will&nbsp;only&nbsp;apply&nbsp;to&nbsp;newly&nbsp;created&nbsp;devices.<br>
+&nbsp;<br>
+Normal&nbsp;defined&nbsp;as:<br>
+-&nbsp;The&nbsp;useless&nbsp;dummy&nbsp;brick&nbsp;on&nbsp;PCs<br>
+-&nbsp;The&nbsp;actual&nbsp;BrickPi&nbsp;itself,&nbsp;if&nbsp;running&nbsp;this&nbsp;code&nbsp;on&nbsp;the&nbsp;BrickPi</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.rmi.html#RemoteClient">utils.rmi.RemoteClient</a>:<br>
+<dl><dt><a name="RemoteBrickClient-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteBrickClient-close"><strong>close</strong></a>(self)</dt><dd><tt>Closes&nbsp;this&nbsp;connection&nbsp;to&nbsp;the&nbsp;host.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickClient-create_caller"><strong>create_caller</strong></a>(self, obj, custom=None, var_name='')</dt><dd><tt>Alters&nbsp;the&nbsp;given&nbsp;object&nbsp;(obj)&nbsp;such&nbsp;that&nbsp;it&nbsp;represents&nbsp;a&nbsp;Remote&nbsp;Object.<br>
+&nbsp;<br>
+Its&nbsp;functions&nbsp;will&nbsp;be&nbsp;modified&nbsp;to&nbsp;instead&nbsp;send&nbsp;Command&nbsp;objects&nbsp;through&nbsp;the&nbsp;<a href="utils.rmi.html#RemoteClient">RemoteClient</a>&nbsp;(remote_client).<br>
+&nbsp;<br>
+obj&nbsp;-&nbsp;the&nbsp;object&nbsp;to&nbsp;be&nbsp;altered&nbsp;to&nbsp;represent&nbsp;the&nbsp;Remote&nbsp;Object.&nbsp;Should&nbsp;be&nbsp;of&nbsp;the&nbsp;same&nbsp;type&nbsp;as&nbsp;the&nbsp;Remote&nbsp;Object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;action&nbsp;relies&nbsp;on&nbsp;this&nbsp;obj&nbsp;having&nbsp;at&nbsp;least&nbsp;the&nbsp;same&nbsp;methods&nbsp;as&nbsp;the&nbsp;Remote&nbsp;Object.<br>
+custom&nbsp;-&nbsp;Either&nbsp;None&nbsp;(default),&nbsp;or&nbsp;a&nbsp;list&nbsp;of&nbsp;string&nbsp;names&nbsp;of&nbsp;functions&nbsp;that&nbsp;would<br>
+&nbsp;&nbsp;&nbsp;&nbsp;also&nbsp;be&nbsp;included&nbsp;in&nbsp;the&nbsp;functions&nbsp;being&nbsp;exposed&nbsp;for&nbsp;remote&nbsp;method&nbsp;control.<br>
+var_name&nbsp;-&nbsp;Acts&nbsp;as&nbsp;a&nbsp;key,&nbsp;that&nbsp;can&nbsp;represent&nbsp;the&nbsp;Remote&nbsp;Object.&nbsp;Helps&nbsp;avoid&nbsp;name&nbsp;conflicts.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickClient-send_message"><strong>send_message</strong></a>(self, text)</dt><dd><tt>Sends&nbsp;a&nbsp;string&nbsp;text&nbsp;message&nbsp;to&nbsp;the&nbsp;host</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="utils.rmi.html#RemoteClient">utils.rmi.RemoteClient</a>:<br>
+<dl><dt><strong>TESTING</strong> = False</dl>
+
+<hr>
+Methods inherited from <a href="utils.rmi.html#MessageReceiver">utils.rmi.MessageReceiver</a>:<br>
+<dl><dt><a name="RemoteBrickClient-get_message"><strong>get_message</strong></a>(self, wait=False)</dt><dd><tt>Retrieves&nbsp;one&nbsp;message&nbsp;from&nbsp;the&nbsp;buffer.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickClient-get_messages"><strong>get_messages</strong></a>(self, count=0)</dt><dd><tt>Gets&nbsp;the&nbsp;specified&nbsp;number&nbsp;of&nbsp;messages&nbsp;from&nbsp;the&nbsp;message&nbsp;buffer.<br>
+&nbsp;<br>
+Set&nbsp;to&nbsp;0&nbsp;(default&nbsp;value)&nbsp;to&nbsp;retrieve&nbsp;all&nbsp;the&nbsp;messages&nbsp;from&nbsp;the&nbsp;buffer.<br>
+Thread-safe.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickClient-has_messages"><strong>has_messages</strong></a>(self)</dt><dd><tt>Checks&nbsp;if&nbsp;the&nbsp;buffer&nbsp;contains&nbsp;any&nbsp;messages.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickClient-num_messages"><strong>num_messages</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;messages&nbsp;in&nbsp;the&nbsp;buffer.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickClient-wait_messages"><strong>wait_messages</strong></a>(self, timeout=None, wait_interval=None)</dt><dd><tt>Busy&nbsp;waits&nbsp;for&nbsp;messages&nbsp;to&nbsp;arrive&nbsp;in&nbsp;the&nbsp;buffer.<br>
+&nbsp;<br>
+timeout&nbsp;-&nbsp;the&nbsp;number&nbsp;of&nbsp;seconds&nbsp;to&nbsp;wait&nbsp;for&nbsp;in&nbsp;total<br>
+wait_interval&nbsp;-&nbsp;the&nbsp;sleep&nbsp;interval&nbsp;for&nbsp;a&nbsp;single&nbsp;iteration<br>
+&nbsp;<br>
+returns&nbsp;True&nbsp;whenever&nbsp;the&nbsp;function&nbsp;returns.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.rmi.html#MessageReceiver">utils.rmi.MessageReceiver</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RemoteBrickServer">class <strong>RemoteBrickServer</strong></a>(<a href="utils.rmi.html#RemoteServer">utils.rmi.RemoteServer</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#RemoteBrickServer">RemoteBrickServer</a>(password,&nbsp;port=None)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.remote.html#RemoteBrickServer">RemoteBrickServer</a></dd>
+<dd><a href="utils.rmi.html#RemoteServer">utils.rmi.RemoteServer</a></dd>
+<dd><a href="utils.rmi.html#MessageReceiver">utils.rmi.MessageReceiver</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RemoteBrickServer-__init__"><strong>__init__</strong></a>(self, password, port=None)</dt><dd><tt>Simply&nbsp;accepts&nbsp;the&nbsp;password&nbsp;to&nbsp;authenticate&nbsp;received&nbsp;objects.<br>
+&nbsp;<br>
+Optionally&nbsp;accepts&nbsp;a&nbsp;different&nbsp;port&nbsp;number.&nbsp;Expects&nbsp;type&nbsp;integer.<br>
+Defualts&nbsp;to&nbsp;DEFAULT_PORT&nbsp;when&nbsp;port=None.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.rmi.html#RemoteServer">utils.rmi.RemoteServer</a>:<br>
+<dl><dt><a name="RemoteBrickServer-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteBrickServer-broadcast_message"><strong>broadcast_message</strong></a>(self, text)</dt><dd><tt>Send&nbsp;a&nbsp;singular&nbsp;message&nbsp;to&nbsp;all&nbsp;connected&nbsp;clients.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickServer-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;this&nbsp;server&nbsp;and&nbsp;all&nbsp;client&nbsp;connections.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickServer-close_connections"><strong>close_connections</strong></a>(self)</dt><dd><tt>Close&nbsp;all&nbsp;client&nbsp;connections.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickServer-isclosed"><strong>isclosed</strong></a>(self)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;server&nbsp;has&nbsp;been&nbsp;closed&nbsp;by&nbsp;.<a href="#RemoteBrickServer-close">close</a>()</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickServer-register_object"><strong>register_object</strong></a>(self, obj, custom=None, var_name='')</dt><dd><tt>Accepts&nbsp;an&nbsp;object&nbsp;to&nbsp;be&nbsp;controlled&nbsp;by&nbsp;this&nbsp;remote&nbsp;method&nbsp;invocation&nbsp;host.<br>
+&nbsp;<br>
+Does&nbsp;not&nbsp;modify&nbsp;the&nbsp;object&nbsp;given.<br>
+&nbsp;<br>
+obj&nbsp;-&nbsp;the&nbsp;object&nbsp;to&nbsp;control<br>
+custom&nbsp;-&nbsp;Either&nbsp;None&nbsp;(default),&nbsp;or&nbsp;a&nbsp;list&nbsp;of&nbsp;string&nbsp;names&nbsp;of&nbsp;functions&nbsp;that&nbsp;would<br>
+&nbsp;&nbsp;&nbsp;&nbsp;also&nbsp;be&nbsp;included&nbsp;in&nbsp;the&nbsp;functions&nbsp;being&nbsp;exposed&nbsp;for&nbsp;remote&nbsp;method&nbsp;control.<br>
+var_name&nbsp;-&nbsp;Acts&nbsp;as&nbsp;a&nbsp;key,&nbsp;that&nbsp;can&nbsp;represent&nbsp;the&nbsp;Remote&nbsp;Object.&nbsp;Helps&nbsp;avoid&nbsp;name&nbsp;conflicts.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.rmi.html#MessageReceiver">utils.rmi.MessageReceiver</a>:<br>
+<dl><dt><a name="RemoteBrickServer-get_message"><strong>get_message</strong></a>(self, wait=False)</dt><dd><tt>Retrieves&nbsp;one&nbsp;message&nbsp;from&nbsp;the&nbsp;buffer.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickServer-get_messages"><strong>get_messages</strong></a>(self, count=0)</dt><dd><tt>Gets&nbsp;the&nbsp;specified&nbsp;number&nbsp;of&nbsp;messages&nbsp;from&nbsp;the&nbsp;message&nbsp;buffer.<br>
+&nbsp;<br>
+Set&nbsp;to&nbsp;0&nbsp;(default&nbsp;value)&nbsp;to&nbsp;retrieve&nbsp;all&nbsp;the&nbsp;messages&nbsp;from&nbsp;the&nbsp;buffer.<br>
+Thread-safe.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickServer-has_messages"><strong>has_messages</strong></a>(self)</dt><dd><tt>Checks&nbsp;if&nbsp;the&nbsp;buffer&nbsp;contains&nbsp;any&nbsp;messages.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickServer-num_messages"><strong>num_messages</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;messages&nbsp;in&nbsp;the&nbsp;buffer.</tt></dd></dl>
+
+<dl><dt><a name="RemoteBrickServer-wait_messages"><strong>wait_messages</strong></a>(self, timeout=None, wait_interval=None)</dt><dd><tt>Busy&nbsp;waits&nbsp;for&nbsp;messages&nbsp;to&nbsp;arrive&nbsp;in&nbsp;the&nbsp;buffer.<br>
+&nbsp;<br>
+timeout&nbsp;-&nbsp;the&nbsp;number&nbsp;of&nbsp;seconds&nbsp;to&nbsp;wait&nbsp;for&nbsp;in&nbsp;total<br>
+wait_interval&nbsp;-&nbsp;the&nbsp;sleep&nbsp;interval&nbsp;for&nbsp;a&nbsp;single&nbsp;iteration<br>
+&nbsp;<br>
+returns&nbsp;True&nbsp;whenever&nbsp;the&nbsp;function&nbsp;returns.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.rmi.html#MessageReceiver">utils.rmi.MessageReceiver</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RemoteEV3ColorSensor">class <strong>RemoteEV3ColorSensor</strong></a>(<a href="utils.brick.html#EV3ColorSensor">utils.brick.EV3ColorSensor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#RemoteEV3ColorSensor">RemoteEV3ColorSensor</a>(client:&nbsp;utils.remote.<a href="#RemoteBrickClient">RemoteBrickClient</a>,&nbsp;port:&nbsp;Literal[1,&nbsp;2,&nbsp;3,&nbsp;4],&nbsp;mode='component')<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.remote.html#RemoteEV3ColorSensor">RemoteEV3ColorSensor</a></dd>
+<dd><a href="utils.brick.html#EV3ColorSensor">utils.brick.EV3ColorSensor</a></dd>
+<dd><a href="utils.brick.html#Sensor">utils.brick.Sensor</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RemoteEV3ColorSensor-__init__"><strong>__init__</strong></a>(self, client: utils.remote.RemoteBrickClient, port: Literal[1, 2, 3, 4], mode='component')</dt><dd><tt>Initialize&nbsp;sensor&nbsp;with&nbsp;a&nbsp;given&nbsp;port&nbsp;(1,&nbsp;2,&nbsp;3,&nbsp;or&nbsp;4).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.brick.html#EV3ColorSensor">utils.brick.EV3ColorSensor</a>:<br>
+<dl><dt><a name="RemoteEV3ColorSensor-get_ambient"><strong>get_ambient</strong></a>(self) -&gt; 'float'</dt><dd><tt>Returns&nbsp;the&nbsp;ambient&nbsp;light&nbsp;detected&nbsp;by&nbsp;the&nbsp;sensor.&nbsp;Light&nbsp;will&nbsp;not&nbsp;turn&nbsp;on.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3ColorSensor-get_color_name"><strong>get_color_name</strong></a>(self) -&gt; 'str'</dt><dd><tt>Return&nbsp;the&nbsp;closest&nbsp;detected&nbsp;color&nbsp;by&nbsp;name.&nbsp;This&nbsp;will&nbsp;switch&nbsp;the&nbsp;sensor&nbsp;to&nbsp;id&nbsp;mode.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3ColorSensor-get_red"><strong>get_red</strong></a>(self) -&gt; 'float'</dt><dd><tt>Returns&nbsp;the&nbsp;red&nbsp;light&nbsp;detected&nbsp;by&nbsp;the&nbsp;sensor.&nbsp;Only&nbsp;red&nbsp;light&nbsp;turns&nbsp;on.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3ColorSensor-get_rgb"><strong>get_rgb</strong></a>(self) -&gt; 'list[float]'</dt><dd><tt>Return&nbsp;the&nbsp;RGB&nbsp;values&nbsp;from&nbsp;the&nbsp;sensor.&nbsp;This&nbsp;will&nbsp;switch&nbsp;the&nbsp;sensor&nbsp;to&nbsp;component&nbsp;mode.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3ColorSensor-set_mode"><strong>set_mode</strong></a>(self, mode: 'str')</dt><dd><tt>Sets&nbsp;color&nbsp;sensor&nbsp;mode.&nbsp;Return&nbsp;True&nbsp;if&nbsp;mode&nbsp;change&nbsp;successful.<br>
+&nbsp;<br>
+component&nbsp;-&nbsp;give&nbsp;list&nbsp;of&nbsp;values&nbsp;[Red,&nbsp;Green,&nbsp;Blue,&nbsp;Unknown?]<br>
+ambient&nbsp;-&nbsp;light&nbsp;off,&nbsp;detect&nbsp;any&nbsp;light<br>
+red&nbsp;-&nbsp;red&nbsp;light&nbsp;on,&nbsp;detect&nbsp;red&nbsp;value&nbsp;only<br>
+rawred&nbsp;-&nbsp;give&nbsp;list&nbsp;of&nbsp;values&nbsp;[Red,&nbsp;Unknown?]<br>
+id&nbsp;-&nbsp;provide&nbsp;a&nbsp;single&nbsp;integer&nbsp;value&nbsp;based&nbsp;on&nbsp;the&nbsp;sensor's&nbsp;guess&nbsp;of&nbsp;detected&nbsp;color</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="utils.brick.html#EV3ColorSensor">utils.brick.EV3ColorSensor</a>:<br>
+<dl><dt><strong>Mode</strong> = &lt;class 'utils.brick.EV3ColorSensor.Mode'&gt;<dd><tt>Mode&nbsp;for&nbsp;the&nbsp;EV3&nbsp;Color&nbsp;Sensor.</tt></dl>
+
+<hr>
+Methods inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><a name="RemoteEV3ColorSensor-get_raw_value"><strong>get_raw_value</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;raw&nbsp;sensor&nbsp;value.&nbsp;May&nbsp;return&nbsp;a&nbsp;float,&nbsp;int,&nbsp;list&nbsp;or&nbsp;None&nbsp;if&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3ColorSensor-get_status"><strong>get_status</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;sensor&nbsp;status&nbsp;of&nbsp;this&nbsp;sensor.<br>
+&nbsp;<br>
+Return&nbsp;one&nbsp;of&nbsp;the&nbsp;following&nbsp;status&nbsp;messages:<br>
+VALID_DATA<br>
+NOT_CONFIGURED<br>
+CONFIGURING<br>
+NO_DATA<br>
+I2C_ERROR</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3ColorSensor-get_value"><strong>get_value</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;raw&nbsp;sensor&nbsp;value.&nbsp;May&nbsp;return&nbsp;a&nbsp;float,&nbsp;int,&nbsp;list&nbsp;or&nbsp;None&nbsp;if&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3ColorSensor-set_port"><strong>set_port</strong></a>(self, port: 'Literal[1, 2, 3, 4]')</dt><dd><tt>Change&nbsp;sensor&nbsp;port&nbsp;number.&nbsp;Does&nbsp;not&nbsp;unassign&nbsp;previous&nbsp;port.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3ColorSensor-wait_ready"><strong>wait_ready</strong></a>(self)</dt><dd><tt>Wait&nbsp;(pause&nbsp;program)&nbsp;until&nbsp;the&nbsp;sensor&nbsp;is&nbsp;initialized.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><strong>ALL_SENSORS</strong> = {'1': None, '2': None, '3': None, '4': None}</dl>
+
+<dl><dt><strong>Status</strong> = &lt;class 'utils.brick.Sensor.Status'&gt;</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RemoteEV3GyroSensor">class <strong>RemoteEV3GyroSensor</strong></a>(<a href="utils.brick.html#EV3GyroSensor">utils.brick.EV3GyroSensor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#RemoteEV3GyroSensor">RemoteEV3GyroSensor</a>(client:&nbsp;utils.remote.<a href="#RemoteBrickClient">RemoteBrickClient</a>,&nbsp;port:&nbsp;Literal[1,&nbsp;2,&nbsp;3,&nbsp;4],&nbsp;mode='both')<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.remote.html#RemoteEV3GyroSensor">RemoteEV3GyroSensor</a></dd>
+<dd><a href="utils.brick.html#EV3GyroSensor">utils.brick.EV3GyroSensor</a></dd>
+<dd><a href="utils.brick.html#Sensor">utils.brick.Sensor</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RemoteEV3GyroSensor-__init__"><strong>__init__</strong></a>(self, client: utils.remote.RemoteBrickClient, port: Literal[1, 2, 3, 4], mode='both')</dt><dd><tt>Initialize&nbsp;sensor&nbsp;with&nbsp;a&nbsp;given&nbsp;port&nbsp;(1,&nbsp;2,&nbsp;3,&nbsp;or&nbsp;4).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.brick.html#EV3GyroSensor">utils.brick.EV3GyroSensor</a>:<br>
+<dl><dt><a name="RemoteEV3GyroSensor-get_abs_measure"><strong>get_abs_measure</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteEV3GyroSensor-get_both_measure"><strong>get_both_measure</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteEV3GyroSensor-get_dps_measure"><strong>get_dps_measure</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteEV3GyroSensor-reset_measure"><strong>reset_measure</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteEV3GyroSensor-set_mode"><strong>set_mode</strong></a>(self, mode: 'str')</dt><dd><tt>Change&nbsp;gyro&nbsp;sensor&nbsp;mode.<br>
+&nbsp;<br>
+abs&nbsp;-&nbsp;Absolute&nbsp;degrees&nbsp;rotated&nbsp;since&nbsp;start<br>
+dps&nbsp;-&nbsp;Degrees&nbsp;per&nbsp;second&nbsp;of&nbsp;rotation<br>
+both&nbsp;-&nbsp;list&nbsp;of&nbsp;[abs,&nbsp;dps]&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="utils.brick.html#EV3GyroSensor">utils.brick.EV3GyroSensor</a>:<br>
+<dl><dt><strong>Mode</strong> = &lt;class 'utils.brick.EV3GyroSensor.Mode'&gt;<dd><tt>Mode&nbsp;for&nbsp;the&nbsp;EV3&nbsp;Gyro&nbsp;Sensor.</tt></dl>
+
+<hr>
+Methods inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><a name="RemoteEV3GyroSensor-get_raw_value"><strong>get_raw_value</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;raw&nbsp;sensor&nbsp;value.&nbsp;May&nbsp;return&nbsp;a&nbsp;float,&nbsp;int,&nbsp;list&nbsp;or&nbsp;None&nbsp;if&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3GyroSensor-get_status"><strong>get_status</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;sensor&nbsp;status&nbsp;of&nbsp;this&nbsp;sensor.<br>
+&nbsp;<br>
+Return&nbsp;one&nbsp;of&nbsp;the&nbsp;following&nbsp;status&nbsp;messages:<br>
+VALID_DATA<br>
+NOT_CONFIGURED<br>
+CONFIGURING<br>
+NO_DATA<br>
+I2C_ERROR</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3GyroSensor-get_value"><strong>get_value</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;raw&nbsp;sensor&nbsp;value.&nbsp;May&nbsp;return&nbsp;a&nbsp;float,&nbsp;int,&nbsp;list&nbsp;or&nbsp;None&nbsp;if&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3GyroSensor-set_port"><strong>set_port</strong></a>(self, port: 'Literal[1, 2, 3, 4]')</dt><dd><tt>Change&nbsp;sensor&nbsp;port&nbsp;number.&nbsp;Does&nbsp;not&nbsp;unassign&nbsp;previous&nbsp;port.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3GyroSensor-wait_ready"><strong>wait_ready</strong></a>(self)</dt><dd><tt>Wait&nbsp;(pause&nbsp;program)&nbsp;until&nbsp;the&nbsp;sensor&nbsp;is&nbsp;initialized.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><strong>ALL_SENSORS</strong> = {'1': None, '2': None, '3': None, '4': None}</dl>
+
+<dl><dt><strong>Status</strong> = &lt;class 'utils.brick.Sensor.Status'&gt;</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RemoteEV3UltrasonicSensor">class <strong>RemoteEV3UltrasonicSensor</strong></a>(<a href="utils.brick.html#EV3UltrasonicSensor">utils.brick.EV3UltrasonicSensor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#RemoteEV3UltrasonicSensor">RemoteEV3UltrasonicSensor</a>(client:&nbsp;utils.remote.<a href="#RemoteBrickClient">RemoteBrickClient</a>,&nbsp;port:&nbsp;Literal[1,&nbsp;2,&nbsp;3,&nbsp;4],&nbsp;mode='cm')<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.remote.html#RemoteEV3UltrasonicSensor">RemoteEV3UltrasonicSensor</a></dd>
+<dd><a href="utils.brick.html#EV3UltrasonicSensor">utils.brick.EV3UltrasonicSensor</a></dd>
+<dd><a href="utils.brick.html#Sensor">utils.brick.Sensor</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RemoteEV3UltrasonicSensor-__init__"><strong>__init__</strong></a>(self, client: utils.remote.RemoteBrickClient, port: Literal[1, 2, 3, 4], mode='cm')</dt><dd><tt>Initialize&nbsp;sensor&nbsp;with&nbsp;a&nbsp;given&nbsp;port&nbsp;(1,&nbsp;2,&nbsp;3,&nbsp;or&nbsp;4).</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.brick.html#EV3UltrasonicSensor">utils.brick.EV3UltrasonicSensor</a>:<br>
+<dl><dt><a name="RemoteEV3UltrasonicSensor-detects_other_us_sensor"><strong>detects_other_us_sensor</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteEV3UltrasonicSensor-get_cm"><strong>get_cm</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteEV3UltrasonicSensor-get_inches"><strong>get_inches</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RemoteEV3UltrasonicSensor-set_mode"><strong>set_mode</strong></a>(self, mode: 'str')</dt><dd><tt>Set&nbsp;ultrasonic&nbsp;sensor&nbsp;mode.&nbsp;Return&nbsp;True&nbsp;if&nbsp;mode&nbsp;change&nbsp;successful.<br>
+cm&nbsp;-&nbsp;centimeter&nbsp;measure&nbsp;(0&nbsp;to&nbsp;255)<br>
+in&nbsp;-&nbsp;inches&nbsp;measure<br>
+listen&nbsp;-&nbsp;0&nbsp;or&nbsp;1,&nbsp;1&nbsp;means&nbsp;another&nbsp;ultrasonic&nbsp;sensor&nbsp;is&nbsp;detected</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="utils.brick.html#EV3UltrasonicSensor">utils.brick.EV3UltrasonicSensor</a>:<br>
+<dl><dt><strong>Mode</strong> = &lt;class 'utils.brick.EV3UltrasonicSensor.Mode'&gt;<dd><tt>Mode&nbsp;for&nbsp;the&nbsp;EV3&nbsp;Ultrasonic&nbsp;Sensor.</tt></dl>
+
+<hr>
+Methods inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><a name="RemoteEV3UltrasonicSensor-get_raw_value"><strong>get_raw_value</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;raw&nbsp;sensor&nbsp;value.&nbsp;May&nbsp;return&nbsp;a&nbsp;float,&nbsp;int,&nbsp;list&nbsp;or&nbsp;None&nbsp;if&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3UltrasonicSensor-get_status"><strong>get_status</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;sensor&nbsp;status&nbsp;of&nbsp;this&nbsp;sensor.<br>
+&nbsp;<br>
+Return&nbsp;one&nbsp;of&nbsp;the&nbsp;following&nbsp;status&nbsp;messages:<br>
+VALID_DATA<br>
+NOT_CONFIGURED<br>
+CONFIGURING<br>
+NO_DATA<br>
+I2C_ERROR</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3UltrasonicSensor-get_value"><strong>get_value</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;raw&nbsp;sensor&nbsp;value.&nbsp;May&nbsp;return&nbsp;a&nbsp;float,&nbsp;int,&nbsp;list&nbsp;or&nbsp;None&nbsp;if&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3UltrasonicSensor-set_port"><strong>set_port</strong></a>(self, port: 'Literal[1, 2, 3, 4]')</dt><dd><tt>Change&nbsp;sensor&nbsp;port&nbsp;number.&nbsp;Does&nbsp;not&nbsp;unassign&nbsp;previous&nbsp;port.</tt></dd></dl>
+
+<dl><dt><a name="RemoteEV3UltrasonicSensor-wait_ready"><strong>wait_ready</strong></a>(self)</dt><dd><tt>Wait&nbsp;(pause&nbsp;program)&nbsp;until&nbsp;the&nbsp;sensor&nbsp;is&nbsp;initialized.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><strong>ALL_SENSORS</strong> = {'1': None, '2': None, '3': None, '4': None}</dl>
+
+<dl><dt><strong>Status</strong> = &lt;class 'utils.brick.Sensor.Status'&gt;</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RemoteTouchSensor">class <strong>RemoteTouchSensor</strong></a>(<a href="utils.brick.html#TouchSensor">utils.brick.TouchSensor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#RemoteTouchSensor">RemoteTouchSensor</a>(client:&nbsp;utils.remote.<a href="#RemoteBrickClient">RemoteBrickClient</a>,&nbsp;port:&nbsp;Literal[1,&nbsp;2,&nbsp;3,&nbsp;4],&nbsp;mode:&nbsp;str&nbsp;=&nbsp;'touch')<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.remote.html#RemoteTouchSensor">RemoteTouchSensor</a></dd>
+<dd><a href="utils.brick.html#TouchSensor">utils.brick.TouchSensor</a></dd>
+<dd><a href="utils.brick.html#Sensor">utils.brick.Sensor</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RemoteTouchSensor-__init__"><strong>__init__</strong></a>(self, client: utils.remote.RemoteBrickClient, port: Literal[1, 2, 3, 4], mode: str = 'touch')</dt><dd><tt>Initialize&nbsp;touch&nbsp;sensor&nbsp;with&nbsp;a&nbsp;given&nbsp;port&nbsp;number.<br>
+mode&nbsp;does&nbsp;not&nbsp;need&nbsp;to&nbsp;be&nbsp;set&nbsp;and&nbsp;actually&nbsp;does&nbsp;nothing&nbsp;here.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.brick.html#TouchSensor">utils.brick.TouchSensor</a>:<br>
+<dl><dt><a name="RemoteTouchSensor-is_pressed"><strong>is_pressed</strong></a>(self) -&gt; 'bool'</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;pressed,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="RemoteTouchSensor-set_mode"><strong>set_mode</strong></a>(self, mode: 'str' = 'touch')</dt><dd><tt>Touch&nbsp;sensor&nbsp;only&nbsp;has&nbsp;one&nbsp;mode,&nbsp;and&nbsp;does&nbsp;not&nbsp;require&nbsp;an&nbsp;input.<br>
+This&nbsp;method&nbsp;is&nbsp;useless&nbsp;unless&nbsp;you&nbsp;wish&nbsp;to&nbsp;re-initialize&nbsp;the&nbsp;sensor.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><a name="RemoteTouchSensor-get_raw_value"><strong>get_raw_value</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;raw&nbsp;sensor&nbsp;value.&nbsp;May&nbsp;return&nbsp;a&nbsp;float,&nbsp;int,&nbsp;list&nbsp;or&nbsp;None&nbsp;if&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="RemoteTouchSensor-get_status"><strong>get_status</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;sensor&nbsp;status&nbsp;of&nbsp;this&nbsp;sensor.<br>
+&nbsp;<br>
+Return&nbsp;one&nbsp;of&nbsp;the&nbsp;following&nbsp;status&nbsp;messages:<br>
+VALID_DATA<br>
+NOT_CONFIGURED<br>
+CONFIGURING<br>
+NO_DATA<br>
+I2C_ERROR</tt></dd></dl>
+
+<dl><dt><a name="RemoteTouchSensor-get_value"><strong>get_value</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;raw&nbsp;sensor&nbsp;value.&nbsp;May&nbsp;return&nbsp;a&nbsp;float,&nbsp;int,&nbsp;list&nbsp;or&nbsp;None&nbsp;if&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="RemoteTouchSensor-set_port"><strong>set_port</strong></a>(self, port: 'Literal[1, 2, 3, 4]')</dt><dd><tt>Change&nbsp;sensor&nbsp;port&nbsp;number.&nbsp;Does&nbsp;not&nbsp;unassign&nbsp;previous&nbsp;port.</tt></dd></dl>
+
+<dl><dt><a name="RemoteTouchSensor-wait_ready"><strong>wait_ready</strong></a>(self)</dt><dd><tt>Wait&nbsp;(pause&nbsp;program)&nbsp;until&nbsp;the&nbsp;sensor&nbsp;is&nbsp;initialized.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="utils.brick.html#Sensor">utils.brick.Sensor</a>:<br>
+<dl><dt><strong>ALL_SENSORS</strong> = {'1': None, '2': None, '3': None, '4': None}</dl>
+
+<dl><dt><strong>Status</strong> = &lt;class 'utils.brick.Sensor.Status'&gt;</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Literal</strong> = typing.Literal</td></tr></table>
+</body></html>

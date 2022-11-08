@@ -8,7 +8,7 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="utils.html"><font color="#ffffff">utils</font></a>.telemetry</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:d%3A%5Cprogrammingd%5Cschoold%5Clab-code-development%5Cutils%5Ctelemetry.py">d:\programmingd\schoold\lab-code-development\utils\telemetry.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Caurya%5Cprogramming%5Clab-code-development%5Cutils%5Ctelemetry.py">c:\users\aurya\programming\lab-code-development\utils\telemetry.py</a></font></td></tr></table>
     <p><tt>Module&nbsp;for&nbsp;providing&nbsp;access&nbsp;to&nbsp;a&nbsp;single,&nbsp;simple,&nbsp;GUI&nbsp;that&nbsp;can&nbsp;easily&nbsp;display&nbsp;data.<br>
 It&nbsp;also&nbsp;allows&nbsp;the&nbsp;creation&nbsp;of&nbsp;buttons&nbsp;and&nbsp;sliders&nbsp;for&nbsp;adjusting&nbsp;starting&nbsp;parameters.<br>
 &nbsp;<br>
@@ -20,9 +20,79 @@ Author:&nbsp;Ryan&nbsp;Au</tt></p>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
     
 <tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="tkinter.html">tkinter</a><br>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="threading.html">threading</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td><td width="25%" valign=top><a href="tkinter.html">tkinter</a><br>
 </td><td width="25%" valign=top><a href="tkinter.ttk.html">tkinter.ttk</a><br>
-</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.telemetry.html#Command">Command</a>
+</font></dt><dt><font face="helvetica, arial"><a href="utils.telemetry.html#CommandQueue">CommandQueue</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Command">class <strong>Command</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Command">Command</a>(func,&nbsp;args)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Command-__init__"><strong>__init__</strong></a>(self, func, args)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Command-execute"><strong>execute</strong></a>(self)</dt><dd><tt>To&nbsp;be&nbsp;executed&nbsp;in&nbsp;the&nbsp;main&nbsp;thread</tt></dd></dl>
+
+<dl><dt><a name="Command-wait_done"><strong>wait_done</strong></a>(self)</dt><dd><tt>To&nbsp;be&nbsp;executed&nbsp;in&nbsp;the&nbsp;worker&nbsp;process</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>WAIT_DONE</strong> = 0.001</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CommandQueue">class <strong>CommandQueue</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CommandQueue-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="CommandQueue-execute_all"><strong>execute_all</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CommandQueue-put_func"><strong>put_func</strong></a>(self, func, args)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#eeaa77">
 <td colspan=3 valign=bottom>&nbsp;<br>
@@ -31,12 +101,18 @@ Author:&nbsp;Ryan&nbsp;Au</tt></p>
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><dl><dt><a name="-add"><strong>add</strong></a>(key, data, showkey=False)</dt><dd><tt>Adds/Sets&nbsp;data&nbsp;by&nbsp;a&nbsp;key&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window</tt></dd></dl>
  <dl><dt><a name="-clear"><strong>clear</strong></a>()</dt><dd><tt>Destroy&nbsp;and&nbsp;remove&nbsp;all&nbsp;LABELS&nbsp;of&nbsp;telemetry</tt></dd></dl>
- <dl><dt><a name="-create_button"><strong>create_button</strong></a>(name, func=None)</dt><dd><tt>Adds&nbsp;a&nbsp;button&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window&nbsp;AND&nbsp;returns&nbsp;the&nbsp;button&nbsp;object&nbsp;added</tt></dd></dl>
- <dl><dt><a name="-create_slider"><strong>create_slider</strong></a>(lower, upper=None, value=None)</dt><dd><tt>Adds&nbsp;a&nbsp;slider&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window&nbsp;AND&nbsp;returns&nbsp;the&nbsp;slider&nbsp;object&nbsp;added</tt></dd></dl>
+ <dl><dt><a name="-create_button"><strong>create_button</strong></a>(name, func=None)</dt><dd><tt>Adds&nbsp;a&nbsp;button&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window&nbsp;AND&nbsp;returns&nbsp;the&nbsp;button&nbsp;<a href="builtins.html#object">object</a>&nbsp;added</tt></dd></dl>
+ <dl><dt><a name="-create_slider"><strong>create_slider</strong></a>(lower, upper=None, value=None, func=None)</dt><dd><tt>Adds&nbsp;a&nbsp;slider&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window&nbsp;AND&nbsp;returns&nbsp;the&nbsp;slider&nbsp;<a href="builtins.html#object">object</a>&nbsp;added<br>
+&nbsp;<br>
+<a href="#-create_slider">create_slider</a>(50)&nbsp;creates:&nbsp;0&lt;---25---&gt;50<br>
+<a href="#-create_slider">create_slider</a>(25,&nbsp;50)&nbsp;creates:&nbsp;25&lt;---37---&gt;50<br>
+<a href="#-create_slider">create_slider</a>(-100,&nbsp;100,&nbsp;50)&nbsp;creates:&nbsp;-100&lt;---50---&gt;100</tt></dd></dl>
  <dl><dt><a name="-isopen"><strong>isopen</strong></a>()</dt><dd><tt>Determines&nbsp;if&nbsp;the&nbsp;telemtry&nbsp;window&nbsp;has&nbsp;been&nbsp;opened&nbsp;or&nbsp;closed</tt></dd></dl>
- <dl><dt><a name="-label"><strong>label</strong></a>(key, data, showkey=False)</dt><dd><tt>Adds/Sets&nbsp;data&nbsp;by&nbsp;a&nbsp;key&nbsp;to&nbsp;the&nbsp;telemetry&nbsp;window</tt></dd></dl>
+ <dl><dt><a name="-label"><strong>label</strong></a> = inner(*args)</dt></dl>
  <dl><dt><a name="-mainloop"><strong>mainloop</strong></a>()</dt><dd><tt>Starts&nbsp;a&nbsp;while&nbsp;loop&nbsp;that&nbsp;calls&nbsp;update&nbsp;for&nbsp;you!&nbsp;<br>
 Usage&nbsp;of&nbsp;telemetry.update&nbsp;not&nbsp;needed&nbsp;when&nbsp;using&nbsp;this</tt></dd></dl>
+ <dl><dt><a name="-remote"><strong>remote</strong></a>(func, *args)</dt></dl>
+ <dl><dt><a name="-remote_capable"><strong>remote_capable</strong></a>(func)</dt></dl>
  <dl><dt><a name="-resize"><strong>resize</strong></a>(width=100, height=100)</dt><dd><tt>Resize&nbsp;telemtry&nbsp;to&nbsp;a&nbsp;set&nbsp;width&nbsp;and&nbsp;height&nbsp;in&nbsp;pixels</tt></dd></dl>
  <dl><dt><a name="-start"><strong>start</strong></a>()</dt><dd><tt>Open&nbsp;the&nbsp;telemetry&nbsp;window</tt></dd></dl>
  <dl><dt><a name="-stop"><strong>stop</strong></a>()</dt><dd><tt>Closes&nbsp;telemtry&nbsp;window</tt></dd></dl>

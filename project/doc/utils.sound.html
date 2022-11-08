@@ -8,7 +8,7 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="utils.html"><font color="#ffffff">utils</font></a>.sound</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:d%3A%5Cprogrammingd%5Cschoold%5Clab-code-development%5Cutils%5Csound.py">d:\programmingd\schoold\lab-code-development\utils\sound.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Caurya%5Cprogramming%5Clab-code-development%5Cutils%5Csound.py">c:\users\aurya\programming\lab-code-development\utils\sound.py</a></font></td></tr></table>
     <p><tt>Module&nbsp;for&nbsp;creating&nbsp;and&nbsp;generating&nbsp;sine&nbsp;wave&nbsp;based&nbsp;sound.&nbsp;<br>
 Includes&nbsp;Frequency&nbsp;modulation&nbsp;and&nbsp;Amplitude&nbsp;modulation.<br>
 &nbsp;<br>
@@ -26,7 +26,8 @@ Authors:&nbsp;Ryan&nbsp;Au&nbsp;and&nbsp;Younes&nbsp;Boubekaur</tt></p>
 <a href="os.html">os</a><br>
 </td><td width="25%" valign=top><a href="pickle.html">pickle</a><br>
 <a href="simpleaudio.html">simpleaudio</a><br>
-</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ee77aa">
 <td colspan=3 valign=bottom>&nbsp;<br>
@@ -34,6 +35,12 @@ Authors:&nbsp;Ryan&nbsp;Au&nbsp;and&nbsp;Younes&nbsp;Boubekaur</tt></p>
     
 <tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#list">builtins.list</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="utils.sound.html#Song">Song</a>
+</font></dt></dl>
+</dd>
 <dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
 </font></dt><dd>
 <dl>
@@ -42,6 +49,194 @@ Authors:&nbsp;Ryan&nbsp;Au&nbsp;and&nbsp;Younes&nbsp;Boubekaur</tt></p>
 </dd>
 </dl>
  <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Song">class <strong>Song</strong></a>(<a href="builtins.html#list">builtins.list</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Song">Song</a>(sounds=())<br>
+&nbsp;<br>
+Creates&nbsp;a&nbsp;special&nbsp;player&nbsp;<a href="builtins.html#object">object</a>,&nbsp;that&nbsp;can&nbsp;play&nbsp;<a href="#Sound">Sound</a>&nbsp;objects<br>
+&nbsp;quickly&nbsp;for&nbsp;long&nbsp;periods&nbsp;of&nbsp;time.<br>
+&nbsp;<br>
+Example&nbsp;Usage:<br>
+&nbsp;<br>
+s0&nbsp;=&nbsp;<a href="#Song">Song</a>.<a href="#Song-create_silence">create_silence</a>(seconds=0.5)<br>
+s1&nbsp;=&nbsp;<a href="#Sound">Sound</a>(duration=1,&nbsp;pitch="A4")<br>
+s2&nbsp;=&nbsp;<a href="#Sound">Sound</a>(duration=1,&nbsp;pitch="B4")<br>
+&nbsp;<br>
+song&nbsp;=&nbsp;<a href="#Song">Song</a>([s1,&nbsp;s0,&nbsp;s2,&nbsp;s0])<br>
+song&nbsp;*=&nbsp;4&nbsp;#&nbsp;repeat&nbsp;the&nbsp;song&nbsp;4&nbsp;times&nbsp;over<br>
+&nbsp;<br>
+song.<a href="#Song-compile">compile</a>()&nbsp;#&nbsp;Slow&nbsp;process,&nbsp;several&nbsp;seconds&nbsp;latency<br>
+&nbsp;<br>
+song.<a href="#Song-play">play</a>()&nbsp;#&nbsp;Faster,&nbsp;~0.7&nbsp;seconds&nbsp;latency<br>
+time.sleep(song.duration)<br>
+song.<a href="#Song-stop">stop</a>()<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="utils.sound.html#Song">Song</a></dd>
+<dd><a href="builtins.html#list">builtins.list</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Song-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Song-__init__"><strong>__init__</strong></a>(self, sounds=())</dt><dd><tt>Creates&nbsp;a&nbsp;<a href="#Song">Song</a>&nbsp;with&nbsp;that&nbsp;plays&nbsp;silence&nbsp;for&nbsp;1&nbsp;second&nbsp;by&nbsp;default.<br>
+&nbsp;<br>
+Can&nbsp;be&nbsp;initialized&nbsp;with&nbsp;a&nbsp;<a href="builtins.html#list">list</a>&nbsp;of&nbsp;existing&nbsp;sounds.<br>
+This&nbsp;is&nbsp;optional.<br>
+&nbsp;<br>
+Sounds&nbsp;can&nbsp;be&nbsp;added&nbsp;with&nbsp;<a href="#Song">Song</a>.<a href="#Song-append">append</a>(sound)</tt></dd></dl>
+
+<dl><dt><a name="Song-append"><strong>append</strong></a>(self, obj)</dt><dd><tt>Add&nbsp;a&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;this&nbsp;<a href="#Song">Song</a>.<br>
+&nbsp;<br>
+Must&nbsp;be&nbsp;of&nbsp;type&nbsp;<a href="#Sound">Sound</a>.</tt></dd></dl>
+
+<dl><dt><a name="Song-compile"><strong>compile</strong></a>(self)</dt><dd><tt>Compiles&nbsp;the&nbsp;appended&nbsp;sounds&nbsp;to&nbsp;create&nbsp;the&nbsp;song.<br>
+&nbsp;<br>
+After&nbsp;this&nbsp;is&nbsp;set,&nbsp;then&nbsp;it&nbsp;can&nbsp;be&nbsp;played&nbsp;using&nbsp;<a href="#Song">Song</a>.<a href="#Song-play">play</a>()</tt></dd></dl>
+
+<dl><dt><a name="Song-extend"><strong>extend</strong></a>(self, ls)</dt><dd><tt>Adds&nbsp;all&nbsp;the&nbsp;Sounds&nbsp;of&nbsp;ls&nbsp;to&nbsp;this&nbsp;<a href="#Song">Song</a>.&nbsp;<br>
+This&nbsp;can&nbsp;work&nbsp;for&nbsp;lists&nbsp;of&nbsp;Sounds,&nbsp;any&nbsp;iterable&nbsp;containing&nbsp;Sounds,&nbsp;<br>
+or&nbsp;another&nbsp;<a href="#Song">Song</a>.<br>
+&nbsp;<br>
+Ignores&nbsp;non-<a href="#Sound">Sound</a>&nbsp;objects.</tt></dd></dl>
+
+<dl><dt><a name="Song-is_playing"><strong>is_playing</strong></a>(self)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;<a href="#Song">Song</a>&nbsp;is&nbsp;active.<br>
+&nbsp;<br>
+Active&nbsp;means&nbsp;that&nbsp;it&nbsp;would&nbsp;play&nbsp;sound,&nbsp;when&nbsp;the&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Song">Song</a>.play_sound(s1)&nbsp;function&nbsp;is&nbsp;called.</tt></dd></dl>
+
+<dl><dt><a name="Song-play"><strong>play</strong></a>(self)</dt><dd><tt>Starts&nbsp;the&nbsp;<a href="#Song">Song</a>.&nbsp;It&nbsp;plays&nbsp;silence&nbsp;by&nbsp;default.<br>
+&nbsp;<br>
+Has&nbsp;latency&nbsp;on&nbsp;startup.&nbsp;Will&nbsp;stop&nbsp;by&nbsp;itself&nbsp;after&nbsp;the&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Song">Song</a>&nbsp;duration&nbsp;has&nbsp;ended&nbsp;(defined&nbsp;in&nbsp;init)<br>
+&nbsp;<br>
+If&nbsp;<a href="#Song">Song</a>.play_sound(s1)&nbsp;was&nbsp;done&nbsp;already,&nbsp;then&nbsp;<a href="#Song">Song</a>.start()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;play&nbsp;the&nbsp;given&nbsp;sound&nbsp;s1&nbsp;to&nbsp;begin&nbsp;with.</tt></dd></dl>
+
+<dl><dt><a name="Song-sleep_done"><strong>sleep_done</strong></a>(self)</dt><dd><tt>Uses&nbsp;a&nbsp;time.sleep&nbsp;to&nbsp;wait&nbsp;for&nbsp;the&nbsp;duration&nbsp;of&nbsp;the&nbsp;song.<br>
+&nbsp;<br>
+Interruptable,&nbsp;less&nbsp;reliable.</tt></dd></dl>
+
+<dl><dt><a name="Song-stop"><strong>stop</strong></a>(self)</dt><dd><tt>Stops&nbsp;the&nbsp;<a href="#Song">Song</a>.&nbsp;Keeps&nbsp;the&nbsp;last&nbsp;sound&nbsp;that&nbsp;was&nbsp;<br>
+used&nbsp;in&nbsp;<a href="#Song">Song</a>.play_sound(s1)</tt></dd></dl>
+
+<dl><dt><a name="Song-wait_done"><strong>wait_done</strong></a>(self)</dt><dd><tt>Uses&nbsp;a&nbsp;while-loop&nbsp;to&nbsp;keep&nbsp;checking&nbsp;until&nbsp;the&nbsp;song&nbsp;is&nbsp;done&nbsp;playing.<br>
+&nbsp;<br>
+Reliable,&nbsp;un-interruptible.</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Song-create_silence"><strong>create_silence</strong></a>(seconds=1)</dt><dd><tt>A&nbsp;helper&nbsp;method&nbsp;to&nbsp;create&nbsp;a&nbsp;special&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;<br>
+containing&nbsp;silence&nbsp;of&nbsp;given&nbsp;duration.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>MAX_VOLUME</strong> = 32767</dl>
+
+<dl><dt><strong>MIN_VOLUME</strong> = -32767</dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#list">builtins.list</a>:<br>
+<dl><dt><a name="Song-__add__"><strong>__add__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self+value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__contains__"><strong>__contains__</strong></a>(self, key, /)</dt><dd><tt>Return&nbsp;key&nbsp;in&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="Song-__delitem__"><strong>__delitem__</strong></a>(self, key, /)</dt><dd><tt>Delete&nbsp;self[key].</tt></dd></dl>
+
+<dl><dt><a name="Song-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="Song-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Song-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Song-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__iadd__"><strong>__iadd__</strong></a>(self, value, /)</dt><dd><tt>Implement&nbsp;self+=value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__imul__"><strong>__imul__</strong></a>(self, value, /)</dt><dd><tt>Implement&nbsp;self*=value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__iter__"><strong>__iter__</strong></a>(self, /)</dt><dd><tt>Implement&nbsp;iter(self).</tt></dd></dl>
+
+<dl><dt><a name="Song-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__len__"><strong>__len__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;len(self).</tt></dd></dl>
+
+<dl><dt><a name="Song-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__mul__"><strong>__mul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Song-__reversed__"><strong>__reversed__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;a&nbsp;reverse&nbsp;iterator&nbsp;over&nbsp;the&nbsp;<a href="builtins.html#list">list</a>.</tt></dd></dl>
+
+<dl><dt><a name="Song-__rmul__"><strong>__rmul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value*self.</tt></dd></dl>
+
+<dl><dt><a name="Song-__setitem__"><strong>__setitem__</strong></a>(self, key, value, /)</dt><dd><tt>Set&nbsp;self[key]&nbsp;to&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="Song-__sizeof__"><strong>__sizeof__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;the&nbsp;size&nbsp;of&nbsp;the&nbsp;<a href="builtins.html#list">list</a>&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes.</tt></dd></dl>
+
+<dl><dt><a name="Song-clear"><strong>clear</strong></a>(self, /)</dt><dd><tt>Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;<a href="builtins.html#list">list</a>.</tt></dd></dl>
+
+<dl><dt><a name="Song-copy"><strong>copy</strong></a>(self, /)</dt><dd><tt>Return&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;the&nbsp;<a href="builtins.html#list">list</a>.</tt></dd></dl>
+
+<dl><dt><a name="Song-count"><strong>count</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;number&nbsp;of&nbsp;occurrences&nbsp;of&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="Song-index"><strong>index</strong></a>(self, value, start=0, stop=9223372036854775807, /)</dt><dd><tt>Return&nbsp;first&nbsp;index&nbsp;of&nbsp;value.<br>
+&nbsp;<br>
+Raises&nbsp;ValueError&nbsp;if&nbsp;the&nbsp;value&nbsp;is&nbsp;not&nbsp;present.</tt></dd></dl>
+
+<dl><dt><a name="Song-insert"><strong>insert</strong></a>(self, index, object, /)</dt><dd><tt>Insert&nbsp;<a href="builtins.html#object">object</a>&nbsp;before&nbsp;index.</tt></dd></dl>
+
+<dl><dt><a name="Song-pop"><strong>pop</strong></a>(self, index=-1, /)</dt><dd><tt>Remove&nbsp;and&nbsp;return&nbsp;item&nbsp;at&nbsp;index&nbsp;(default&nbsp;last).<br>
+&nbsp;<br>
+Raises&nbsp;IndexError&nbsp;if&nbsp;<a href="builtins.html#list">list</a>&nbsp;is&nbsp;empty&nbsp;or&nbsp;index&nbsp;is&nbsp;out&nbsp;of&nbsp;range.</tt></dd></dl>
+
+<dl><dt><a name="Song-remove"><strong>remove</strong></a>(self, value, /)</dt><dd><tt>Remove&nbsp;first&nbsp;occurrence&nbsp;of&nbsp;value.<br>
+&nbsp;<br>
+Raises&nbsp;ValueError&nbsp;if&nbsp;the&nbsp;value&nbsp;is&nbsp;not&nbsp;present.</tt></dd></dl>
+
+<dl><dt><a name="Song-reverse"><strong>reverse</strong></a>(self, /)</dt><dd><tt>Reverse&nbsp;*IN&nbsp;PLACE*.</tt></dd></dl>
+
+<dl><dt><a name="Song-sort"><strong>sort</strong></a>(self, /, *, key=None, reverse=False)</dt><dd><tt>Sort&nbsp;the&nbsp;<a href="builtins.html#list">list</a>&nbsp;in&nbsp;ascending&nbsp;order&nbsp;and&nbsp;return&nbsp;None.<br>
+&nbsp;<br>
+The&nbsp;sort&nbsp;is&nbsp;in-place&nbsp;(i.e.&nbsp;the&nbsp;<a href="builtins.html#list">list</a>&nbsp;itself&nbsp;is&nbsp;modified)&nbsp;and&nbsp;stable&nbsp;(i.e.&nbsp;the<br>
+order&nbsp;of&nbsp;two&nbsp;equal&nbsp;elements&nbsp;is&nbsp;maintained).<br>
+&nbsp;<br>
+If&nbsp;a&nbsp;key&nbsp;function&nbsp;is&nbsp;given,&nbsp;apply&nbsp;it&nbsp;once&nbsp;to&nbsp;each&nbsp;<a href="builtins.html#list">list</a>&nbsp;item&nbsp;and&nbsp;sort&nbsp;them,<br>
+ascending&nbsp;or&nbsp;descending,&nbsp;according&nbsp;to&nbsp;their&nbsp;function&nbsp;values.<br>
+&nbsp;<br>
+The&nbsp;reverse&nbsp;flag&nbsp;can&nbsp;be&nbsp;set&nbsp;to&nbsp;sort&nbsp;in&nbsp;descending&nbsp;order.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="builtins.html#list">builtins.list</a>:<br>
+<dl><dt><a name="Song-__class_getitem__"><strong>__class_getitem__</strong></a>(...)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>See&nbsp;<a href="https://www.python.org/dev/peps/pep-0585/">PEP&nbsp;585</a></tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="builtins.html#list">builtins.list</a>:<br>
+<dl><dt><a name="Song-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="builtins.html#list">builtins.list</a>:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table> <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
@@ -55,6 +250,8 @@ Authors:&nbsp;Ryan&nbsp;Au&nbsp;and&nbsp;Younes&nbsp;Boubekaur</tt></p>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="Sound-__init__"><strong>__init__</strong></a>(self, duration=1, volume=40, pitch='A4', mod_f=0, mod_k=0, amp_f=0, amp_ka=0, amp_ac=1, cutoff=0.01, fs=8000)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
 
+<dl><dt><a name="Sound-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
 <dl><dt><a name="Sound-alter_wave"><strong>alter_wave</strong></a>(self, func: Callable[[float, int], int])</dt><dd><tt>Apply&nbsp;a&nbsp;function&nbsp;to&nbsp;change&nbsp;the&nbsp;currently&nbsp;playing/prepared&nbsp;audio&nbsp;wave.<br>
 &nbsp;<br>
 func&nbsp;is&nbsp;of&nbsp;the&nbsp;format:&nbsp;func(x:float,&nbsp;y:int16)&nbsp;-&gt;&nbsp;y:int16<br>
@@ -62,9 +259,43 @@ func&nbsp;is&nbsp;of&nbsp;the&nbsp;format:&nbsp;func(x:float,&nbsp;y:int16)&nbsp
 Given&nbsp;an&nbsp;xy-coordinate&nbsp;plane&nbsp;with&nbsp;the&nbsp;sound&nbsp;wave&nbsp;being&nbsp;centered&nbsp;on&nbsp;y=0,<br>
 x&nbsp;is&nbsp;time&nbsp;in&nbsp;seconds,&nbsp;and&nbsp;y&nbsp;is&nbsp;amplitude&nbsp;in&nbsp;the&nbsp;range&nbsp;[-32768,&nbsp;32767]</tt></dd></dl>
 
+<dl><dt><a name="Sound-append"><strong>append</strong></a>(self, other, spacing=0)</dt><dd><tt>Takes&nbsp;the&nbsp;underlying&nbsp;audio&nbsp;data&nbsp;of&nbsp;another&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>,&nbsp;other,&nbsp;and&nbsp;appends&nbsp;all&nbsp;of&nbsp;it<br>
+to&nbsp;the&nbsp;underlying&nbsp;audio&nbsp;data&nbsp;of&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>.<br>
+&nbsp;<br>
+This&nbsp;does&nbsp;not&nbsp;alter&nbsp;any&nbsp;base&nbsp;attributes&nbsp;of&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>,&nbsp;and&nbsp;a&nbsp;'reset'&nbsp;will&nbsp;undo&nbsp;these&nbsp;appends<br>
+&nbsp;<br>
+see&nbsp;<a href="#Sound">Sound</a>.append_sound</tt></dd></dl>
+
+<dl><dt><a name="Sound-append_sound"><strong>append_sound</strong></a>(self, other, spacing=0)</dt><dd><tt>Takes&nbsp;the&nbsp;underlying&nbsp;audio&nbsp;data&nbsp;of&nbsp;another&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>,&nbsp;other,&nbsp;and&nbsp;appends&nbsp;all&nbsp;of&nbsp;it<br>
+to&nbsp;the&nbsp;underlying&nbsp;audio&nbsp;data&nbsp;of&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>.<br>
+&nbsp;<br>
+This&nbsp;does&nbsp;not&nbsp;alter&nbsp;any&nbsp;base&nbsp;attributes&nbsp;of&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>,&nbsp;and&nbsp;a&nbsp;'reset'&nbsp;will&nbsp;undo&nbsp;these&nbsp;appends</tt></dd></dl>
+
 <dl><dt><a name="Sound-is_playing"><strong>is_playing</strong></a>(self) -&gt; bool</dt></dl>
 
 <dl><dt><a name="Sound-play"><strong>play</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Sound-repeat_sound"><strong>repeat_sound</strong></a>(self, repeat_times=1, repeat_interval=0)</dt><dd><tt>Alters&nbsp;the&nbsp;underlying&nbsp;audio&nbsp;data&nbsp;of&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>,&nbsp;such&nbsp;that&nbsp;the&nbsp;main&nbsp;sound&nbsp;will:<br>
+-&nbsp;repeat&nbsp;equal&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;repeat_times.&nbsp;It&nbsp;should&nbsp;be&nbsp;an&nbsp;integer&nbsp;value.<br>
+-&nbsp;each&nbsp;time&nbsp;the&nbsp;original&nbsp;sound&nbsp;is&nbsp;repeated,&nbsp;there&nbsp;will&nbsp;be&nbsp;an&nbsp;interval&nbsp;of&nbsp;silence&nbsp;for&nbsp;'repeat_interval'&nbsp;seconds.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Expects&nbsp;either&nbsp;int&nbsp;or&nbsp;float&nbsp;value,&nbsp;of&nbsp;seconds&nbsp;for&nbsp;the&nbsp;interval.&nbsp;Default&nbsp;is&nbsp;0&nbsp;seconds.<br>
+&nbsp;<br>
+Explanation&nbsp;of&nbsp;Potential&nbsp;Usage:<br>
+You&nbsp;may&nbsp;utilize&nbsp;the&nbsp;concept&nbsp;of&nbsp;BPM&nbsp;or&nbsp;"beats&nbsp;per&nbsp;minute"&nbsp;to&nbsp;help&nbsp;you&nbsp;with&nbsp;creating&nbsp;a&nbsp;tempo&nbsp;for&nbsp;your&nbsp;songs.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;you&nbsp;want&nbsp;a&nbsp;sound&nbsp;repeated&nbsp;at&nbsp;120bpm,&nbsp;that&nbsp;would&nbsp;be&nbsp;2&nbsp;times/sec,&nbsp;0.5&nbsp;seconds&nbsp;per&nbsp;sound&nbsp;played.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;original&nbsp;sound&nbsp;has&nbsp;duration&nbsp;0.1&nbsp;seconds,&nbsp;then&nbsp;the&nbsp;silence&nbsp;spacing&nbsp;would&nbsp;have&nbsp;to&nbsp;be&nbsp;0.4&nbsp;seconds,&nbsp;such&nbsp;that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;every&nbsp;sound&nbsp;starts&nbsp;playing&nbsp;every&nbsp;0.5&nbsp;seconds,&nbsp;matching&nbsp;120bpm.&nbsp;The&nbsp;end&nbsp;of&nbsp;this&nbsp;repeated&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;will&nbsp;be&nbsp;a&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sound&nbsp;playing&nbsp;for&nbsp;0.1&nbsp;seconds,&nbsp;and&nbsp;then&nbsp;no&nbsp;silence&nbsp;spacing&nbsp;afterwards.&nbsp;This&nbsp;is&nbsp;desired&nbsp;behavior.&nbsp;You&nbsp;can&nbsp;then&nbsp;perform&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;time.sleep(0.4)&nbsp;seconds&nbsp;before&nbsp;replaying&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>.&nbsp;BUT&nbsp;there&nbsp;is&nbsp;sometimes&nbsp;latency&nbsp;in&nbsp;"starting"&nbsp;a&nbsp;sound,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;so&nbsp;the&nbsp;time&nbsp;sleep&nbsp;may&nbsp;need&nbsp;to&nbsp;be&nbsp;smaller,&nbsp;such&nbsp;as&nbsp;0.35&nbsp;seconds&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="Sound-reset"><strong>reset</strong></a>(self)</dt><dd><tt>Fully&nbsp;resets&nbsp;the&nbsp;underlying&nbsp;audio&nbsp;of&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>.<br>
+The&nbsp;sound&nbsp;must&nbsp;be&nbsp;stopped,&nbsp;or&nbsp;this&nbsp;will&nbsp;give&nbsp;unexpected&nbsp;behavior<br>
+&nbsp;<br>
+see&nbsp;<a href="#Sound">Sound</a>.reset_audio</tt></dd></dl>
+
+<dl><dt><a name="Sound-reset_audio"><strong>reset_audio</strong></a>(self)</dt><dd><tt>Fully&nbsp;resets&nbsp;the&nbsp;underlying&nbsp;audio&nbsp;data&nbsp;of&nbsp;this&nbsp;<a href="#Sound">Sound</a>&nbsp;<a href="builtins.html#object">object</a>.<br>
+The&nbsp;sound&nbsp;must&nbsp;be&nbsp;stopped,&nbsp;or&nbsp;this&nbsp;will&nbsp;give&nbsp;unexpected&nbsp;behavior</tt></dd></dl>
 
 <dl><dt><a name="Sound-set_amplitude_modulation"><strong>set_amplitude_modulation</strong></a>(self, amp_f: Union[str, float], amp_ka, amp_ac)</dt><dd><tt>Set&nbsp;the&nbsp;frequency(amp_f),&nbsp;ka&nbsp;factor(amp_ka),&nbsp;and&nbsp;ac&nbsp;factor(amp_ac)&nbsp;of&nbsp;Amplitude&nbsp;Modulation.<br>
 Effect&nbsp;is&nbsp;most&nbsp;similar&nbsp;to&nbsp;'vibrato'&nbsp;altering&nbsp;the&nbsp;volume&nbsp;in&nbsp;a&nbsp;wobbling&nbsp;sense.<br>
@@ -155,7 +386,8 @@ Data descriptors defined here:<br>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-clip"><strong>clip</strong></a>(x: float, bot: float, top: float, nomax=False) -&gt; float</dt></dl>
+<td width="100%"><dl><dt><a name="-change_volume"><strong>change_volume</strong></a>(percentage)</dt></dl>
+ <dl><dt><a name="-clip"><strong>clip</strong></a>(x: float, bot: float, top: float, nomax=False) -&gt; float</dt></dl>
  <dl><dt><a name="-cos"><strong>cos</strong></a>(x: float) -&gt; float</dt></dl>
  <dl><dt><a name="-db_to_amp"><strong>db_to_amp</strong></a>(db: float, ref_amp: float) -&gt; float</dt><dd><tt>Converts&nbsp;decibels&nbsp;to&nbsp;a&nbsp;next&nbsp;amplitude.<br>
 ref_amp&nbsp;is&nbsp;the&nbsp;reference&nbsp;amplitude&nbsp;to&nbsp;start&nbsp;at.</tt></dd></dl>
@@ -164,10 +396,6 @@ ref_amp&nbsp;is&nbsp;the&nbsp;reference&nbsp;amplitude&nbsp;to&nbsp;start&nbsp;a
  <dl><dt><a name="-preload_all_pitches"><strong>preload_all_pitches</strong></a>(duration=1, volume=40, mod_f=0, mod_k=0, amp_f=0, amp_ka=0, amp_ac=1, cutoff=0.01, fs=8000)</dt></dl>
  <dl><dt><a name="-save_all_pitches_file"><strong>save_all_pitches_file</strong></a>(sounds, filename='sounds')</dt></dl>
  <dl><dt><a name="-sin"><strong>sin</strong></a>(x: float) -&gt; float</dt></dl>
- <dl><dt><a name="-time"><strong>time</strong></a>(...)</dt><dd><tt><a href="#-time">time</a>()&nbsp;-&gt;&nbsp;floating&nbsp;point&nbsp;number<br>
-&nbsp;<br>
-Return&nbsp;the&nbsp;current&nbsp;time&nbsp;in&nbsp;seconds&nbsp;since&nbsp;the&nbsp;Epoch.<br>
-Fractions&nbsp;of&nbsp;a&nbsp;second&nbsp;may&nbsp;be&nbsp;present&nbsp;if&nbsp;the&nbsp;system&nbsp;clock&nbsp;provides&nbsp;them.</tt></dd></dl>
  <dl><dt><a name="-vol_to_amp"><strong>vol_to_amp</strong></a>(vol: float) -&gt; float</dt><dd><tt>Converts&nbsp;a&nbsp;volume&nbsp;level&nbsp;to&nbsp;an&nbsp;amplitude&nbsp;scalar&nbsp;factor.<br>
 Input&nbsp;would&nbsp;range&nbsp;from&nbsp;0&nbsp;to&nbsp;HIGHEST_VOLUME&nbsp;(default:100).<br>
 Output&nbsp;ranges&nbsp;from&nbsp;0&nbsp;to&nbsp;1<br>
