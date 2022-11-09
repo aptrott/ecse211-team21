@@ -54,16 +54,16 @@ class CubeGrid:
         return grid
 
     def preview_grid(self):
-        output = "-----------\n"
+        output = "\u0332 "*16 + "\n"
         for row in range(GRID_ROWS, 0, -1):
             output += "|"
             for column in self.grid:
                 if row in self.get_cubes_in_column(column):
-                    output += "#|"
+                    output += "\u2588\u2588|"
                 else:
-                    output += " |"
+                    output += "  |"
             output += "\n"
-        output += "-----------"
+        output += "\u203E"*16
         print(output)
 
 
