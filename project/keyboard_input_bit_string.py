@@ -1,9 +1,6 @@
-# from utils.brick import Motor, TouchSensor, reset_brick, wait_ready_sensors
 import time
 
 LOOP_INTERVAL = 0.500
-
-# wait_ready_sensors(True)
 
 GRID_COLUMNS = 5
 GRID_ROWS = 5
@@ -54,7 +51,7 @@ class CubeGrid:
         return grid
 
     def preview_grid(self):
-        output = "\u0332 " * 16 + "\n"
+        output = "\u0332 "*16 + "\n"
         for row in range(GRID_ROWS, 0, -1):
             output += "|"
             for column in self.grid:
@@ -63,7 +60,7 @@ class CubeGrid:
                 else:
                     output += "  |"
             output += "\n"
-        output += "\u203E" * 16
+        output += "\u203E"*16
         print(output)
 
 
