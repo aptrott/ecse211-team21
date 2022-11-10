@@ -22,7 +22,7 @@ TOUCH_SENSOR_ready_ = TouchSensor(3)
 input_max = 25  # this will be the maximum input expected according to our grid size
 
 
-def user_input_with_sensor():
+def get_touch_sensor_binary_user_input():
     input_counter = 0  # This will be a counter that will check how many times did the user input with the sensors
     user_input_sense = ""
     while input_counter < input_max and not TOUCH_SENSOR_ready_.is_pressed():

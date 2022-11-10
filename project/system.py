@@ -85,30 +85,7 @@ def get_keyboard_binary_user_input():
     return input_string.replace(" ", "")
 
 
-if __name__ == "__main__":
-    try:
-        while True:
-            try:
-                keyboard_input = get_keyboard_binary_user_input()
-                cube_grid = CubeGrid(keyboard_input)
-                print(
-                    f'{cube_grid.valid_binary_input} ({cube_grid.valid_binary_input.count("1")} cubes required)')
-                print(cube_grid.grid)
-                cube_grid.preview_grid()
-                for cube in cube_grid:
-                    print(cube)
-
-            except Exception as e:
-                print(e)
-
-            time.sleep(LOOP_INTERVAL)
-
-    except KeyboardInterrupt:
-        # reset_brick()
-        exit(0)
-
-
-def user_input_with_sensor():
+def get_touch_sensor_binary_user_input():
     input_counter = 0  # This will be a counter that will check how many times did the user input with the sensors
     user_input_sense = ""
     while input_counter < input_max and not TOUCH_SENSOR_ready_.is_pressed():
@@ -123,3 +100,26 @@ def user_input_with_sensor():
             SOUND_0_.play()
             SOUND_0_.wait_done()
     return user_input_sense
+
+
+if __name__ == "__main__":
+    try:
+        while True:
+            try:
+                keyboard_input = get_keyboard_binary_user_input()
+                cube_grid = CubeGrid(keyboard_input)
+                print(
+                    f'{cube_grid.valid_binary_input} ({cube_grid.valid_binary_input.count("1")} cubes required)')
+                print(cube_grid.grid)
+                cube_grid.preview_grid()
+                for cube in cube_grid:
+                    print(cube, end=" ")
+
+            except Exception as e:
+                print(e)
+
+            time.sleep(LOOP_INTERVAL)
+
+    except KeyboardInterrupt:
+        # reset_brick()
+        exit(0)
