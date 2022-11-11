@@ -52,7 +52,7 @@ class CubeGrid:
         return grid
 
     def preview_grid(self):
-        output = "\u0332 " * 16 + "\n"
+        output = "\u0332" * 16 + "\n"
         for row in range(GRID_ROWS, 0, -1):
             output += "|"
             for column in self.grid:
@@ -91,7 +91,6 @@ class UserInput:
             button_complete = keyboard.is_pressed("d")
             if button_zero or button_one or button_complete:
                 self.is_using_touch_sensor_input = True
-                print(f"\r{self.raw_user_input}", end="")
             if button_complete:
                 self.is_input_complete = True
                 print()
@@ -100,6 +99,9 @@ class UserInput:
                 self.raw_user_input += "1"
             if button_zero and not button_one:
                 self.raw_user_input += "0"
+            if self.is_using_touch_sensor_input:
+                print(" " * 100, end="\r", flush=True)
+                print(f"\r{self.raw_user_input}", end="\r", flush=True)
             time.sleep(LOOP_INTERVAL)
 
 
