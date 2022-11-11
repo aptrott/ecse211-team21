@@ -21,11 +21,8 @@ TOUCH_SENSOR_1_ = TouchSensor(1)
 TOUCH_SENSOR_0_ = TouchSensor(2)
 TOUCH_SENSOR_ready_ = TouchSensor(3)
 
-input_max = 25  # this will be the maximum input expected according to our grid size
-
 
 class CubeGrid:
-
     def __init__(self, user_input):
         self.valid_binary_input = self.__validate_binary_user_input(user_input)
         self.grid = self.__process_grid()
@@ -80,15 +77,15 @@ class CubeGrid:
 
 
 def get_keyboard_binary_user_input():
-    input_string = str(input(
+    user_input = str(input(
         f'Enter a string of "1"s and "0"s maximum length {GRID_CELLS}, containing a maximum of {MAXIMUM_CUBES} "1"s:\n'))
-    return input_string.replace(" ", "")
+    return user_input.replace(" ", "")
 
 
 def get_touch_sensor_binary_user_input():
     input_counter = 0  # This will be a counter that will check how many times did the user input with the sensors
     user_input_sense = ""
-    while input_counter < input_max and not TOUCH_SENSOR_ready_.is_pressed():
+    while input_counter < GRID_CELLS and not TOUCH_SENSOR_ready_.is_pressed():
         if TOUCH_SENSOR_1_.is_pressed() and not TOUCH_SENSOR_0_.is_pressed():
             user_input_sense += "1"
             input_counter += 1
@@ -106,8 +103,8 @@ if __name__ == "__main__":
     try:
         while True:
             try:
-                keyboard_input = get_keyboard_binary_user_input()
-                cube_grid = CubeGrid(keyboard_input)
+                input_string = get_keyboard_binary_user_input()
+                cube_grid = CubeGrid(input_string)
                 print(
                     f'{cube_grid.valid_binary_input} ({cube_grid.valid_binary_input.count("1")} cubes required)')
                 print(cube_grid.grid)

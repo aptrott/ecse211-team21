@@ -11,6 +11,7 @@ pytest = "*"
 matplotlib = "*"
 numpy = "*"
 autopep8 = "*"
+keyboard = "*"
 
 [requires]
 python_version = "3.9"
