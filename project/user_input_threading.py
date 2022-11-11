@@ -83,31 +83,49 @@ class UserInput:
         keyboard_input_thread.join()
         return self.raw_user_input
 
-    def __get_keyboard_binary_user_input(self):
-        prompt = f'\nEnter a string of "1"s and "0"s maximum length {GRID_CELLS}, containing a maximum of {MAXIMUM_CUBES} "1"s:'
-        print(prompt)
-        user_input = ""
+    def __add_input(self, input_queue):
         while not self.is_input_complete and not self.is_using_touch_sensor_input:
-            c = str(sys.stdin.read(1))
-            if c == "\n":
-                self.is_input_complete = True
-                self.raw_user_input = user_input.replace(" ", "")
-                return
-            user_input += c
+            try:
+                input_queue.put(sys.stdin.read(1))
+                sys.stdin.flush()
+            except UnicodeDecodeError:
+                pass
+
+    def __get_keyboard_binary_user_input(self):
+        print(f'\nEnter a string of "1"s and "0"s maximum length {GRID_CELLS}, containing a maximum of {MAXIMUM_CUBES} "1"s:')
+        user_input = ""
+        # This loop is inspired by https://stackoverflow.com/a/19655992 to not have the input blocking the loop
+        input_queue = queue.Queue()
+        input_thread = threading.Thread(target=self.__add_input, args=[input_queue], daemon=True)
+        input_thread.start()
+        last_update = time.time()
+        while not self.is_input_complete and not self.is_using_touch_sensor_input:
+            if time.time() - last_update > 0.5:
+                sys.stdout.write(".")
+                sys.stdin.flush()
+                last_update = time.time()
+            if not input_queue.empty():
+                c = str(input_queue.get())
+                print(repr(c))
+                if c == "\n":
+                    self.is_input_complete = True
+                    input_thread.join()
+                    sys.stdin.write()
+                    self.raw_user_input = user_input.replace(" ", "")
+                    return
+                user_input += c
 
     def __get_touch_sensor_binary_user_input(self):
-        while True:
+        while not self.is_input_complete and self.is_using_touch_sensor_input:
             button_zero = keyboard.is_pressed("a")
             button_one = keyboard.is_pressed("s")
             button_complete = keyboard.is_pressed("d")
-            if self.is_input_complete:
-                return
             if button_zero or button_one or button_complete:
                 self.is_using_touch_sensor_input = True
                 print(f"\r{self.raw_user_input}", end="")
             if button_complete:
                 self.is_input_complete = True
-                print()
+                print("done")
                 return
             if button_one and not button_zero:
                 self.raw_user_input += "1"
