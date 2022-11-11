@@ -66,7 +66,7 @@ class CubeGrid:
 
 def get_keyboard_binary_user_input():
     input_string = str(input(
-        f'Enter a string of "1"s and "0"s maximum length {GRID_CELLS}, containing a maximum of {MAXIMUM_CUBES} "1"s:\n'))
+        f'\nEnter a string of "1"s and "0"s maximum length {GRID_CELLS}, containing a maximum of {MAXIMUM_CUBES} "1"s:\n'))
     return input_string.replace(" ", "")
 
 
@@ -81,7 +81,8 @@ if __name__ == "__main__":
                 print(cube_grid.grid)
                 cube_grid.preview_grid()
                 for cube in cube_grid:
-                    print(cube)
+                    print(cube, end=" ")
+                print()
 
             except Exception as e:
                 print(e)
