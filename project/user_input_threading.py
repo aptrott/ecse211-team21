@@ -1,6 +1,3 @@
-import msvcrt
-import queue
-import sys
 import threading
 import keyboard
 import time
@@ -80,52 +77,27 @@ class UserInput:
         touch_sensor_input_thread.start()
         keyboard_input_thread.start()
         touch_sensor_input_thread.join()
-        keyboard_input_thread.join()
         return self.raw_user_input
 
-    def __add_input(self, input_queue):
-        while not self.is_input_complete and not self.is_using_touch_sensor_input:
-            try:
-                input_queue.put(sys.stdin.read(1))
-                sys.stdin.flush()
-            except UnicodeDecodeError:
-                pass
-
     def __get_keyboard_binary_user_input(self):
-        print(f'\nEnter a string of "1"s and "0"s maximum length {GRID_CELLS}, containing a maximum of {MAXIMUM_CUBES} "1"s:')
-        user_input = ""
-        # This loop is inspired by https://stackoverflow.com/a/19655992 to not have the input blocking the loop
-        input_queue = queue.Queue()
-        input_thread = threading.Thread(target=self.__add_input, args=[input_queue], daemon=True)
-        input_thread.start()
-        last_update = time.time()
-        while not self.is_input_complete and not self.is_using_touch_sensor_input:
-            if time.time() - last_update > 0.5:
-                sys.stdout.write(".")
-                sys.stdin.flush()
-                last_update = time.time()
-            if not input_queue.empty():
-                c = str(input_queue.get())
-                print(repr(c))
-                if c == "\n":
-                    self.is_input_complete = True
-                    input_thread.join()
-                    sys.stdin.write()
-                    self.raw_user_input = user_input.replace(" ", "")
-                    return
-                user_input += c
+        user_input = str(input(
+            f'Enter a string of "1"s and "0"s maximum length {GRID_CELLS}, containing a maximum of {MAXIMUM_CUBES} "1"s:\n'))
+        self.raw_user_input = user_input.replace(" ", "")
+        self.is_input_complete = True
 
     def __get_touch_sensor_binary_user_input(self):
-        while not self.is_input_complete and self.is_using_touch_sensor_input:
+        while True:
             button_zero = keyboard.is_pressed("a")
             button_one = keyboard.is_pressed("s")
             button_complete = keyboard.is_pressed("d")
+            if self.is_input_complete:
+                return
             if button_zero or button_one or button_complete:
                 self.is_using_touch_sensor_input = True
                 print(f"\r{self.raw_user_input}", end="")
             if button_complete:
                 self.is_input_complete = True
-                print("done")
+                print()
                 return
             if button_one and not button_zero:
                 self.raw_user_input += "1"
@@ -136,21 +108,19 @@ class UserInput:
 
 if __name__ == "__main__":
     try:
-        while True:
-            try:
-                input_string = UserInput().get_binary_user_input()
-                cube_grid = CubeGrid(input_string)
-                print(f'{cube_grid.valid_binary_input} ({cube_grid.valid_binary_input.count("1")} cubes required)')
-                print(cube_grid.grid)
-                cube_grid.preview_grid()
-                for cube in cube_grid:
-                    print(cube, end=" ")
-                print()
+        try:
+            input_string = UserInput().get_binary_user_input()
+            cube_grid = CubeGrid(input_string)
+            print(f'{cube_grid.valid_binary_input} ({cube_grid.valid_binary_input.count("1")} cubes required)')
+            print(cube_grid.grid)
+            cube_grid.preview_grid()
+            for cube in cube_grid:
+                print(cube, end=" ")
+            print()
+        except Exception as e:
+            print(e)
 
-            except Exception as e:
-                print(e)
-
-            time.sleep(LOOP_INTERVAL)
+        time.sleep(LOOP_INTERVAL)
 
     except KeyboardInterrupt:
         # reset_brick()
