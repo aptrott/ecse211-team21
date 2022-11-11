@@ -52,7 +52,7 @@ class CubeGrid:
         return grid
 
     def preview_grid(self):
-        output = "\u0332 " * 16 + "\n"
+        output = "\u0332" * 16 + "\n"
         for row in range(GRID_ROWS, 0, -1):
             output += "|"
             for column in self.grid:
@@ -72,29 +72,25 @@ class UserInput:
         self.is_using_touch_sensor_input = False
 
     def get_binary_user_input(self):
-        touch_sensor_input_thread = threading.Thread(target=self.__get_touch_sensor_binary_user_input, daemon=True)
         keyboard_input_thread = threading.Thread(target=self.__get_keyboard_binary_user_input, daemon=True)
-        touch_sensor_input_thread.start()
         keyboard_input_thread.start()
-        touch_sensor_input_thread.join()
+        self.__get_touch_sensor_binary_user_input()
         return self.raw_user_input
 
     def __get_keyboard_binary_user_input(self):
         user_input = str(input(
             f'Enter a string of "1"s and "0"s maximum length {GRID_CELLS}, containing a maximum of {MAXIMUM_CUBES} "1"s:\n'))
-        self.raw_user_input = user_input.replace(" ", "")
-        self.is_input_complete = True
+        if not self.is_using_touch_sensor_input:
+            self.raw_user_input = user_input.replace(" ", "")
+            self.is_input_complete = True
 
     def __get_touch_sensor_binary_user_input(self):
-        while True:
+        while not self.is_input_complete:
             button_zero = keyboard.is_pressed("a")
             button_one = keyboard.is_pressed("s")
             button_complete = keyboard.is_pressed("d")
-            if self.is_input_complete:
-                return
             if button_zero or button_one or button_complete:
                 self.is_using_touch_sensor_input = True
-                print(f"\r{self.raw_user_input}", end="")
             if button_complete:
                 self.is_input_complete = True
                 print()
@@ -103,6 +99,9 @@ class UserInput:
                 self.raw_user_input += "1"
             if button_zero and not button_one:
                 self.raw_user_input += "0"
+            if self.is_using_touch_sensor_input:
+                print(" " * 100, end="\r", flush=True)
+                print(f"\r{self.raw_user_input}", end="\r", flush=True)
             time.sleep(LOOP_INTERVAL)
 
 
@@ -121,6 +120,8 @@ if __name__ == "__main__":
             print(e)
 
         time.sleep(LOOP_INTERVAL)
+
+        exit(0)
 
     except KeyboardInterrupt:
         # reset_brick()
