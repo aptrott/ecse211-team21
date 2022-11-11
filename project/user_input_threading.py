@@ -83,30 +83,17 @@ class UserInput:
         keyboard_input_thread.join()
         return self.raw_user_input
 
-    def __add_input(self, input_queue):
-        while not self.is_input_complete:
-            c = sys.stdin.read(1)
-            input_queue.put(c)
-
     def __get_keyboard_binary_user_input(self):
         prompt = f'\nEnter a string of "1"s and "0"s maximum length {GRID_CELLS}, containing a maximum of {MAXIMUM_CUBES} "1"s:'
         print(prompt)
-        input_queue = queue.Queue()
-        input_thread = threading.Thread(target=self.__add_input, args=[input_queue], daemon=True)
-        input_thread.start()
         user_input = ""
-        while True:
-            if self.is_input_complete:
-                break
-            if not input_queue.empty():
-                c = str(input_queue.get())
-                if c == "\n":
-                    self.is_input_complete = True
-                    self.raw_user_input = user_input.replace(" ", "")
-                    break
-                if not self.is_input_complete:
-                    user_input += c
-        input_thread.join()
+        while not self.is_input_complete and not self.is_using_touch_sensor_input:
+            c = str(sys.stdin.read(1))
+            if c == "\n":
+                self.is_input_complete = True
+                self.raw_user_input = user_input.replace(" ", "")
+                return
+            user_input += c
 
     def __get_touch_sensor_binary_user_input(self):
         while True:
