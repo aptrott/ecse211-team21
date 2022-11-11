@@ -86,23 +86,22 @@ class UserInput:
 
     def __get_touch_sensor_binary_user_input(self):
         while not self.is_input_complete:
+            time.sleep(LOOP_INTERVAL)
             button_zero = keyboard.is_pressed("a")
             button_one = keyboard.is_pressed("s")
             button_complete = keyboard.is_pressed("d")
             if button_zero or button_one or button_complete:
                 self.is_using_touch_sensor_input = True
-            if button_complete:
-                self.is_input_complete = True
-                print()
-                return
-            if button_one and not button_zero:
+            if button_one and not button_zero and not button_complete:
                 self.raw_user_input += "1"
-            if button_zero and not button_one:
+            if button_zero and not button_one and not button_complete:
                 self.raw_user_input += "0"
             if self.is_using_touch_sensor_input:
                 print(" " * 100, end="\r", flush=True)
                 print(f"\r{self.raw_user_input}", end="\r", flush=True)
-            time.sleep(LOOP_INTERVAL)
+            if button_complete and not button_one and not button_zero:
+                self.is_input_complete = True
+                print()
 
 
 if __name__ == "__main__":
