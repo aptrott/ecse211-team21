@@ -3,7 +3,7 @@ from utils import sound
 import time
 import threading
 
-LOOP_INTERVAL = 0.500
+LOOP_INTERVAL = 0.050
 
 # wait_ready_sensors(True)
 
@@ -70,7 +70,7 @@ class CubeGrid:
         return grid
 
     def preview_grid(self):
-        output = "\u0332" * 16 + "\n"
+        output = "_" * 16 + "\n"
         for row in range(GRID_ROWS, 0, -1):
             output += "|"
             for column in self.grid:
