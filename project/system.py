@@ -157,7 +157,7 @@ class RobotMovement:
         self.current_column = column
 
     def return_to_initial(self):
-        distance = 4 * self.current_column - 0.5
+        distance = 4 * (self.current_column - self.initial_column)
         self.motor.set_position_relative(-self.get_rotation_angle(distance))
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
@@ -169,7 +169,7 @@ class Pushing_piston:
 
     def __init__(self, motor: Motor):
         self.motor = motor
-        self.motor.set_limits(dps=180)
+        self.motor.set_limits(dps=360)
 
     def get_rotation_angle(self, linear_distance):
         radius = 1.95
@@ -192,11 +192,10 @@ class Pushing_piston:
         self.motor.set_position_relative(rotation_angle)
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
-        time.sleep(2)
+        time.sleep(0.5)
         self.motor.set_position_relative(-rotation_angle)
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
-        time.sleep(2)
 
 
 if __name__ == "__main__":
@@ -213,11 +212,15 @@ if __name__ == "__main__":
 
             robot_movement = RobotMovement(Motor("B"))
             pushing_motor = Pushing_piston(Motor("D"))
-            for column_number, column_cubes in cube_grid:
-                robot_movement.move(column_number)
-                for cube_row in column_cubes:
+            for column in cube_grid.grid:
+                print(f"moving to column {column}")
+                robot_movement.move(column)
+                robot_movement.motor.wait_is_stopped()
+                # time.sleep(0.5)
+                for cube_row in cube_grid.get_cubes_in_column(column):
                     pushing_motor.load_cube()
                     pushing_motor.push(cube_row)
+            print("returning to initial position")
             robot_movement.return_to_initial()
 
     except KeyboardInterrupt:
