@@ -17,13 +17,13 @@ GRID_CELL_SIZE = 4  # cm
 
 # Creating the 3 different to be played at each input.
 # each sound will confirm to the user whether they input '1' or '0' or 'complete'
-SOUND_1 = sound.Sound(duration=1, pitch="G6", volume=50)
-SOUND_0 = sound.Sound(duration=1, pitch="C6", volume=50)
-SOUND_COMPLETE = sound.Sound(duration=1, pitch="D6", volume=50)
+SOUND_1 = sound.Sound(duration=0.5, pitch="G6", volume=50)
+SOUND_0 = sound.Sound(duration=0.5, pitch="C6", volume=50)
+SOUND_COMPLETE = sound.Sound(duration=0.5, pitch="D6", volume=50)
 # Initiating the 2 different touch sensors for the two possible inputs '1' and '0'
-TS_1 = TouchSensor(1)
-TS_0 = TouchSensor(2)
-TS_COMPLETE = TouchSensor(3)
+TS_1 = TouchSensor(4)
+TS_0 = TouchSensor(3)
+TS_COMPLETE = TouchSensor(2)
 
 
 class GridInputValidationError(Exception):
@@ -158,6 +158,7 @@ class RobotMovement:
 
     def return_to_initial(self):
         distance = 4 * (self.current_column - self.initial_column)
+        print(distance)
         self.motor.set_position_relative(-self.get_rotation_angle(distance))
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
@@ -178,10 +179,13 @@ class Pushing_piston:
 
     def push(self, row):
         distance = 4 * row - 0.5
+
+        print("pushing...")
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(-rotation_angle)
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
+        print("moving back...")
         self.motor.set_position_relative(rotation_angle)
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
@@ -214,14 +218,15 @@ if __name__ == "__main__":
             pushing_motor = Pushing_piston(Motor("D"))
             for column in cube_grid.grid:
                 print(f"moving to column {column}")
-                robot_movement.move(column)
-                robot_movement.motor.wait_is_stopped()
-                # time.sleep(0.5)
+                if cube_grid.get_cubes_in_column(column):
+                    robot_movement.move(column)
                 for cube_row in cube_grid.get_cubes_in_column(column):
+                    print("loading cube")
                     pushing_motor.load_cube()
+                    print(f"pushing cube to row {cube_row}")
                     pushing_motor.push(cube_row)
-            print("returning to initial position")
             robot_movement.return_to_initial()
+            print(f"returning to initial position {robot_movement.initial_column}")
 
     except KeyboardInterrupt:
         # reset_brick()
