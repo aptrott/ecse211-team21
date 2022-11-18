@@ -7,7 +7,7 @@ import threading
 
 LOOP_INTERVAL = 0.050
 
-SLEEP = 3
+SLEEP = 1
 
 # wait_ready_sensors(True)
 
@@ -188,7 +188,7 @@ class Pusher:
         return angle
 
     def push(self, row):
-        distance = 4 * row - 0.5
+        distance = 4 * row
         self.motor.reset_encoder()
         print("pushing...")
         rotation_angle = self.get_rotation_angle(distance)
