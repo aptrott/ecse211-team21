@@ -1,9 +1,13 @@
+import math
+
 from utils.brick import Motor, TouchSensor, reset_brick, wait_ready_sensors
 from utils import sound
 import time
 import threading
 
 LOOP_INTERVAL = 0.050
+
+SLEEP = 1
 
 # wait_ready_sensors(True)
 
@@ -15,13 +19,14 @@ GRID_CELL_SIZE = 4  # cm
 
 # Creating the 3 different to be played at each input.
 # each sound will confirm to the user whether they input '1' or '0' or 'complete'
-SOUND_1 = sound.Sound(duration=1, pitch="G6", volume=50)
-SOUND_0 = sound.Sound(duration=1, pitch="C6", volume=50)
-SOUND_COMPLETE = sound.Sound(duration=1, pitch="D6", volume=50)
+SOUND_1 = sound.Sound(duration=0.3, pitch="G6", volume=50)
+SOUND_0 = sound.Sound(duration=0.3, pitch="C6", volume=50)
+SOUND_COMPLETE = sound.Sound(duration=0.3, pitch="D6", volume=50)
+SOUND_INVALID = sound.Sound(duration=1, pitch="F6", volume=60)
 # Initiating the 2 different touch sensors for the two possible inputs '1' and '0'
-TS_1 = TouchSensor(1)
-TS_0 = TouchSensor(2)
-TS_COMPLETE = TouchSensor(3)
+TS_1 = TouchSensor(4)
+TS_0 = TouchSensor(3)
+TS_COMPLETE = TouchSensor(2)
 
 
 class GridInputValidationError(Exception):
@@ -33,11 +38,6 @@ class CubeGrid:
     def __init__(self, user_input):
         self.valid_binary_input = self.__validate_binary_user_input(user_input)
         self.grid = self.__process_grid()
-
-    def __iter__(self):
-        for cube_column in self.grid:
-            for cube_row in self.get_cubes_in_column(cube_column):
-                yield cube_column, cube_row
 
     def get_cubes_in_column(self, cube_column):
         return self.grid.get(cube_column)
@@ -133,23 +133,111 @@ class UserInput:
                 print()
 
 
+class RobotMovement:
+    # Initialization of the motor
+
+    def __init__(self, motor: Motor, motor_2: Motor):
+        self.initial_column = 1
+        self.motor = motor
+        self.motor_2 = motor_2
+        self.motor.set_limits(dps=100)
+        self.motor_2.set_limits(dps=100)
+        self.current_column = self.initial_column
+
+    @staticmethod
+    def get_rotation_angle(linear_distance):
+        radius = 1.95
+        angle = (360 * linear_distance) / (2 * math.pi * radius)
+        return angle
+
+    def move(self, column):
+        self.motor.reset_encoder()
+        distance = 4 * (column - self.current_column)
+        angle = self.get_rotation_angle(distance)
+        self.motor.set_position_relative(angle)
+        self.motor_2.set_position_relative(angle)
+        time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
+        self.motor_2.wait_is_stopped()
+        self.current_column = column
+
+    def return_to_initial(self):
+        self.motor.reset_encoder()
+        distance = 4 * (self.current_column - self.initial_column)
+        print(distance)
+        angle = -self.get_rotation_angle(distance)
+        self.motor.set_position_relative(angle)
+        self.motor_2.set_position_relative(angle)
+        time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
+        self.motor_2.wait_is_stopped()
+        self.current_column = self.initial_column
+
+
+class Pusher:
+    # Initialization of the motor
+
+    def __init__(self, motor: Motor):
+        self.motor = motor
+        self.motor.set_limits(dps=300)
+
+    @staticmethod
+    def get_rotation_angle(linear_distance):
+        radius = 2.05
+        angle = (360 * linear_distance) / (2 * math.pi * radius)
+        return angle
+
+    def push(self, row):
+        distance = 4 * row
+        self.motor.reset_encoder()
+        print("pushing...")
+        rotation_angle = self.get_rotation_angle(distance)
+        self.motor.set_position_relative(-rotation_angle)
+        time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
+        print("moving back...")
+        self.motor.set_position_relative(rotation_angle)
+        time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
+
+    def load_cube(self):
+        distance = 3.5
+        self.motor.reset_encoder()
+        rotation_angle = self.get_rotation_angle(distance)
+        self.motor.set_position_relative(rotation_angle)
+        time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
+        self.motor.set_position_relative(-rotation_angle)
+        time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
+
 if __name__ == "__main__":
     try:
         input_string = UserInput().get_binary_user_input()
         try:
             cube_grid = CubeGrid(input_string)
         except GridInputValidationError as e:
+            SOUND_INVALID.play()
+            SOUND_INVALID.wait_done()
             print(e)
-            exit(0)
         else:
             print(f'{cube_grid.valid_binary_input} ({cube_grid.valid_binary_input.count("1")} cubes required)')
             print(cube_grid.grid)
             cube_grid.preview_grid()
-            for cube in cube_grid:
-                print(cube, end=" ")
-            print()
 
-            time.sleep(LOOP_INTERVAL)
+            robot_movement = RobotMovement(Motor("B"), Motor("C"))
+            pusher = Pusher(Motor("D"))
+            for column in cube_grid.grid:
+                print(f"moving to column {column}")
+                if cube_grid.get_cubes_in_column(column):
+                    robot_movement.move(column)
+                for cube_row in cube_grid.get_cubes_in_column(column):
+                    print("loading cube")
+                    pusher.load_cube()
+                    print(f"pushing cube to row {cube_row}")
+                    pusher.push(cube_row)
+            robot_movement.return_to_initial()
+            print(f"returning to initial position {robot_movement.initial_column}")
 
     except KeyboardInterrupt:
         # reset_brick()
