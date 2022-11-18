@@ -17,9 +17,10 @@ GRID_CELL_SIZE = 4  # cm
 
 # Creating the 3 different to be played at each input.
 # each sound will confirm to the user whether they input '1' or '0' or 'complete'
-SOUND_1 = sound.Sound(duration=0.5, pitch="G6", volume=50)
-SOUND_0 = sound.Sound(duration=0.5, pitch="C6", volume=50)
-SOUND_COMPLETE = sound.Sound(duration=0.5, pitch="D6", volume=50)
+SOUND_1 = sound.Sound(duration=0.3, pitch="G6", volume=50)
+SOUND_0 = sound.Sound(duration=0.3, pitch="C6", volume=50)
+SOUND_COMPLETE = sound.Sound(duration=0.3, pitch="D6", volume=50)
+SOUND_INVALID = sound.Sound(duration=1, pitch="F6", volume=60)
 # Initiating the 2 different touch sensors for the two possible inputs '1' and '0'
 TS_1 = TouchSensor(4)
 TS_0 = TouchSensor(3)
@@ -150,6 +151,7 @@ class RobotMovement:
         return angle
 
     def move(self, column):
+        self.motor.reset_encoder()
         distance = 4 * (column - self.current_column)
         self.motor.set_position_relative(self.get_rotation_angle(distance))
         self.motor.wait_is_moving()
@@ -157,6 +159,7 @@ class RobotMovement:
         self.current_column = column
 
     def return_to_initial(self):
+        self.motor.reset_encoder()
         distance = 4 * (self.current_column - self.initial_column)
         print(distance)
         self.motor.set_position_relative(-self.get_rotation_angle(distance))
@@ -165,21 +168,22 @@ class RobotMovement:
         self.current_column = self.initial_column
 
 
-class Pushing_piston:
+class Pusher:
     # Initialization of the motor
 
     def __init__(self, motor: Motor):
         self.motor = motor
         self.motor.set_limits(dps=360)
 
-    def get_rotation_angle(self, linear_distance):
+    @staticmethod
+    def get_rotation_angle(linear_distance):
         radius = 1.95
         angle = (360 * linear_distance) / (2 * math.pi * radius)
         return angle
 
     def push(self, row):
         distance = 4 * row - 0.5
-
+        self.motor.reset_encoder()
         print("pushing...")
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(-rotation_angle)
@@ -192,6 +196,7 @@ class Pushing_piston:
 
     def load_cube(self):
         distance = 3
+        self.motor.reset_encoder()
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(rotation_angle)
         self.motor.wait_is_moving()
@@ -215,16 +220,16 @@ if __name__ == "__main__":
             cube_grid.preview_grid()
 
             robot_movement = RobotMovement(Motor("B"))
-            pushing_motor = Pushing_piston(Motor("D"))
+            pusher = Pusher(Motor("D"))
             for column in cube_grid.grid:
                 print(f"moving to column {column}")
                 if cube_grid.get_cubes_in_column(column):
                     robot_movement.move(column)
                 for cube_row in cube_grid.get_cubes_in_column(column):
                     print("loading cube")
-                    pushing_motor.load_cube()
+                    pusher.load_cube()
                     print(f"pushing cube to row {cube_row}")
-                    pushing_motor.push(cube_row)
+                    pusher.push(cube_row)
             robot_movement.return_to_initial()
             print(f"returning to initial position {robot_movement.initial_column}")
 
