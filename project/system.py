@@ -139,9 +139,9 @@ class RobotMovement:
     def __init__(self, motor: Motor, motor_2: Motor):
         self.initial_column = 1
         self.motor = motor
-        self.motor.set_limits(dps=90)
         self.motor_2 = motor_2
-        self.motor_2.set_limits(dps=90)
+        self.motor.set_limits(dps=100)
+        self.motor_2.set_limits(dps=100)
         self.current_column = self.initial_column
 
     @staticmethod
@@ -157,6 +157,8 @@ class RobotMovement:
         self.motor.set_position_relative(angle)
         self.motor_2.set_position_relative(angle)
         time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
+        self.motor_2.wait_is_stopped()
         self.current_column = column
 
     def return_to_initial(self):
@@ -167,6 +169,8 @@ class RobotMovement:
         self.motor.set_position_relative(angle)
         self.motor_2.set_position_relative(angle)
         time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
+        self.motor_2.wait_is_stopped()
         self.current_column = self.initial_column
 
 
@@ -175,7 +179,7 @@ class Pusher:
 
     def __init__(self, motor: Motor):
         self.motor = motor
-        self.motor.set_limits(dps=270)
+        self.motor.set_limits(dps=300)
 
     @staticmethod
     def get_rotation_angle(linear_distance):
@@ -190,9 +194,11 @@ class Pusher:
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(-rotation_angle)
         time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
         print("moving back...")
         self.motor.set_position_relative(rotation_angle)
         time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
 
     def load_cube(self):
         distance = 3.5
@@ -200,8 +206,10 @@ class Pusher:
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(rotation_angle)
         time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
         self.motor.set_position_relative(-rotation_angle)
         time.sleep(SLEEP)
+        self.motor.wait_is_stopped()
 
 if __name__ == "__main__":
     try:
@@ -223,16 +231,12 @@ if __name__ == "__main__":
                 print(f"moving to column {column}")
                 if cube_grid.get_cubes_in_column(column):
                     robot_movement.move(column)
-                    time.sleep(LOOP_INTERVAL)
                 for cube_row in cube_grid.get_cubes_in_column(column):
                     print("loading cube")
                     pusher.load_cube()
-                    time.sleep(LOOP_INTERVAL)
                     print(f"pushing cube to row {cube_row}")
                     pusher.push(cube_row)
-                    time.sleep(LOOP_INTERVAL)
             robot_movement.return_to_initial()
-            time.sleep(SLEEP)
             print(f"returning to initial position {robot_movement.initial_column}")
 
     except KeyboardInterrupt:
