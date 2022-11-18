@@ -7,6 +7,8 @@ import threading
 
 LOOP_INTERVAL = 0.050
 
+SLEEP = 3
+
 # wait_ready_sensors(True)
 
 GRID_COLUMNS = 5
@@ -134,10 +136,12 @@ class UserInput:
 class RobotMovement:
     # Initialization of the motor
 
-    def __init__(self, motor: Motor):
-        self.initial_column = 0
+    def __init__(self, motor: Motor, motor_2: Motor):
+        self.initial_column = 1
         self.motor = motor
         self.motor.set_limits(dps=90)
+        self.motor_2 = motor_2
+        self.motor_2.set_limits(dps=90)
         self.current_column = self.initial_column
 
     @staticmethod
@@ -149,16 +153,20 @@ class RobotMovement:
     def move(self, column):
         self.motor.reset_encoder()
         distance = 4 * (column - self.current_column)
-        self.motor.set_position_relative(self.get_rotation_angle(distance))
-        time.sleep(4)
+        angle = self.get_rotation_angle(distance)
+        self.motor.set_position_relative(angle)
+        self.motor_2.set_position_relative(angle)
+        time.sleep(SLEEP)
         self.current_column = column
 
     def return_to_initial(self):
         self.motor.reset_encoder()
         distance = 4 * (self.current_column - self.initial_column)
         print(distance)
-        self.motor.set_position_relative(-self.get_rotation_angle(distance))
-        time.sleep(2)
+        angle = -self.get_rotation_angle(distance)
+        self.motor.set_position_relative(angle)
+        self.motor_2.set_position_relative(angle)
+        time.sleep(SLEEP)
         self.current_column = self.initial_column
 
 
@@ -181,19 +189,19 @@ class Pusher:
         print("pushing...")
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(-rotation_angle)
-        time.sleep(4)
+        time.sleep(SLEEP)
         print("moving back...")
         self.motor.set_position_relative(rotation_angle)
-        time.sleep(4)
+        time.sleep(SLEEP)
 
     def load_cube(self):
         distance = 3.5
         self.motor.reset_encoder()
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(rotation_angle)
-        time.sleep(4)
+        time.sleep(SLEEP)
         self.motor.set_position_relative(-rotation_angle)
-        time.sleep(4)
+        time.sleep(SLEEP)
 
 if __name__ == "__main__":
     try:
@@ -209,7 +217,7 @@ if __name__ == "__main__":
             print(cube_grid.grid)
             cube_grid.preview_grid()
 
-            robot_movement = RobotMovement(Motor("B"))
+            robot_movement = RobotMovement(Motor("B"), Motor("C"))
             pusher = Pusher(Motor("D"))
             for column in cube_grid.grid:
                 print(f"moving to column {column}")
@@ -224,7 +232,7 @@ if __name__ == "__main__":
                     pusher.push(cube_row)
                     time.sleep(LOOP_INTERVAL)
             robot_movement.return_to_initial()
-            time.sleep(4)
+            time.sleep(SLEEP)
             print(f"returning to initial position {robot_movement.initial_column}")
 
     except KeyboardInterrupt:
