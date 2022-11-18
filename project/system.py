@@ -37,10 +37,6 @@ class CubeGrid:
         self.valid_binary_input = self.__validate_binary_user_input(user_input)
         self.grid = self.__process_grid()
 
-    def __iter__(self):
-        for cube_column in self.grid:
-            yield self.get_cubes_in_column(cube_column)
-
     def get_cubes_in_column(self, cube_column):
         return self.grid.get(cube_column)
 
@@ -146,25 +142,29 @@ class RobotMovement:
 
     @staticmethod
     def get_rotation_angle(linear_distance):
-        radius = 1.95
+        radius = 2.05
         angle = (360 * linear_distance) / (2 * math.pi * radius)
         return angle
 
     def move(self, column):
         self.motor.reset_encoder()
+        time.sleep(1)
         distance = 4 * (column - self.current_column)
         self.motor.set_position_relative(self.get_rotation_angle(distance))
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
+        time.sleep(2)
         self.current_column = column
 
     def return_to_initial(self):
         self.motor.reset_encoder()
+        time.sleep(1)
         distance = 4 * (self.current_column - self.initial_column)
         print(distance)
         self.motor.set_position_relative(-self.get_rotation_angle(distance))
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
+        time.sleep(2)
         self.current_column = self.initial_column
 
 
@@ -173,11 +173,11 @@ class Pusher:
 
     def __init__(self, motor: Motor):
         self.motor = motor
-        self.motor.set_limits(dps=360)
+        self.motor.set_limits(dps=270)
 
     @staticmethod
     def get_rotation_angle(linear_distance):
-        radius = 1.95
+        radius = 2.05
         angle = (360 * linear_distance) / (2 * math.pi * radius)
         return angle
 
@@ -189,22 +189,25 @@ class Pusher:
         self.motor.set_position_relative(-rotation_angle)
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
+        time.sleep(1)
         print("moving back...")
         self.motor.set_position_relative(rotation_angle)
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
+        time.sleep(1)
 
     def load_cube(self):
-        distance = 3
+        distance = 3.5
         self.motor.reset_encoder()
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(rotation_angle)
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
-        time.sleep(0.5)
+        time.sleep(1)
         self.motor.set_position_relative(-rotation_angle)
         self.motor.wait_is_moving()
         self.motor.wait_is_stopped()
+        time.sleep(2)
 
 
 if __name__ == "__main__":
@@ -213,6 +216,8 @@ if __name__ == "__main__":
         try:
             cube_grid = CubeGrid(input_string)
         except GridInputValidationError as e:
+            SOUND_INVALID.play()
+            SOUND_INVALID.wait_done()
             print(e)
         else:
             print(f'{cube_grid.valid_binary_input} ({cube_grid.valid_binary_input.count("1")} cubes required)')
@@ -225,12 +230,16 @@ if __name__ == "__main__":
                 print(f"moving to column {column}")
                 if cube_grid.get_cubes_in_column(column):
                     robot_movement.move(column)
+                    time.sleep(2)
                 for cube_row in cube_grid.get_cubes_in_column(column):
                     print("loading cube")
                     pusher.load_cube()
+                    time.sleep(2)
                     print(f"pushing cube to row {cube_row}")
                     pusher.push(cube_row)
+                    time.sleep(2)
             robot_movement.return_to_initial()
+            time.sleep(2)
             print(f"returning to initial position {robot_movement.initial_column}")
 
     except KeyboardInterrupt:
