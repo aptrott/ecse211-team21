@@ -22,7 +22,7 @@ GRID_CELL_SIZE = 4  # cm
 SOUND_1 = sound.Sound(duration=0.3, pitch="G6", volume=50)
 SOUND_0 = sound.Sound(duration=0.3, pitch="C6", volume=50)
 SOUND_COMPLETE = sound.Sound(duration=0.3, pitch="D6", volume=50)
-SOUND_INVALID = sound.Sound(duration=1, pitch="F6", volume=60)
+SOUND_INVALID = sound.Sound(duration=0.3, pitch="G5", volume=50)
 # Initiating the 2 different touch sensors for the two possible inputs '1' and '0'
 TS_1 = TouchSensor(4)
 TS_0 = TouchSensor(3)
@@ -146,7 +146,7 @@ class RobotMovement:
 
     @staticmethod
     def get_rotation_angle(linear_distance):
-        radius = 1.95
+        radius = 2.00
         angle = (360 * linear_distance) / (2 * math.pi * radius)
         return angle
 
@@ -164,7 +164,6 @@ class RobotMovement:
     def return_to_initial(self):
         self.motor.reset_encoder()
         distance = 4 * (self.current_column - self.initial_column)
-        print(distance)
         angle = -self.get_rotation_angle(distance)
         self.motor.set_position_relative(angle)
         self.motor_2.set_position_relative(angle)
@@ -179,7 +178,7 @@ class Pusher:
 
     def __init__(self, motor: Motor):
         self.motor = motor
-        self.motor.set_limits(dps=300)
+        self.motor.set_limits(dps=360)
 
     @staticmethod
     def get_rotation_angle(linear_distance):
@@ -188,7 +187,7 @@ class Pusher:
         return angle
 
     def push(self, row):
-        distance = 4 * row
+        distance = (4 * row) - 1.5
         self.motor.reset_encoder()
         print("pushing...")
         rotation_angle = self.get_rotation_angle(distance)
@@ -201,7 +200,7 @@ class Pusher:
         self.motor.wait_is_stopped()
 
     def load_cube(self):
-        distance = 3.5
+        distance = 6
         self.motor.reset_encoder()
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(rotation_angle)
@@ -211,12 +210,15 @@ class Pusher:
         time.sleep(SLEEP)
         self.motor.wait_is_stopped()
 
+
 if __name__ == "__main__":
     try:
         input_string = UserInput().get_binary_user_input()
         try:
             cube_grid = CubeGrid(input_string)
         except GridInputValidationError as e:
+            SOUND_INVALID.play()
+            SOUND_INVALID.wait_done()
             SOUND_INVALID.play()
             SOUND_INVALID.wait_done()
             print(e)
