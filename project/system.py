@@ -187,7 +187,7 @@ class Pusher:
         return angle
 
     def push(self, row):
-        distance = 4 * row
+        distance = (4 * row) - 1.5
         self.motor.reset_encoder()
         print("pushing...")
         rotation_angle = self.get_rotation_angle(distance)
@@ -200,7 +200,7 @@ class Pusher:
         self.motor.wait_is_stopped()
 
     def load_cube(self):
-        distance = 3.5
+        distance = 6
         self.motor.reset_encoder()
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(rotation_angle)
@@ -209,6 +209,7 @@ class Pusher:
         self.motor.set_position_relative(-rotation_angle)
         time.sleep(SLEEP)
         self.motor.wait_is_stopped()
+
 
 if __name__ == "__main__":
     try:
