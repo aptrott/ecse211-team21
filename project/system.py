@@ -6,7 +6,6 @@ import time
 import threading
 
 LOOP_INTERVAL = 0.050
-
 SLEEP = 1
 
 # wait_ready_sensors(True)
@@ -16,6 +15,7 @@ GRID_ROWS = 5
 GRID_CELLS = GRID_COLUMNS * GRID_ROWS
 MAXIMUM_CUBES = 15
 GRID_CELL_SIZE = 4  # cm
+INITIAL_PUSHER_OFFSET = 1.5  # cm
 
 # Creating the 3 different to be played at each input.
 # each sound will confirm to the user whether they input '1' or '0' or 'complete'
@@ -178,7 +178,6 @@ class Pusher:
 
     def __init__(self, motor: Motor):
         self.motor = motor
-        self.motor.set_limits(dps=360)
 
     @staticmethod
     def get_rotation_angle(linear_distance):
@@ -187,7 +186,8 @@ class Pusher:
         return angle
 
     def push(self, row):
-        distance = (4 * row) - 1.5
+        self.motor.set_limits(dps=200)
+        distance = 4 * row
         self.motor.reset_encoder()
         print("pushing...")
         rotation_angle = self.get_rotation_angle(distance)
@@ -200,15 +200,19 @@ class Pusher:
         self.motor.wait_is_stopped()
 
     def load_cube(self):
-        distance = 6
+        self.motor.set_limits(dps=90)
+        load_distance = 6
+        ready_to_push_distance = - (6 - INITIAL_PUSHER_OFFSET)
         self.motor.reset_encoder()
-        rotation_angle = self.get_rotation_angle(distance)
-        self.motor.set_position_relative(rotation_angle)
+        load_rotation_angle = self.get_rotation_angle(load_distance)
+        ready_to_push_rotation_angle = self.get_rotation_angle(ready_to_push_distance)
+        self.motor.set_position_relative(load_rotation_angle)
         time.sleep(SLEEP)
         self.motor.wait_is_stopped()
-        self.motor.set_position_relative(-rotation_angle)
+        self.motor.set_position_relative(ready_to_push_rotation_angle)
         time.sleep(SLEEP)
         self.motor.wait_is_stopped()
+        time.sleep(SLEEP)
 
 
 if __name__ == "__main__":
