@@ -1,12 +1,14 @@
-import math
-
 from utils.brick import Motor, TouchSensor, reset_brick, wait_ready_sensors
 from utils import sound
+import math
 import time
 import threading
 
 LOOP_INTERVAL = 0.050
-SLEEP = 1
+SLEEP = 0.5
+SLEEP_PUSHER_MOVEMENT = 3
+SLEEP_LOAD_MOVEMENT = 2
+SLEEP_ROBOT_MOVEMENT = 4
 
 GRID_COLUMNS = 5
 GRID_ROWS = 5
@@ -159,8 +161,8 @@ class RobotMovement:
         self.initial_column = 1
         self.motor_1 = motor_1
         self.motor_2 = motor_2
-        self.motor_1.set_limits(dps=100)
-        self.motor_2.set_limits(dps=100)
+        self.motor_1.set_limits(dps=150)
+        self.motor_2.set_limits(dps=150)
         self.current_column = self.initial_column
 
     @staticmethod
@@ -178,9 +180,7 @@ class RobotMovement:
         angle = self.get_rotation_angle(distance)
         self.motor_1.set_position_relative(angle)
         self.motor_2.set_position_relative(angle)
-        time.sleep(SLEEP)
-        self.motor_1.wait_is_stopped()
-        self.motor_2.wait_is_stopped()
+        time.sleep(SLEEP_ROBOT_MOVEMENT)
         self.current_column = column
 
     def return_to_initial(self):
@@ -191,9 +191,7 @@ class RobotMovement:
         angle = -self.get_rotation_angle(distance)
         self.motor_1.set_position_relative(angle)
         self.motor_2.set_position_relative(angle)
-        time.sleep(SLEEP)
-        self.motor_1.wait_is_stopped()
-        self.motor_2.wait_is_stopped()
+        time.sleep(SLEEP_ROBOT_MOVEMENT)
         self.current_column = self.initial_column
 
 
@@ -212,33 +210,30 @@ class Pusher:
 
     def push(self, row):
         """This method pushes a cube to the given row."""
-        self.motor.set_limits(dps=200)
+        self.motor.set_limits(dps=300)
         distance = 4 * row
         self.motor.reset_encoder()
         print("pushing...")
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(-rotation_angle)
+        time.sleep(SLEEP_PUSHER_MOVEMENT)
         time.sleep(SLEEP)
-        self.motor.wait_is_stopped()
         print("moving back...")
         self.motor.set_position_relative(rotation_angle)
-        time.sleep(SLEEP)
-        self.motor.wait_is_stopped()
+        time.sleep(SLEEP_PUSHER_MOVEMENT)
 
     def load_cube(self):
         """This method loads a cube into the pushing mechanism."""
-        self.motor.set_limits(dps=90)
+        self.motor.set_limits(dps=120)
         load_distance = 6
         ready_to_push_distance = - (load_distance - INITIAL_PUSHER_OFFSET)
         self.motor.reset_encoder()
         load_rotation_angle = self.get_rotation_angle(load_distance)
         ready_to_push_rotation_angle = self.get_rotation_angle(ready_to_push_distance)
         self.motor.set_position_relative(load_rotation_angle)
-        time.sleep(SLEEP)
-        self.motor.wait_is_stopped()
+        time.sleep(SLEEP_LOAD_MOVEMENT)
         self.motor.set_position_relative(ready_to_push_rotation_angle)
-        time.sleep(SLEEP)
-        self.motor.wait_is_stopped()
+        time.sleep(SLEEP_LOAD_MOVEMENT)
         time.sleep(SLEEP)
 
 
