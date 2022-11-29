@@ -4,10 +4,12 @@ import math
 import time
 import threading
 
+DEBUG = False
+
 LOOP_INTERVAL = 0.050
 SLEEP = 0.5
-SLEEP_PUSHER_MOVEMENT = 3
-SLEEP_LOAD_MOVEMENT = 2
+SLEEP_PUSHER_MOVEMENT = 2.5
+SLEEP_LOAD_MOVEMENT = 1.5
 SLEEP_ROBOT_MOVEMENT = 4
 
 GRID_COLUMNS = 5
@@ -161,8 +163,8 @@ class RobotMovement:
         self.initial_column = 1
         self.motor_1 = motor_1
         self.motor_2 = motor_2
-        self.motor_1.set_limits(dps=150)
-        self.motor_2.set_limits(dps=150)
+        self.motor_1.set_limits(dps=130)
+        self.motor_2.set_limits(dps=130)
         self.current_column = self.initial_column
 
     @staticmethod
@@ -213,12 +215,9 @@ class Pusher:
         self.motor.set_limits(dps=300)
         distance = 4 * row
         self.motor.reset_encoder()
-        print("pushing...")
         rotation_angle = self.get_rotation_angle(distance)
         self.motor.set_position_relative(-rotation_angle)
         time.sleep(SLEEP_PUSHER_MOVEMENT)
-        time.sleep(SLEEP)
-        print("moving back...")
         self.motor.set_position_relative(rotation_angle)
         time.sleep(SLEEP_PUSHER_MOVEMENT)
 
@@ -232,9 +231,9 @@ class Pusher:
         ready_to_push_rotation_angle = self.get_rotation_angle(ready_to_push_distance)
         self.motor.set_position_relative(load_rotation_angle)
         time.sleep(SLEEP_LOAD_MOVEMENT)
+        time.sleep(SLEEP)
         self.motor.set_position_relative(ready_to_push_rotation_angle)
         time.sleep(SLEEP_LOAD_MOVEMENT)
-        time.sleep(SLEEP)
 
 
 if __name__ == "__main__":
@@ -256,16 +255,21 @@ if __name__ == "__main__":
             robot_movement = RobotMovement(ROBOT_MOVEMENT_MOTOR_1, ROBOT_MOVEMENT_MOTOR_2)
             pusher = Pusher(PUSHER_MOTOR)
             for cube_column in cube_grid.grid:
-                print(f"moving to column {cube_column}")
+                if DEBUG:
+                    print(f"moving to column {cube_column}")
                 if cube_grid.get_cubes_in_column(cube_column):
                     robot_movement.move(cube_column)
                 for cube_row in cube_grid.get_cubes_in_column(cube_column):
-                    print("loading cube")
+                    if DEBUG:
+                        print("loading cube")
                     pusher.load_cube()
-                    print(f"pushing cube to row {cube_row}")
+                    if DEBUG:
+                        print(f"pushing cube to row {cube_row}")
                     pusher.push(cube_row)
             robot_movement.return_to_initial()
-            print(f"returning to initial position {robot_movement.initial_column}")
+            if DEBUG:
+                print(f"returning to initial position {robot_movement.initial_column}")
+            print("Mosaic complete")
 
     except KeyboardInterrupt:
         reset_brick()
