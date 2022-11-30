@@ -191,9 +191,9 @@ class RobotMovement:
         self.motor_1.reset_encoder()
         self.motor_2.reset_encoder()
         distance = 4 * (self.current_column - self.initial_column)
-        rotation_angle = -self.get_rotation_angle(distance)
-        self.motor_1.set_position_relative(rotation_angle)
-        self.motor_2.set_position_relative(rotation_angle)
+        rotation_angle = self.get_rotation_angle(distance)
+        self.motor_1.set_position_relative(-rotation_angle)
+        self.motor_2.set_position_relative(-rotation_angle)
         time.sleep(((1 / ROBOT_MOVEMENT_SPEED) * rotation_angle) + SLEEP)
         self.current_column = self.initial_column
 
@@ -227,12 +227,12 @@ class Pusher:
         self.motor.set_limits(dps=LOAD_CUBE_SPEED)
         self.motor.reset_encoder()
         load_distance = 6
-        ready_to_push_distance = - (load_distance - INITIAL_PUSHER_OFFSET)
+        ready_to_push_distance = load_distance - INITIAL_PUSHER_OFFSET
         load_rotation_angle = self.get_rotation_angle(load_distance)
         ready_to_push_rotation_angle = self.get_rotation_angle(ready_to_push_distance)
         self.motor.set_position_relative(load_rotation_angle)
         time.sleep(((1 / LOAD_CUBE_SPEED) * load_rotation_angle) + SLEEP)
-        self.motor.set_position_relative(ready_to_push_rotation_angle)
+        self.motor.set_position_relative(-ready_to_push_rotation_angle)
         time.sleep(((1 / LOAD_CUBE_SPEED) * ready_to_push_rotation_angle) + SLEEP)
 
 
